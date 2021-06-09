@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "dayjs": "^1.10.5",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.34"
+  },
+  "devDependencies": {
+    "@types/node": "^15.12.2",
+    "typescript": "^4.3.2"
+  }
+}
