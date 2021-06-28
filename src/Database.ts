@@ -1,12 +1,9 @@
 import { existsSync, readFileSync } from "fs";
 import mongoose from "mongoose";
-import SchemaManager from "./model/ModelManager";
 
 export default class Database {
 
     public static readonly database: Database;
-
-    private sManager: SchemaManager;
 
     constructor(){
         // Check if connection informations exist :
@@ -32,15 +29,5 @@ export default class Database {
             "@" + connectInfo.host + ":" + connectInfo.port +
             "/" + connectInfo.database
         );
-
-        this.sManager = new SchemaManager();
-    }
-
-    public get schemaManager(){
-        if(!this.sManager) throw new Error("You must first use the Database.connect() method to use the database.");
-
-        return this.sManager;
     }
 }
-
-(new Database()).connect();
