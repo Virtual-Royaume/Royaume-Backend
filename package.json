@@ -1,6 +1,6 @@
 {
   "name": "royaume-database",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Database of Royaume related things. It is built with [Mongoose](https://mongoosejs.com/). Each request to the database must follow an entity of this repo.",
   "main": "./build/Database.js",
   "scripts": {
