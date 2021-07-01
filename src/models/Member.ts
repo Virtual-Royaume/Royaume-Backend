@@ -51,7 +51,6 @@ const MemberSchema = new Schema({
             games: {type: Number, default: 0},
             musique: {type: Number, default: 0},
 
-            dropShipping: {type: Number, default: 0},
             developpement: {type: Number, default: 0},
             trading: {type: Number, default: 0},
             graphisme: {type: Number, default: 0},
@@ -63,7 +62,7 @@ const MemberSchema = new Schema({
 const collectionName = "member";
 const MemberModel = mongoose.model<MemberInterface>(collectionName, MemberSchema, collectionName);
 
-// Functions :
+// Functions and other :
 
 async function getMember(id: string){
     return await MemberModel.findOne({_id: id});
@@ -76,11 +75,24 @@ async function createMember(id: string, username: string, profilPictureLink: str
     }).save();
 }
 
+const channelIDToPropertyName: {[key: string]: string} = {
+    "786216771723198514": "general",
+
+    "778044698685866025": "games",
+    "829662265942343692": "musique",
+
+    "732392873667854372": "developpement",
+    "779129024327712783": "trading",
+    "768996501049311243": "graphisme",
+    "789126328082235412": "sneakers"
+}
+
 // Export default :
 
 export default {
     MemberSchema,
     MemberModel,
     createMember,
-    getMember
+    getMember,
+    channelIDToPropertyName
 }
