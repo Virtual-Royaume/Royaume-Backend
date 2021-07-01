@@ -2,7 +2,7 @@ import mongoose, { Document, Schema } from "mongoose";
 
 // Interface, Schema and Model :
 
-export interface MemberInterface extends Document {
+interface MemberInterface extends Document {
     _id: string,
 
     username: string,
@@ -29,7 +29,7 @@ export interface MemberInterface extends Document {
     }
 }
 
-export const MemberSchema = new Schema({
+const MemberSchema = new Schema({
     _id: {type: String, required: true, maxLength: 35},
 
     username: {type: String, required: true},
@@ -61,17 +61,26 @@ export const MemberSchema = new Schema({
 });
 
 const collectionName = "member";
-export const MemberModel = mongoose.model<MemberInterface>(collectionName, MemberSchema, collectionName);
+const MemberModel = mongoose.model<MemberInterface>(collectionName, MemberSchema, collectionName);
 
 // Functions :
 
-export async function getMember(id: string){
+async function getMember(id: string){
     return await MemberModel.findOne({_id: id});
 }
 
-export async function createMember(id: string, username: string, profilPictureLink: string){
+async function createMember(id: string, username: string, profilPictureLink: string){
     return await new MemberModel({
         _id: id, username: username,
         profilPictureLink: profilPictureLink
     }).save();
+}
+
+// Export default :
+
+export default {
+    MemberSchema,
+    MemberModel,
+    createMember,
+    getMember
 }

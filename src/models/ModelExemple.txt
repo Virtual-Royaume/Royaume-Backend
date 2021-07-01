@@ -2,7 +2,7 @@ import mongoose, { Document } from "mongoose";
 
 // Interface, Schema and Model :
 
-export interface ExampleInterface extends Document {
+interface ExampleInterface extends Document {
     date: Date,
 
     voiceMinute: number,
@@ -10,7 +10,7 @@ export interface ExampleInterface extends Document {
     memberCount: number
 }
 
-export const ExampleSchema = new mongoose.Schema({
+const ExampleSchema = new mongoose.Schema({
     date: {type: Date, default: new Date(new Date().setHours(0, 0, 0, 0))},
     
     voiceMinute: {type: Number, default: 0},
@@ -19,10 +19,18 @@ export const ExampleSchema = new mongoose.Schema({
 });
 
 const collectionName = "example";
-export const ExampleModel = mongoose.model<ExampleInterface>(collectionName, ExampleSchema, collectionName);
+const ExampleModel = mongoose.model<ExampleInterface>(collectionName, ExampleSchema, collectionName);
 
 // Functions :
 
-export function getFunctionName(){
+function getFunctionName(){
     // TODO
+}
+
+// Export default :
+
+export default {
+    ExampleSchema,
+    ExampleModel,
+    getFunctionName
 }
