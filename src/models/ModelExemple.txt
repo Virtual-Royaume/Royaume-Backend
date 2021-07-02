@@ -1,8 +1,8 @@
-import mongoose, { Document } from "mongoose";
+import mongoose from "../Database";
 
 // Interface, Schema and Model :
 
-interface ExampleInterface extends Document {
+interface ExampleInterface extends mongoose.Document {
     date: Date,
 
     voiceMinute: number,

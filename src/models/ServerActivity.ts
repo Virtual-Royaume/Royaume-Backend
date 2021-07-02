@@ -1,8 +1,8 @@
-import mongoose, { Document, Schema } from "mongoose";
+import mongoose from "../Database";
 
 // Interface, Schema and Model :
 
-interface ServerActivityInterface extends Document {
+interface ServerActivityInterface extends mongoose.Document {
     date: Date,
 
     voiceMinute: number,
@@ -10,7 +10,7 @@ interface ServerActivityInterface extends Document {
     memberCount: number
 }
 
-const ServerActivitySchema = new Schema({
+const ServerActivitySchema = new mongoose.Schema({
     date: {type: Date, default: new Date(new Date().setHours(0, 0, 0, 0))},
     
     voiceMinute: {type: Number, default: 0},

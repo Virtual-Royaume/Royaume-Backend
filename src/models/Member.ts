@@ -1,8 +1,8 @@
-import mongoose, { Document, Schema } from "mongoose";
+import mongoose from "../Database";
 
 // Interface, Schema and Model :
 
-interface MemberInterface extends Document {
+interface MemberInterface extends mongoose.Document {
     _id: string,
 
     username: string,
@@ -29,7 +29,7 @@ interface MemberInterface extends Document {
     }
 }
 
-const MemberSchema = new Schema({
+const MemberSchema = new mongoose.Schema({
     _id: {type: String, required: true, maxLength: 35},
 
     username: {type: String, required: true},
