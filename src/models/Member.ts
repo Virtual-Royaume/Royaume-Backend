@@ -40,12 +40,12 @@ const MemberSchema = new mongoose.Schema({
     },
     alwaysInTheServer: {type: Boolean, default: true},
 
-    activity: {type: new Schema({
+    activity: {type: new mongoose.Schema({
         voiceMinute: {type: Number, default: 0},
         messageCount: {type: Number, default: 0},
         monthMessageCount: {type: Number, default: 0},
 
-        channelsMessageCount: {type: new Schema({
+        channelsMessageCount: {type: new mongoose.Schema({
             general: {type: Number, default: 0},
 
             games: {type: Number, default: 0},
