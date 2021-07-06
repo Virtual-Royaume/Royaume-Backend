@@ -2,7 +2,7 @@ import mongoose from "../Database";
 
 // Interface, Schema and Model :
 
-interface ServerActivityInterface extends mongoose.Document {
+export interface ServerActivityInterface extends mongoose.Document {
     date: Date,
 
     voiceMinute: number,
@@ -23,7 +23,7 @@ const ServerActivityModel = mongoose.model<ServerActivityInterface>(collectionNa
 
 // Functions :
 
-async function getServerActivity(){
+async function getServerActivity(): Promise<ServerActivityInterface>{
     let serverActivity = await ServerActivityModel.findOne({
         date: new Date(new Date().setHours(0, 0, 0, 0))
     });
