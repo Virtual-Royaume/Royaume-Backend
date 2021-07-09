@@ -2,6 +2,40 @@ import mongoose from "../Database";
 
 // Interface, Schema and Model :
 
+export interface MemberChannelsMessageCount {
+    general: number,
+
+    games: number,
+    musique: number,
+
+    dropShipping: number,
+    developpement: number,
+    trading: number,
+    graphisme: number,
+    sneakers: number
+}
+
+export interface MemberChannelsMessageCount {
+    general: number,
+
+    games: number,
+    musique: number,
+
+    dropShipping: number,
+    developpement: number,
+    trading: number,
+    graphisme: number,
+    sneakers: number
+}
+
+export interface MemberActivity {
+    voiceMinute: number,
+    messageCount: number,
+    monthMessageCount: number,
+
+    channelsMessageCount: MemberChannelsMessageCount
+}
+
 interface MemberInterface extends mongoose.Document {
     _id: string,
 
@@ -9,24 +43,7 @@ interface MemberInterface extends mongoose.Document {
     profilPictureLink: string,
     alwaysInTheServer: boolean,
 
-    activity: {
-        voiceMinute: number,
-        messageCount: number,
-        monthMessageCount: number,
-
-        channelsMessageCount: {
-            general: number,
-
-            games: number,
-            musique: number,
-
-            dropShipping: number,
-            developpement: number,
-            trading: number,
-            graphisme: number,
-            sneakers: number
-        }
-    }
+    activity: MemberActivity
 }
 
 const MemberSchema = new mongoose.Schema({
@@ -36,7 +53,7 @@ const MemberSchema = new mongoose.Schema({
     profilPictureLink: {
         type: String, 
         required: true, 
-        validate: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
+        validate: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/
     },
     alwaysInTheServer: {type: Boolean, default: true},
 
@@ -64,18 +81,18 @@ const MemberModel = mongoose.model<MemberInterface>(collectionName, MemberSchema
 
 // Functions and other :
 
-async function getMember(id: string){
+async function getMember(id: string): Promise<MemberInterface | null> {
     return await MemberModel.findOne({_id: id});
 }
 
-async function createMember(id: string, username: string, profilPictureLink: string){
+async function createMember(id: string, username: string, profilPictureLink: string): Promise<MemberInterface>{
     return await new MemberModel({
         _id: id, username: username,
-        profilPictureLink: profilPictureLink
+        profilPictureLink: profilPictureLink 
     }).save();
 }
 
-const channelIDToPropertyName: {[key: string]: string} = {
+const channelIDToPropertyName: Record<string, keyof MemberChannelsMessageCount> = {
     "786216771723198514": "general",
 
     "778044698685866025": "games",
