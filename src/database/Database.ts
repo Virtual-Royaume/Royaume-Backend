@@ -25,7 +25,7 @@ const connectInfo: ConnectInfo = JSON.parse(readFileSync(
 
 // Connection to the dababase :
 const client = new MongoClient(
-  `mongodb://${connectInfo.username}:${connectInfo.password}@${connectInfo.host}:${connectInfo.port}`
+  `mongodb://${connectInfo.username}:${connectInfo.password}@${connectInfo.host}:${connectInfo.port}/${connectInfo.database}`
 );
 
 await client.connect();
