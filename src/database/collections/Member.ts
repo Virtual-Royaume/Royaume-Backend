@@ -30,15 +30,12 @@ export default memberCollection;
 
 // FUNCTIONS //
 
-/**
- * @return {boolean} false if the member already exist
- */
 export async function createMember(
   id: string, username: string, profilPicture: string, 
   isOnServer: boolean = true
-) : Promise<boolean> {
+) : Promise<Member | null> {
   try {
-    await memberCollection.insertOne({
+    const member = {
       _id: id,
 
       username: username,
@@ -54,11 +51,13 @@ export async function createMember(
           perChannel: []
         }
       }
-    });
+    }
 
-    return true;
+    await memberCollection.insertOne(member);
+
+    return member;
   } catch {
-    return false;
+    return null;
   }
 }
 

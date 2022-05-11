@@ -48,10 +48,24 @@ export type Member = {
   username: Scalars['String'];
 };
 
+export type MemberDiscordActivityInput = {
+  messageMonthCount?: InputMaybe<Scalars['Int']>;
+  messageTotalCount?: InputMaybe<Scalars['Int']>;
+  voiceMinute?: InputMaybe<Scalars['Int']>;
+};
+
+export type MemberInput = {
+  isOnServer?: InputMaybe<Scalars['Boolean']>;
+  profilPicture?: InputMaybe<Scalars['String']>;
+  username?: InputMaybe<Scalars['String']>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
-  createMember: Scalars['Boolean'];
+  createMember?: Maybe<Member>;
   updateMember: Scalars['Boolean'];
+  updateMemberDiscordActivity: Scalars['Boolean'];
+  updateMemberDiscordActivityChannel: Scalars['Boolean'];
 };
 
 
@@ -65,9 +79,20 @@ export type MutationCreateMemberArgs = {
 
 export type MutationUpdateMemberArgs = {
   id: Scalars['ID'];
-  isOnServer?: InputMaybe<Scalars['Boolean']>;
-  profilPicture?: InputMaybe<Scalars['String']>;
-  username?: InputMaybe<Scalars['String']>;
+  input: MemberInput;
+};
+
+
+export type MutationUpdateMemberDiscordActivityArgs = {
+  id: Scalars['ID'];
+  input: MemberDiscordActivityInput;
+};
+
+
+export type MutationUpdateMemberDiscordActivityChannelArgs = {
+  channelId: Scalars['ID'];
+  id: Scalars['ID'];
+  messageCount: Scalars['Int'];
 };
 
 export type Query = {
@@ -94,6 +119,13 @@ export type ServerActivity = {
   memberCount: Scalars['Int'];
   messageCount: Scalars['Int'];
   voiceMinute: Scalars['Int'];
+};
+
+export type ServerActivityInput = {
+  date: Scalars['Date'];
+  memberCount?: InputMaybe<Scalars['Int']>;
+  messageCount?: InputMaybe<Scalars['Int']>;
+  voiceMinute?: InputMaybe<Scalars['Int']>;
 };
 
 
@@ -174,10 +206,13 @@ export type ResolversTypes = {
   DiscordMessageActivity: ResolverTypeWrapper<DiscordMessageActivity>;
   Member: ResolverTypeWrapper<Member>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
+  MemberDiscordActivityInput: MemberDiscordActivityInput;
+  MemberInput: MemberInput;
   Mutation: ResolverTypeWrapper<{}>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
   Query: ResolverTypeWrapper<{}>;
   ServerActivity: ResolverTypeWrapper<ServerActivity>;
+  ServerActivityInput: ServerActivityInput;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -191,10 +226,13 @@ export type ResolversParentTypes = {
   DiscordMessageActivity: DiscordMessageActivity;
   Member: Member;
   Boolean: Scalars['Boolean'];
+  MemberDiscordActivityInput: MemberDiscordActivityInput;
+  MemberInput: MemberInput;
   Mutation: {};
   ID: Scalars['ID'];
   Query: {};
   ServerActivity: ServerActivity;
+  ServerActivityInput: ServerActivityInput;
 };
 
 export type UnionDirectiveArgs = {
@@ -277,8 +315,10 @@ export type MemberResolvers<ContextType = any, ParentType extends ResolversParen
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  createMember?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationCreateMemberArgs, 'id' | 'profilPicture' | 'username'>>;
-  updateMember?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationUpdateMemberArgs, 'id'>>;
+  createMember?: Resolver<Maybe<ResolversTypes['Member']>, ParentType, ContextType, RequireFields<MutationCreateMemberArgs, 'id' | 'profilPicture' | 'username'>>;
+  updateMember?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationUpdateMemberArgs, 'id' | 'input'>>;
+  updateMemberDiscordActivity?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationUpdateMemberDiscordActivityArgs, 'id' | 'input'>>;
+  updateMemberDiscordActivityChannel?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationUpdateMemberDiscordActivityChannelArgs, 'channelId' | 'id' | 'messageCount'>>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {

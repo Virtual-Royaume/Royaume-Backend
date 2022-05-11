@@ -9,6 +9,19 @@ const membersQuery = gql`
   }
 `;
 
-const response = await request("http://localhost:3000", membersQuery);
+const updateMember = gql`
+  mutation UpdateMember($id: ID!, $username: String, $isOnServer: Boolean) {
+    updateMember(id: $id, input: {
+      username: $username,
+      isOnServer: $isOnServer
+    })
+  }
+`;
+
+const response = await request("http://localhost:3000", updateMember, {
+  id: "5",
+  username: "Tesssttt",
+  isOnServer: false
+});
 
 console.log(response);

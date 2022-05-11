@@ -13,8 +13,11 @@ type Query {
 ## MUTATION - for creating new and updating/deleting existing data (INSERT, UPDATE, DELETE) ##
 
 type Mutation {
-    createMember(id: ID!, username: String!, profilPicture: String!, isOnServer: Boolean): Boolean! # false if member already exists
-    updateMember(id: ID!, username: String, profilPicture: String, isOnServer: Boolean): Boolean! # false if member does not exist
+    createMember(id: ID!, username: String!, profilPicture: String!, isOnServer: Boolean): Member
+
+    updateMember(id: ID!, input: MemberInput!): Boolean!
+    updateMemberDiscordActivity(id: ID!, input: MemberDiscordActivityInput!): Boolean!
+    updateMemberDiscordActivityChannel(id: ID!, channelId: ID!, messageCount: Int!): Boolean!
 }
 
 ## TYPES ## 
@@ -48,6 +51,20 @@ type ChannelMessageCount {
     messageCount: Int!
 }
 
+# Member, inputs
+
+input MemberInput {
+    username: String
+    profilPicture: String
+    isOnServer: Boolean
+}
+
+input MemberDiscordActivityInput {
+    voiceMinute: Int
+    messageTotalCount: Int
+    messageMonthCount: Int
+}
+
 # ServerActivity
 
 type ServerActivity {
@@ -56,4 +73,14 @@ type ServerActivity {
     voiceMinute: Int!
     messageCount: Int!
     memberCount: Int!
+}
+
+# ServerActivity, inputs
+
+input ServerActivityInput {
+    date: Date!
+
+    voiceMinute: Int
+    messageCount: Int
+    memberCount: Int
 }
