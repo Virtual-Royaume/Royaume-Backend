@@ -33,11 +33,12 @@ export default memberCollection;
 /**
  * @return {boolean} false if the member already exist
  */
-async function createMember(
+export async function createMember(
   id: string, username: string, profilPicture: string, 
   isOnServer: boolean = true
 ) : Promise<boolean> {
-  const response = await memberCollection.insertOne({
+  try {
+    await memberCollection.insertOne({
       _id: id,
 
       username: username,
@@ -53,11 +54,14 @@ async function createMember(
           perChannel: []
         }
       }
-  });
+    });
 
-  return response.acknowledged;
+    return true;
+  } catch {
+    return false;
+  }
 }
 
-async function getMemberByDiscordId(id: string) : Promise<Member | null> {
+export async function getMemberByDiscordId(id: string) : Promise<Member | null> {
   return await memberCollection.findOne({ _id: id });
 }

@@ -19,8 +19,7 @@ interface ConnectInfo {
 }
 
 const connectInfo: ConnectInfo = JSON.parse(readFileSync(
-  path.resolve() + "/resources/mongodb.json", 
-  { encoding: "utf-8" }
+  path.resolve() + "/resources/mongodb.json", "utf-8"
 ));
 
 // Connection to the dababase :

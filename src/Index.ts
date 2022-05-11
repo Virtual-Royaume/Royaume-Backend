@@ -1,19 +1,12 @@
 import { ApolloServer } from "apollo-server";
 import { readFileSync } from "fs";
 import path from "path";
-import memberCollection from "./database/collections/Member.js";
-
-const resolvers = {
-  Query: {
-    members: async () => await memberCollection.find().toArray()
-  }
-}
+import resolvers from "./resolvers/Resolver.js";
 
 // Create and start the server :
 const server = new ApolloServer({
-  typeDefs: readFileSync(path.resolve() + "/resources/schema.gql", { encoding: "utf8" }),
-  resolvers,
-  csrfPrevention: true
+  typeDefs: readFileSync(path.resolve() + "/resources/schema.gql", "utf-8"),
+  resolvers, csrfPrevention: true
 });
 
 await server.listen({ port: 3000 });

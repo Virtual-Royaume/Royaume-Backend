@@ -3,7 +3,7 @@ scalar Date
 ## QUERY - for querying data (SELECT operations) ##
 
 type Query {
-    member(id: ID!): Member! # Discord ID
+    member(id: ID!): Member # Discord ID
     members: [Member]!
 
     todayServerActivity: ServerActivity!
@@ -12,7 +12,10 @@ type Query {
 
 ## MUTATION - for creating new and updating/deleting existing data (INSERT, UPDATE, DELETE) ##
 
-# ...
+type Mutation {
+    createMember(id: ID!, username: String!, profilPicture: String!, isOnServer: Boolean): Boolean! # false if member already exists
+    updateMember(id: ID!, username: String, profilPicture: String, isOnServer: Boolean): Boolean! # false if member does not exist
+}
 
 ## TYPES ## 
 
