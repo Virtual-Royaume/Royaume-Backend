@@ -1,8 +1,8 @@
 import { readFileSync } from "fs";
 import mysql from "mysql2/promise";
 import path from "path";
-import memberCollection from "../database/collections/Member";
-import serverActivityCollection from "../database/collections/ServerActivity";
+import memberCollection from "../database/collections/Member.js";
+import serverActivityCollection from "../database/collections/ServerActivity.js";
 
 // MySQL Connection :
 const mysqlInfo = JSON.parse(readFileSync(path.resolve() + "/resources/mysql.json", { encoding: "utf-8" }));
@@ -71,7 +71,7 @@ const insertMembers = members.map(element => {
 const insertServerActivity = serverActivity;
 
 // Reset MongoDB data ?
-if(false){
+if(true){
 	memberCollection.deleteMany({});
 	serverActivityCollection.deleteMany({});
 }

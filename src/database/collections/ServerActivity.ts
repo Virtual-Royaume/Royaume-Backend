@@ -1,4 +1,4 @@
-import database from "../Database";
+import database from "../Database.js";
 
 export interface ServerActivity {
 	date: Date;

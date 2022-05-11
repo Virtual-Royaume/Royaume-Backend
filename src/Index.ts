@@ -1,7 +1,7 @@
 import { ApolloServer } from "apollo-server";
 import { readFileSync } from "fs";
 import path from "path";
-import memberCollection from "./database/collections/Member";
+import memberCollection from "./database/collections/Member.js";
 
 const resolvers = {
   Query: {
