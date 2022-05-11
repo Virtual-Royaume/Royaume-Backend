@@ -1,0 +1,56 @@
+scalar Date
+
+## QUERY - for querying data (SELECT operations) ##
+
+type Query {
+    member(id: ID!): Member! # Discord ID
+    members: [Member]!
+
+    todayServerActivity: ServerActivity!
+    serverActivity(historyCount: Int!): [ServerActivity]!
+}
+
+## MUTATION - for creating new and updating/deleting existing data (INSERT, UPDATE, DELETE) ##
+
+# ...
+
+## TYPES ## 
+
+# Member
+
+type Member {
+    _id: String! # Discord ID
+
+    username: String!
+    profilPicture: String!
+
+    isOnServer: Boolean!
+
+    activity: DiscordActivity!
+}
+
+type DiscordActivity {
+    voiceMinute: Int!
+    messages: DiscordMessageActivity!
+}
+
+type DiscordMessageActivity {
+    totalCount: Int!
+    monthCount: Int!
+    perChannel: [ChannelMessageCount]!
+}
+
+type ChannelMessageCount {
+    channelId: String!
+    messageCount: Int!
+}
+
+# ServerActivity
+
+type ServerActivity {
+    date: Date!
+
+    voiceMinute: Int!
+    messageCount: Int!
+    memberCount: Int!
+}

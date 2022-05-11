@@ -16,6 +16,8 @@
     "@apollo/client": "^3.6.2",
     "apollo-server": "^3.7.0",
     "graphql": "^16.5.0",
-    "mongodb": "^4.5.0"
+    "graphql-request": "^4.2.0",
+    "mongodb": "^4.5.0",
+    "mysql2": "^2.3.3"
   }
 }
