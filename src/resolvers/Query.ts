@@ -7,8 +7,7 @@ const query: Resolvers["Query"] = {
   member: async (_, { id }) => await getMemberByDiscordId(id),
 
   todayServerActivity: async () => await getServerActivity(),
-  serverActivity: async (_, { historyCount }) => 
-    serverActivityCollection.find({}, { sort: { date: "desc" }, limit: historyCount }).toArray() 
+  serverActivity: async (_, { historyCount }) => serverActivityCollection.find({}, { sort: { date: "desc" }, limit: historyCount }).toArray() 
 }
 
 export default query;

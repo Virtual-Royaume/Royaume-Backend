@@ -3,7 +3,7 @@ import Mutation from "./Mutation.js";
 import Query from "./Query.js";
 
 const resolvers: Resolvers = {
-    Query, Mutation
+  Query, Mutation
 }
 
 export default resolvers;
