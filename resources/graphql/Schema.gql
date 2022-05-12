@@ -1,6 +1,7 @@
 # import * from "./types/Member.gql"
 # import * from "./types/ServerActivity.gql"
 # import * from "./types/MainChannel.gql"
+# import * from "./types/MainRole.gql"
 
 # QUERY - for querying data (SELECT)
 
@@ -23,6 +24,9 @@ type Mutation {
 	updateMember(id: ID!, input: MemberInput!): Boolean!
 	updateMemberDiscordActivity(id: ID!, input: MemberDiscordActivityInput!): Boolean!
 	updateMemberDiscordActivityChannel(id: ID!, channelId: ID!, messageCount: Int!): Boolean!
+
+	updateServerActivity(input: ServerActivityInput!): Boolean!
+
 	addRole(roleId: ID!, category: String!): Boolean!
 	removeRole(roleId: ID!): Boolean!
 
