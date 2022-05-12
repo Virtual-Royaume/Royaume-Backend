@@ -1,8 +1,12 @@
 import { GraphQLFileLoader } from "@graphql-tools/graphql-file-loader";
 import { loadSchema } from "@graphql-tools/load";
 import { ApolloServer } from "apollo-server";
+import { readdirSync } from "fs";
 import path from "path";
 import resolvers from "./resolvers/Resolver.js";
+
+// Load tasks :
+readdirSync(path.resolve() + "/src/tasks").forEach(file => import(`./tasks/${file}`));
 
 // Create and start the server :
 const schemas = await loadSchema(path.resolve() + "/resources/graphql/**/*.gql", {
