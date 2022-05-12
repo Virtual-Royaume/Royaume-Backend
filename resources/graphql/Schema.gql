@@ -1,0 +1,22 @@
+# import * from "./types/Member.gql"
+# import * from "./types/ServerActivity.gql"
+
+# QUERY - for querying data (SELECT)
+
+type Query {
+	member(id: ID!): Member # Discord ID
+	members: [Member]!
+
+	todayServerActivity: ServerActivity!
+	serverActivity(historyCount: Int!): [ServerActivity]!
+}
+
+# MUTATION - for creating new and updating/deleting existing data (INSERT, UPDATE, DELETE)
+
+type Mutation {
+	createMember(id: ID!, username: String!, profilPicture: String!, isOnServer: Boolean): Member
+
+	updateMember(id: ID!, input: MemberInput!): Boolean!
+	updateMemberDiscordActivity(id: ID!, input: MemberDiscordActivityInput!): Boolean!
+	updateMemberDiscordActivityChannel(id: ID!, channelId: ID!, messageCount: Int!): Boolean!
+}

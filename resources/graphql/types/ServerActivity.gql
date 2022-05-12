@@ -1,0 +1,21 @@
+scalar Date
+
+# Types
+
+type ServerActivity {
+  date: Date!
+
+  voiceMinute: Int!
+  messageCount: Int!
+  memberCount: Int!
+}
+
+# Inputs
+
+input ServerActivityInput {
+  date: Date!
+
+  voiceMinute: Int
+  messageCount: Int
+  memberCount: Int
+}

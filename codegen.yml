@@ -1,12 +1,8 @@
 overwrite: true
-schema: "resources/schema.gql"
+schema: "./resources/graphql/**/*.gql"
 documents: null
 generates:
   src/interfaces/GraphQL.ts:
     plugins:
       - "typescript"
       - "typescript-resolvers"
-      - "typescript-mongodb"
-  ./graphql.schema.json:
-    plugins:
-      - "introspection"
