@@ -34,6 +34,18 @@ export type DiscordMessageActivity = {
   totalCount: Scalars['Int'];
 };
 
+export type MainChannel = {
+  __typename?: 'MainChannel';
+  category: Scalars['String'];
+  channelId: Scalars['ID'];
+};
+
+export type MainRole = {
+  __typename?: 'MainRole';
+  category: Scalars['String'];
+  roleId: Scalars['ID'];
+};
+
 export type Member = {
   __typename?: 'Member';
   _id: Scalars['String'];
@@ -57,10 +69,27 @@ export type MemberInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  addChannel: Scalars['Boolean'];
+  addRole: Scalars['Boolean'];
   createMember?: Maybe<Member>;
+  removeChannel: Scalars['Boolean'];
+  removeRole: Scalars['Boolean'];
   updateMember: Scalars['Boolean'];
   updateMemberDiscordActivity: Scalars['Boolean'];
   updateMemberDiscordActivityChannel: Scalars['Boolean'];
+  updateServerActivity: Scalars['Boolean'];
+};
+
+
+export type MutationAddChannelArgs = {
+  category: Scalars['String'];
+  channelId: Scalars['ID'];
+};
+
+
+export type MutationAddRoleArgs = {
+  category: Scalars['String'];
+  roleId: Scalars['ID'];
 };
 
 
@@ -69,6 +98,16 @@ export type MutationCreateMemberArgs = {
   isOnServer?: InputMaybe<Scalars['Boolean']>;
   profilPicture: Scalars['String'];
   username: Scalars['String'];
+};
+
+
+export type MutationRemoveChannelArgs = {
+  channelId: Scalars['ID'];
+};
+
+
+export type MutationRemoveRoleArgs = {
+  roleId: Scalars['ID'];
 };
 
 
@@ -90,10 +129,17 @@ export type MutationUpdateMemberDiscordActivityChannelArgs = {
   messageCount: Scalars['Int'];
 };
 
+
+export type MutationUpdateServerActivityArgs = {
+  input: ServerActivityInput;
+};
+
 export type Query = {
   __typename?: 'Query';
+  channels?: Maybe<Array<Maybe<MainChannel>>>;
   member?: Maybe<Member>;
   members: Array<Maybe<Member>>;
+  roles?: Maybe<Array<Maybe<MainRole>>>;
   serverActivity: Array<Maybe<ServerActivity>>;
   todayServerActivity: ServerActivity;
 };
@@ -199,6 +245,8 @@ export type ResolversTypes = {
   DiscordMessageActivity: ResolverTypeWrapper<DiscordMessageActivity>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
+  MainChannel: ResolverTypeWrapper<MainChannel>;
+  MainRole: ResolverTypeWrapper<MainRole>;
   Member: ResolverTypeWrapper<Member>;
   MemberDiscordActivityInput: MemberDiscordActivityInput;
   MemberInput: MemberInput;
@@ -218,6 +266,8 @@ export type ResolversParentTypes = {
   DiscordMessageActivity: DiscordMessageActivity;
   ID: Scalars['ID'];
   Int: Scalars['Int'];
+  MainChannel: MainChannel;
+  MainRole: MainRole;
   Member: Member;
   MemberDiscordActivityInput: MemberDiscordActivityInput;
   MemberInput: MemberInput;
@@ -251,6 +301,18 @@ export type DiscordMessageActivityResolvers<ContextType = any, ParentType extend
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type MainChannelResolvers<ContextType = any, ParentType extends ResolversParentTypes['MainChannel'] = ResolversParentTypes['MainChannel']> = {
+  category?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  channelId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type MainRoleResolvers<ContextType = any, ParentType extends ResolversParentTypes['MainRole'] = ResolversParentTypes['MainRole']> = {
+  category?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  roleId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type MemberResolvers<ContextType = any, ParentType extends ResolversParentTypes['Member'] = ResolversParentTypes['Member']> = {
   _id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   activity?: Resolver<ResolversTypes['DiscordActivity'], ParentType, ContextType>;
@@ -261,15 +323,22 @@ export type MemberResolvers<ContextType = any, ParentType extends ResolversParen
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  addChannel?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationAddChannelArgs, 'category' | 'channelId'>>;
+  addRole?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationAddRoleArgs, 'category' | 'roleId'>>;
   createMember?: Resolver<Maybe<ResolversTypes['Member']>, ParentType, ContextType, RequireFields<MutationCreateMemberArgs, 'id' | 'profilPicture' | 'username'>>;
+  removeChannel?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationRemoveChannelArgs, 'channelId'>>;
+  removeRole?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationRemoveRoleArgs, 'roleId'>>;
   updateMember?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationUpdateMemberArgs, 'id' | 'input'>>;
   updateMemberDiscordActivity?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationUpdateMemberDiscordActivityArgs, 'id' | 'input'>>;
   updateMemberDiscordActivityChannel?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationUpdateMemberDiscordActivityChannelArgs, 'channelId' | 'id' | 'messageCount'>>;
+  updateServerActivity?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationUpdateServerActivityArgs, 'input'>>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  channels?: Resolver<Maybe<Array<Maybe<ResolversTypes['MainChannel']>>>, ParentType, ContextType>;
   member?: Resolver<Maybe<ResolversTypes['Member']>, ParentType, ContextType, RequireFields<QueryMemberArgs, 'id'>>;
   members?: Resolver<Array<Maybe<ResolversTypes['Member']>>, ParentType, ContextType>;
+  roles?: Resolver<Maybe<Array<Maybe<ResolversTypes['MainRole']>>>, ParentType, ContextType>;
   serverActivity?: Resolver<Array<Maybe<ResolversTypes['ServerActivity']>>, ParentType, ContextType, RequireFields<QueryServerActivityArgs, 'historyCount'>>;
   todayServerActivity?: Resolver<ResolversTypes['ServerActivity'], ParentType, ContextType>;
 };
@@ -287,6 +356,8 @@ export type Resolvers<ContextType = any> = {
   Date?: GraphQLScalarType;
   DiscordActivity?: DiscordActivityResolvers<ContextType>;
   DiscordMessageActivity?: DiscordMessageActivityResolvers<ContextType>;
+  MainChannel?: MainChannelResolvers<ContextType>;
+  MainRole?: MainRoleResolvers<ContextType>;
   Member?: MemberResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
