@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "ES2022",
+    "module": "ESNext",
     "target": "ES2022",
 
     "moduleResolution": "node",
@@ -10,7 +10,9 @@
     "outDir": "./build/",
 
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+
+    "resolveJsonModule": true
   },
   "ts-node": {
     "esm": true
