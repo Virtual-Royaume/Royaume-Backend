@@ -1,7 +1,7 @@
 {
   "version": "3.0.0",
   "type": "module",
-  "main": "./build/Index.js",
+  "main": "./build/src/Index.js",
   "scripts": {
     "start": "node .",
     "dev": "ts-node ./src/Index.ts",
