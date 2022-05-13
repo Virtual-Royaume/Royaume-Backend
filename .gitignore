@@ -1,5 +1,12 @@
+# Node packages :
 node_modules
 package-lock.json
-mongodb.json
-build
+
+# GraphQL code gen :
 graphql.schema.json
+
+# MongoDB access :
+mongodb.json
+
+# Project build :
+build
