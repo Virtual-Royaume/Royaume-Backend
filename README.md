@@ -3,13 +3,5 @@ Royaume API created with GraphQL and MongoDB
 
 ## TODO
 - [ ] Changer les mots de passe de la BDD et fix les fichiers config blanc
-- [x] Task for reset the message of the month
-- [ ] Security
-- [x] GraphQL organization :
-    - [x] Update properties
-        - [x] Member
-        - [x] ServerActivity
-- [x] Collection for save channels and roles
-- [x] Split of Schema file :
-    - [x] https://www.graphql-code-generator.com/plugins/import-types-preset
-    - [x] `# import * from "./tgm.graphql"`
+- [ ] Sécurisé les requêtes à la BDD à travers un token
+- [ ] Les messages du mois et les messages totaux ne devrait pas être modifiable via l'API, c'est l'API elle même qui les mettra à jour quand un nouveau message sera ajouter sur un salon
