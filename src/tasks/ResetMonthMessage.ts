@@ -6,4 +6,4 @@ setInterval(() => {
   if(date.getDate() === 1 && date.getHours() === 0 && date.getMinutes() === 0){
     memberCollection.updateMany({}, { $set: { "activity.messages.monthCount": 0 } });
   }
-}, 60000);
+}, 60_000);
