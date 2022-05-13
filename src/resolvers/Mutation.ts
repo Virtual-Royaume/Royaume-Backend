@@ -1,6 +1,6 @@
 import roleCollection from "../database/collections/MainRole.js";
 import memberCollection, { createMember } from "../database/collections/Member.js";
-import serverActivityCollection, { getServerActivity } from "../database/collections/ServerActivity.js";
+import serverActivityCollection from "../database/collections/ServerActivity.js";
 import { Resolvers } from "../interfaces/GraphQL.js";
 import { getDateWithoutTime } from "../utils/Date.js";
 
@@ -54,6 +54,27 @@ const mutation: Resolvers["Mutation"] = {
           { _id: id }, { $push: { "activity.messages.perChannel": { channelId, messageCount } } }
         );
       }
+
+      return true;
+    } catch {
+      return false;
+    }
+  },
+
+  // SERVER ACTIVITY :
+  updateServerActivity: async (_, { input }) => {
+    const serverActivity = await serverActivityCollection.findOne({
+      date: getDateWithoutTime(input.date)
+    });
+
+    const newData: { [key: string]: any } = {}
+
+    newData.memberCount = input.memberCount ?? serverActivity?.memberCount ?? 0;
+    newData.messageCount = input.messageCount ?? serverActivity?.messageCount ?? 0;
+    newData.voiceMinute = input.voiceMinute ?? serverActivity?.voiceMinute ?? 0;
+
+    try {
+      await serverActivityCollection.updateOne({ date: input.date }, { $set: newData }, { upsert: true });
 
       return true;
     } catch {

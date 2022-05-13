@@ -1,3 +1,4 @@
+import { getDateWithoutTime } from "../../utils/Date.js";
 import database from "../Database.js";
 
 export interface ServerActivity {
@@ -13,17 +14,14 @@ export default serverActivityCollection;
 
 // FUNCTIONS //
 
-/**
- * TODO : update this function (date system)
- */
 export async function getServerActivity() : Promise<ServerActivity> {
 	let serverActivity = await serverActivityCollection.findOne({
-		date: new Date(new Date().setHours(0, 0, 0, 0))
+		date: getDateWithoutTime()
 	});
 
 	if(!serverActivity){
 		const defaultValue = {
-			date: new Date(new Date().setHours(0, 0, 0, 0)),
+			date: getDateWithoutTime(),
 
 			voiceMinute: 0,
 			messageCount: 0,
