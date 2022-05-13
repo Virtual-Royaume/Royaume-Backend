@@ -5,7 +5,7 @@ import memberCollection from "../database/collections/Member.js";
 import serverActivityCollection from "../database/collections/ServerActivity.js";
 
 // MySQL Connection :
-const mysqlInfo = JSON.parse(readFileSync(path.resolve() + "/resources/mysql.json", { encoding: "utf-8" }));
+const mysqlInfo = JSON.parse(readFileSync(path.resolve() + "/resources/auth/mysql.json", { encoding: "utf-8" }));
 
 const connection = await mysql.createConnection({
 	host: mysqlInfo.host,
