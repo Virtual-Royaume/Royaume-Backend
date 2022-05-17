@@ -6,30 +6,42 @@
 # QUERY - for querying data (SELECT)
 
 type Query {
-	member(id: ID!): Member # Discord ID
-	members: [Member]!
+  member(id: ID!): Member # Discord ID
+  members: [Member]!
 
-	todayServerActivity: ServerActivity!
-	serverActivity(historyCount: Int!): [ServerActivity]!
+  todayServerActivity: ServerActivity!
+  serverActivity(historyCount: Int!): [ServerActivity]!
 
-	roles: [MainRole]
-	channels: [MainChannel]
+  roles: [MainRole]
+  channels: [MainChannel]
 }
 
 # MUTATION - for creating new and updating/deleting existing data (INSERT, UPDATE, DELETE)
 
 type Mutation {
-	createMember(id: ID!, username: String!, profilPicture: String!, isOnServer: Boolean): Member
+  createMember(
+    id: ID!
+    username: String!
+    profilPicture: String!
+    isOnServer: Boolean
+  ): Member
 
-	updateMember(id: ID!, input: MemberInput!): Boolean!
-	updateMemberDiscordActivity(id: ID!, input: MemberDiscordActivityInput!): Boolean!
-	updateMemberDiscordActivityChannel(id: ID!, channelId: ID!, messageCount: Int!): Boolean!
+  updateMember(id: ID!, input: MemberInput!): Boolean!
+  updateMemberDiscordActivity(
+    id: ID!
+    input: MemberDiscordActivityInput!
+  ): Boolean!
+  updateMemberDiscordActivityChannel(
+    id: ID!
+    channelId: ID!
+    messageCount: Int!
+  ): Boolean!
 
-	updateServerActivity(input: ServerActivityInput!): Boolean!
+  updateServerActivity(input: ServerActivityInput!): Boolean!
 
-	addRole(roleId: ID!, category: String!): Boolean!
-	removeRole(roleId: ID!): Boolean!
+  addRole(roleId: ID!, category: String!): Boolean!
+  removeRole(roleId: ID!): Boolean!
 
-	addChannel(channelId: ID!, category: String!): Boolean!
-	removeChannel(channelId: ID!): Boolean!
+  addChannel(channelId: ID!, category: String!): Boolean!
+  removeChannel(channelId: ID!): Boolean!
 }

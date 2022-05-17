@@ -2,7 +2,6 @@
 
 type Member {
   _id: String! # Discord ID
-
   username: String!
   profilPicture: String!
 

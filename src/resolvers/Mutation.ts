@@ -1,12 +1,15 @@
 import roleCollection from "../database/collections/MainRole.js";
-import memberCollection, { createMember } from "../database/collections/Member.js";
+import memberCollection, {
+  createMember,
+} from "../database/collections/Member.js";
 import serverActivityCollection from "../database/collections/ServerActivity.js";
 import { Resolvers } from "../interfaces/GraphQL.js";
 import { getDateWithoutTime } from "../utils/Date.js";
 
 const mutation: Resolvers["Mutation"] = {
   // MEMBER :
-	createMember: async (_, { id, username, profilPicture, isOnServer }) => await createMember(id, username, profilPicture, isOnServer ?? true),
+  createMember: async (_, { id, username, profilPicture, isOnServer }) =>
+    await createMember(id, username, profilPicture, isOnServer ?? true),
 
   updateMember: async (_, { id, input }) => {
     // Remove null properties of input :
@@ -25,12 +28,14 @@ const mutation: Resolvers["Mutation"] = {
   },
 
   updateMemberDiscordActivity: async (_, { id, input }) => {
-    const newData: { [key: string]: any } = {}
+    const newData: { [key: string]: any } = {};
 
-    if(input.messageMonthCount) newData["activity.messages.monthCount"] = input.messageMonthCount;
-    if(input.messageTotalCount) newData["activity.messages.totalCount"] = input.messageTotalCount;
-    if(input.voiceMinute) newData["activity.voiceMinute"] = input.voiceMinute;
-    
+    if (input.messageMonthCount)
+      newData["activity.messages.monthCount"] = input.messageMonthCount;
+    if (input.messageTotalCount)
+      newData["activity.messages.totalCount"] = input.messageTotalCount;
+    if (input.voiceMinute) newData["activity.voiceMinute"] = input.voiceMinute;
+
     try {
       await memberCollection.updateOne({ _id: id }, { $set: newData });
 
@@ -39,19 +44,29 @@ const mutation: Resolvers["Mutation"] = {
       return false;
     }
   },
-  
-  updateMemberDiscordActivityChannel: async (_, { id, channelId, messageCount }) => {
+
+  updateMemberDiscordActivityChannel: async (
+    _,
+    { id, channelId, messageCount }
+  ) => {
     try {
       // Try to update a existing element :
       const result = await memberCollection.updateOne(
-        { _id: id, "activity.messages.perChannel.channelId": channelId }, 
-        { $set: { "activity.messages.perChannel.$.messageCount": messageCount } }
+        { _id: id, "activity.messages.perChannel.channelId": channelId },
+        {
+          $set: { "activity.messages.perChannel.$.messageCount": messageCount },
+        }
       );
-        
+
       // If element does not exist, push a new element :
-      if(!result.modifiedCount){
+      if (!result.modifiedCount) {
         await memberCollection.updateOne(
-          { _id: id }, { $push: { "activity.messages.perChannel": { channelId, messageCount } } }
+          { _id: id },
+          {
+            $push: {
+              "activity.messages.perChannel": { channelId, messageCount },
+            },
+          }
         );
       }
 
@@ -64,17 +79,22 @@ const mutation: Resolvers["Mutation"] = {
   // SERVER ACTIVITY :
   updateServerActivity: async (_, { input }) => {
     const serverActivity = await serverActivityCollection.findOne({
-      date: getDateWithoutTime(input.date)
+      date: getDateWithoutTime(input.date),
     });
 
-    const newData: { [key: string]: any } = {}
+    const newData: { [key: string]: any } = {};
 
     newData.memberCount = input.memberCount ?? serverActivity?.memberCount ?? 0;
-    newData.messageCount = input.messageCount ?? serverActivity?.messageCount ?? 0;
+    newData.messageCount =
+      input.messageCount ?? serverActivity?.messageCount ?? 0;
     newData.voiceMinute = input.voiceMinute ?? serverActivity?.voiceMinute ?? 0;
 
     try {
-      await serverActivityCollection.updateOne({ date: input.date }, { $set: newData }, { upsert: true });
+      await serverActivityCollection.updateOne(
+        { date: input.date },
+        { $set: newData },
+        { upsert: true }
+      );
 
       return true;
     } catch {
@@ -83,14 +103,28 @@ const mutation: Resolvers["Mutation"] = {
   },
 
   // ROLES :
-  addRole: async (_, { roleId, category }) => 
-    (await roleCollection.updateOne({ roleId }, { $setOnInsert: { roleId, category } }, { upsert: true })).acknowledged, // function return tjr true
-  removeRole: async (_, { roleId }) => (await roleCollection.deleteOne({ roleId })).acknowledged,
+  addRole: async (_, { roleId, category }) =>
+    (
+      await roleCollection.updateOne(
+        { roleId },
+        { $setOnInsert: { roleId, category } },
+        { upsert: true }
+      )
+    ).acknowledged, // function return tjr true
+  removeRole: async (_, { roleId }) =>
+    (await roleCollection.deleteOne({ roleId })).acknowledged,
 
   // CHANNELS :
-  addChannel: async (_, { channelId, category }) => 
-    (await roleCollection.updateOne({ channelId }, { $setOnInsert: { channelId, category } }, { upsert: true })).acknowledged, // function return tjr true
-  removeChannel: async (_, { channelId }) => (await roleCollection.deleteOne({ channelId })).acknowledged,
-}
+  addChannel: async (_, { channelId, category }) =>
+    (
+      await roleCollection.updateOne(
+        { channelId },
+        { $setOnInsert: { channelId, category } },
+        { upsert: true }
+      )
+    ).acknowledged, // function return tjr true
+  removeChannel: async (_, { channelId }) =>
+    (await roleCollection.deleteOne({ channelId })).acknowledged,
+};
 
 export default mutation;

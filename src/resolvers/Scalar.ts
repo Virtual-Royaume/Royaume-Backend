@@ -6,13 +6,15 @@ export const date: Resolvers["Date"] = new GraphQLScalarType({
   name: "Date",
   description: "Date without time",
 
-  serialize(value){
-    return getDateWithoutTime((value as Date)).getTime();
+  serialize(value) {
+    return getDateWithoutTime(value as Date).getTime();
   },
-  parseValue(value){
+  parseValue(value) {
     return getDateWithoutTime(new Date(value as string));
   },
-  parseLiteral(ast){
-    return ast.kind === Kind.STRING ? getDateWithoutTime(new Date(ast.value)) : null;
-  }
+  parseLiteral(ast) {
+    return ast.kind === Kind.STRING
+      ? getDateWithoutTime(new Date(ast.value))
+      : null;
+  },
 });

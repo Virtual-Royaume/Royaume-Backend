@@ -5,7 +5,8 @@ import { date } from "./Scalar.js";
 
 const resolvers: Resolvers = {
   Date: date,
-  Query, Mutation
-}
+  Query,
+  Mutation,
+};
 
 export default resolvers;

@@ -15,7 +15,7 @@ export interface DiscordActivity {
 }
 
 export interface Member {
-  _id: string; // Discord ID 
+  _id: string; // Discord ID
 
   username: string;
   profilPicture: string;
@@ -31,9 +31,11 @@ export default memberCollection;
 // FUNCTIONS //
 
 export async function createMember(
-  id: string, username: string, profilPicture: string, 
+  id: string,
+  username: string,
+  profilPicture: string,
   isOnServer: boolean = true
-) : Promise<Member | null> {
+): Promise<Member | null> {
   try {
     const member = {
       _id: id,
@@ -48,10 +50,10 @@ export async function createMember(
         messages: {
           totalCount: 0,
           monthCount: 0,
-          perChannel: []
-        }
-      }
-    }
+          perChannel: [],
+        },
+      },
+    };
 
     await memberCollection.insertOne(member);
 
@@ -61,6 +63,6 @@ export async function createMember(
   }
 }
 
-export async function getMemberByDiscordId(id: string) : Promise<Member | null> {
+export async function getMemberByDiscordId(id: string): Promise<Member | null> {
   return await memberCollection.findOne({ _id: id });
 }
