@@ -37,25 +37,15 @@ const updateStats = gql`
   }
 `;
 
-const updateMessageInChannel = gql`
-  mutation {
-    updateMemberDiscordActivityChannel(
-      id: 5
-      channelId: "100"
-      messageCount: 100
-    )
-  }
-`;
-
 const addRole = gql`
   mutation {
-    addRole(roleId: "555", category: "test")
+    addRole(roleId: "5555", category: "tgm")
   }
 `;
 
 const removeRole = gql`
   mutation {
-    removeRole(roleId: "100")
+    removeRole(roleId: "555")
   }
 `;
 
@@ -87,9 +77,33 @@ const updateDate = gql`
   }
 `;
 
-const response = await request("http://localhost:3000", updateDate, {
-  authorization: "7fe47986-0ce9-4cfc-9294-cfc167ef32e8",
-});
+const updateMessageInChannel = gql`
+  mutation {
+    incMemberDiscordActivityChannel(id: 5, channelId: "102")
+  }
+`;
+
+const createMember = gql`
+  mutation {
+    createMember(
+      id: 5
+      username: "Bluzzi"
+      profilPicture: "https://exemple.com"
+      isOnServer: true
+    ) {
+      username
+    }
+  }
+`;
+
+const response = await request(
+  "http://localhost:3000",
+  updateMessageInChannel,
+  {}, 
+  {
+    authorization: "7fe47986-0ce9-4cfc-9294-cfc167ef32e8",
+  }
+);
 console.log(response);
 
 // const response = await request("http://localhost:3000", updateMember, {
