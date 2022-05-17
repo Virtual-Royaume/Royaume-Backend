@@ -67,12 +67,6 @@ export type Member = {
   username: Scalars["String"];
 };
 
-export type MemberDiscordActivityInput = {
-  messageMonthCount?: InputMaybe<Scalars["Int"]>;
-  messageTotalCount?: InputMaybe<Scalars["Int"]>;
-  voiceMinute?: InputMaybe<Scalars["Int"]>;
-};
-
 export type MemberInput = {
   isOnServer?: InputMaybe<Scalars["Boolean"]>;
   profilPicture?: InputMaybe<Scalars["String"]>;
@@ -84,11 +78,11 @@ export type Mutation = {
   addChannel: Scalars["Boolean"];
   addRole: Scalars["Boolean"];
   createMember?: Maybe<Member>;
+  incMemberDiscordActivityChannel: Scalars["Boolean"];
+  incMemberDiscordVoiceMinute: Scalars["Boolean"];
   removeChannel: Scalars["Boolean"];
   removeRole: Scalars["Boolean"];
   updateMember: Scalars["Boolean"];
-  updateMemberDiscordActivity: Scalars["Boolean"];
-  updateMemberDiscordActivityChannel: Scalars["Boolean"];
   updateServerActivity: Scalars["Boolean"];
 };
 
@@ -109,6 +103,15 @@ export type MutationCreateMemberArgs = {
   username: Scalars["String"];
 };
 
+export type MutationIncMemberDiscordActivityChannelArgs = {
+  channelId: Scalars["ID"];
+  id: Scalars["ID"];
+};
+
+export type MutationIncMemberDiscordVoiceMinuteArgs = {
+  id: Scalars["ID"];
+};
+
 export type MutationRemoveChannelArgs = {
   channelId: Scalars["ID"];
 };
@@ -120,17 +123,6 @@ export type MutationRemoveRoleArgs = {
 export type MutationUpdateMemberArgs = {
   id: Scalars["ID"];
   input: MemberInput;
-};
-
-export type MutationUpdateMemberDiscordActivityArgs = {
-  id: Scalars["ID"];
-  input: MemberDiscordActivityInput;
-};
-
-export type MutationUpdateMemberDiscordActivityChannelArgs = {
-  channelId: Scalars["ID"];
-  id: Scalars["ID"];
-  messageCount: Scalars["Int"];
 };
 
 export type MutationUpdateServerActivityArgs = {
@@ -287,7 +279,6 @@ export type ResolversTypes = {
   MainChannel: ResolverTypeWrapper<MainChannel>;
   MainRole: ResolverTypeWrapper<MainRole>;
   Member: ResolverTypeWrapper<Member>;
-  MemberDiscordActivityInput: MemberDiscordActivityInput;
   MemberInput: MemberInput;
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
@@ -308,7 +299,6 @@ export type ResolversParentTypes = {
   MainChannel: MainChannel;
   MainRole: MainRole;
   Member: Member;
-  MemberDiscordActivityInput: MemberDiscordActivityInput;
   MemberInput: MemberInput;
   Mutation: {};
   Query: {};
@@ -414,6 +404,21 @@ export type MutationResolvers<
     ContextType,
     RequireFields<MutationCreateMemberArgs, "id" | "profilPicture" | "username">
   >;
+  incMemberDiscordActivityChannel?: Resolver<
+    ResolversTypes["Boolean"],
+    ParentType,
+    ContextType,
+    RequireFields<
+      MutationIncMemberDiscordActivityChannelArgs,
+      "channelId" | "id"
+    >
+  >;
+  incMemberDiscordVoiceMinute?: Resolver<
+    ResolversTypes["Boolean"],
+    ParentType,
+    ContextType,
+    RequireFields<MutationIncMemberDiscordVoiceMinuteArgs, "id">
+  >;
   removeChannel?: Resolver<
     ResolversTypes["Boolean"],
     ParentType,
@@ -431,21 +436,6 @@ export type MutationResolvers<
     ParentType,
     ContextType,
     RequireFields<MutationUpdateMemberArgs, "id" | "input">
-  >;
-  updateMemberDiscordActivity?: Resolver<
-    ResolversTypes["Boolean"],
-    ParentType,
-    ContextType,
-    RequireFields<MutationUpdateMemberDiscordActivityArgs, "id" | "input">
-  >;
-  updateMemberDiscordActivityChannel?: Resolver<
-    ResolversTypes["Boolean"],
-    ParentType,
-    ContextType,
-    RequireFields<
-      MutationUpdateMemberDiscordActivityChannelArgs,
-      "channelId" | "id" | "messageCount"
-    >
   >;
   updateServerActivity?: Resolver<
     ResolversTypes["Boolean"],

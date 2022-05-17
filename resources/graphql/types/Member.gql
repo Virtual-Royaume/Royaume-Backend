@@ -33,9 +33,3 @@ input MemberInput {
   profilPicture: String
   isOnServer: Boolean
 }
-
-input MemberDiscordActivityInput {
-  voiceMinute: Int
-  messageTotalCount: Int
-  messageMonthCount: Int
-}

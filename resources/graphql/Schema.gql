@@ -27,15 +27,9 @@ type Mutation {
   ): Member
 
   updateMember(id: ID!, input: MemberInput!): Boolean!
-  updateMemberDiscordActivity(
-    id: ID!
-    input: MemberDiscordActivityInput!
-  ): Boolean!
-  updateMemberDiscordActivityChannel(
-    id: ID!
-    channelId: ID!
-    messageCount: Int!
-  ): Boolean!
+
+  incMemberDiscordVoiceMinute(id: ID!): Boolean!
+  incMemberDiscordActivityChannel(id: ID!, channelId: ID!): Boolean!
 
   updateServerActivity(input: ServerActivityInput!): Boolean!
 

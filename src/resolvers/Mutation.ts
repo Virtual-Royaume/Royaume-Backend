@@ -27,17 +27,12 @@ const mutation: Resolvers["Mutation"] = {
     }
   },
 
-  updateMemberDiscordActivity: async (_, { id, input }) => {
-    const newData: { [key: string]: any } = {};
-
-    if (input.messageMonthCount)
-      newData["activity.messages.monthCount"] = input.messageMonthCount;
-    if (input.messageTotalCount)
-      newData["activity.messages.totalCount"] = input.messageTotalCount;
-    if (input.voiceMinute) newData["activity.voiceMinute"] = input.voiceMinute;
-
+  incMemberDiscordVoiceMinute: async (_, { id }) => {
     try {
-      await memberCollection.updateOne({ _id: id }, { $set: newData });
+      await memberCollection.updateOne(
+        { _id: id },
+        { $inc: { "activity.voiceMinute": 1 } }
+      );
 
       return true;
     } catch {
@@ -45,30 +40,38 @@ const mutation: Resolvers["Mutation"] = {
     }
   },
 
-  updateMemberDiscordActivityChannel: async (
-    _,
-    { id, channelId, messageCount }
-  ) => {
+  incMemberDiscordActivityChannel: async (_, { id, channelId }) => {
     try {
       // Try to update a existing element :
-      const result = await memberCollection.updateOne(
+      const result = await memberCollection.findOneAndUpdate(
         { _id: id, "activity.messages.perChannel.channelId": channelId },
         {
-          $set: { "activity.messages.perChannel.$.messageCount": messageCount },
+          $inc: { "activity.messages.perChannel.$.messageCount": 1 },
         }
       );
 
       // If element does not exist, push a new element :
-      if (!result.modifiedCount) {
-        await memberCollection.updateOne(
+      if (!result.value) {
+        await memberCollection.findOneAndUpdate(
           { _id: id },
           {
             $push: {
-              "activity.messages.perChannel": { channelId, messageCount },
+              "activity.messages.perChannel": { channelId, messageCount: 1 },
             },
           }
         );
       }
+
+      // Update total and month message count :
+      await memberCollection.updateOne(
+        { _id: id },
+        {
+          $inc: {
+            "activity.messages.totalCount": 1,
+            "activity.messages.monthCount": 1,
+          },
+        }
+      );
 
       return true;
     } catch {
@@ -110,9 +113,11 @@ const mutation: Resolvers["Mutation"] = {
         { $setOnInsert: { roleId, category } },
         { upsert: true }
       )
-    ).acknowledged, // function return tjr true
+    ).upsertedCount
+      ? true
+      : false,
   removeRole: async (_, { roleId }) =>
-    (await roleCollection.deleteOne({ roleId })).acknowledged,
+    (await roleCollection.deleteOne({ roleId })).deletedCount ? true : false,
 
   // CHANNELS :
   addChannel: async (_, { channelId, category }) =>
@@ -122,9 +127,11 @@ const mutation: Resolvers["Mutation"] = {
         { $setOnInsert: { channelId, category } },
         { upsert: true }
       )
-    ).acknowledged, // function return tjr true
+    ).upsertedCount
+      ? true
+      : false,
   removeChannel: async (_, { channelId }) =>
-    (await roleCollection.deleteOne({ channelId })).acknowledged,
+    (await roleCollection.deleteOne({ channelId })).deletedCount ? true : false,
 };
 
 export default mutation;
