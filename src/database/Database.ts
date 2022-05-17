@@ -25,9 +25,11 @@ const connectInfo: ConnectInfo = JSON.parse(
 );
 
 // Connection to the dababase :
-const client = new MongoClient(
-  `mongodb://${connectInfo.username}:${connectInfo.password}@${connectInfo.host}:${connectInfo.port}/${connectInfo.database}`
-);
+const connectLink = true // local dev mode ?
+  ? `mongodb://${connectInfo.username}:${connectInfo.password}@${connectInfo.host}:${connectInfo.port}/${connectInfo.database}`
+  : `mongodb://${connectInfo.host}:${connectInfo.port}/${connectInfo.database}`;
+
+const client = new MongoClient(connectLink);
 
 await client.connect();
 
