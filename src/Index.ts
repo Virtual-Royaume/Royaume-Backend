@@ -31,5 +31,7 @@ const server = new ApolloServer({
   csrfPrevention: true,
 });
 
-await server.listen({ port: 3000 });
-console.log("Server started, listen at port 3000...");
+const port = 3006;
+
+await server.listen({ port: port });
+console.log(`Server started, listen at port ${port}...`);
