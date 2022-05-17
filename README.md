@@ -3,6 +3,8 @@
 Royaume API created with GraphQL and MongoDB
 
 ## Documentation 
+API endpoint : [api.royaume.world](https://api.royaume.world)
+
 All requests to the API must have the header "authorization" with the private token : 
   - <details>
     <summary>Show token</summary>
