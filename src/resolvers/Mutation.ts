@@ -1,3 +1,4 @@
+import channelCollection from "../database/collections/MainChannel.js";
 import roleCollection from "../database/collections/MainRole.js";
 import memberCollection, {
   createMember,
@@ -122,7 +123,7 @@ const mutation: Resolvers["Mutation"] = {
   // CHANNELS :
   addChannel: async (_, { channelId, category }) =>
     (
-      await roleCollection.updateOne(
+      await channelCollection.updateOne(
         { channelId },
         { $setOnInsert: { channelId, category } },
         { upsert: true }
@@ -131,7 +132,7 @@ const mutation: Resolvers["Mutation"] = {
       ? true
       : false,
   removeChannel: async (_, { channelId }) =>
-    (await roleCollection.deleteOne({ channelId })).deletedCount ? true : false,
+    (await channelCollection.deleteOne({ channelId })).deletedCount ? true : false,
 };
 
 export default mutation;
