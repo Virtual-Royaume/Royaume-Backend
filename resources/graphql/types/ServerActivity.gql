@@ -9,13 +9,3 @@ type ServerActivity {
   messageCount: Int!
   memberCount: Int!
 }
-
-# Inputs
-
-input ServerActivityInput {
-  date: Date!
-
-  voiceMinute: Int
-  messageCount: Int
-  memberCount: Int
-}

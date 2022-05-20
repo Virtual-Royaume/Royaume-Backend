@@ -3,8 +3,9 @@ import roleCollection from "../database/collections/MainRole.js";
 import memberCollection, {
   createMember,
 } from "../database/collections/Member.js";
-import serverActivityCollection from "../database/collections/ServerActivity.js";
-import { getDateWithoutTime } from "../utils/Date.js";
+import serverActivityCollection, {
+  getServerActivity,
+} from "../database/collections/ServerActivity.js";
 import { Resolvers } from "../interfaces/ServerSchema.js";
 
 const mutation: Resolvers["Mutation"] = {
@@ -30,9 +31,20 @@ const mutation: Resolvers["Mutation"] = {
 
   incMemberDiscordVoiceMinute: async (_, { id }) => {
     try {
+      // Increment member voice minute :
       await memberCollection.updateOne(
         { _id: id },
         { $inc: { "activity.voiceMinute": 1 } }
+      );
+
+      // Increment server activity voice minute :
+      const serverActivity = await getServerActivity();
+
+      serverActivity.voiceMinute++;
+
+      await serverActivityCollection.updateOne(
+        { date: serverActivity.date },
+        { $set: serverActivity }
       );
 
       return true;
@@ -74,6 +86,16 @@ const mutation: Resolvers["Mutation"] = {
         }
       );
 
+      // Increment server activity message count :
+      const serverActivity = await getServerActivity();
+
+      serverActivity.messageCount++;
+
+      await serverActivityCollection.updateOne(
+        { date: serverActivity.date },
+        { $set: serverActivity }
+      );
+
       return true;
     } catch {
       return false;
@@ -81,29 +103,17 @@ const mutation: Resolvers["Mutation"] = {
   },
 
   // SERVER ACTIVITY :
-  updateServerActivity: async (_, { input }) => {
-    const serverActivity = await serverActivityCollection.findOne({
-      date: getDateWithoutTime(input.date),
-    });
+  setServerActivityMemberCount: async (_, { count }) => {
+    const serverActivity = await getServerActivity();
 
-    const newData: { [key: string]: any } = {};
+    serverActivity.memberCount = count;
 
-    newData.memberCount = input.memberCount ?? serverActivity?.memberCount ?? 0;
-    newData.messageCount =
-      input.messageCount ?? serverActivity?.messageCount ?? 0;
-    newData.voiceMinute = input.voiceMinute ?? serverActivity?.voiceMinute ?? 0;
+    const result = await serverActivityCollection.updateOne(
+      { date: serverActivity.date },
+      { $set: serverActivity }
+    );
 
-    try {
-      await serverActivityCollection.updateOne(
-        { date: input.date },
-        { $set: newData },
-        { upsert: true }
-      );
-
-      return true;
-    } catch {
-      return false;
-    }
+    return result.modifiedCount ? true : false;
   },
 
   // ROLES :
@@ -132,7 +142,9 @@ const mutation: Resolvers["Mutation"] = {
       ? true
       : false,
   removeChannel: async (_, { channelId }) =>
-    (await channelCollection.deleteOne({ channelId })).deletedCount ? true : false,
+    (await channelCollection.deleteOne({ channelId })).deletedCount
+      ? true
+      : false,
 };
 
 export default mutation;

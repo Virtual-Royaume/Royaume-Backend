@@ -31,7 +31,7 @@ type Mutation {
   incMemberDiscordVoiceMinute(id: ID!): Boolean!
   incMemberDiscordActivityChannel(id: ID!, channelId: ID!): Boolean!
 
-  updateServerActivity(input: ServerActivityInput!): Boolean!
+  setServerActivityMemberCount(count: Int!): Boolean!
 
   addRole(roleId: ID!, category: String!): Boolean!
   removeRole(roleId: ID!): Boolean!
