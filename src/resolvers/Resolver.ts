@@ -1,4 +1,4 @@
-import { Resolvers } from "../interfaces/GraphQL.js";
+import { Resolvers } from "../interfaces/ServerSchema.js";
 import Mutation from "./Mutation.js";
 import Query from "./Query.js";
 import { date } from "./Scalar.js";

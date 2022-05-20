@@ -4,8 +4,8 @@ import memberCollection, {
   createMember,
 } from "../database/collections/Member.js";
 import serverActivityCollection from "../database/collections/ServerActivity.js";
-import { Resolvers } from "../interfaces/GraphQL.js";
 import { getDateWithoutTime } from "../utils/Date.js";
+import { Resolvers } from "../interfaces/ServerSchema.js";
 
 const mutation: Resolvers["Mutation"] = {
   // MEMBER :

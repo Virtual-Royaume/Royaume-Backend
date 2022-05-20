@@ -1,5 +1,5 @@
 import { GraphQLScalarType, Kind } from "graphql";
-import { Resolvers } from "../interfaces/GraphQL.js";
+import { Resolvers } from "../interfaces/ServerSchema.js";
 import { getDateWithoutTime } from "../utils/Date.js";
 
 export const date: Resolvers["Date"] = new GraphQLScalarType({

@@ -6,7 +6,7 @@ import memberCollection, {
 import serverActivityCollection, {
   getServerActivity,
 } from "../database/collections/ServerActivity.js";
-import { Resolvers } from "../interfaces/GraphQL.js";
+import { Resolvers } from "../interfaces/ServerSchema.js";
 
 const query: Resolvers["Query"] = {
   members: async () =>
