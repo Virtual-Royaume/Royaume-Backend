@@ -10,8 +10,8 @@ import { Resolvers } from "../interfaces/ServerSchema.js";
 
 const mutation: Resolvers["Mutation"] = {
   // MEMBER :
-  createMember: async (_, { id, username, profilPicture, isOnServer }) =>
-    await createMember(id, username, profilPicture, isOnServer ?? true),
+  createMember: async (_, { id, username, profilePicture, isOnServer }) =>
+    await createMember(id, username, profilePicture, isOnServer ?? true),
 
   updateMember: async (_, { id, input }) => {
     // Remove null properties of input :
@@ -113,38 +113,32 @@ const mutation: Resolvers["Mutation"] = {
       { $set: serverActivity }
     );
 
-    return result.modifiedCount ? true : false;
+    return !!result.modifiedCount;
   },
 
   // ROLES :
   addRole: async (_, { roleId, category }) =>
-    (
-      await roleCollection.updateOne(
-        { roleId },
-        { $setOnInsert: { roleId, category } },
-        { upsert: true }
-      )
-    ).upsertedCount
-      ? true
-      : false,
+    !!(
+        await roleCollection.updateOne(
+            { roleId },
+            { $setOnInsert: { roleId, category } },
+            { upsert: true }
+        )
+    ).upsertedCount,
   removeRole: async (_, { roleId }) =>
-    (await roleCollection.deleteOne({ roleId })).deletedCount ? true : false,
+    !!(await roleCollection.deleteOne({ roleId })).deletedCount,
 
   // CHANNELS :
   addChannel: async (_, { channelId, category }) =>
-    (
-      await channelCollection.updateOne(
-        { channelId },
-        { $setOnInsert: { channelId, category } },
-        { upsert: true }
-      )
-    ).upsertedCount
-      ? true
-      : false,
+    !!(
+        await channelCollection.updateOne(
+            { channelId },
+            { $setOnInsert: { channelId, category } },
+            { upsert: true }
+        )
+    ).upsertedCount,
   removeChannel: async (_, { channelId }) =>
-    (await channelCollection.deleteOne({ channelId })).deletedCount
-      ? true
-      : false,
+    !!(await channelCollection.deleteOne({ channelId })).deletedCount,
 };
 
 export default mutation;

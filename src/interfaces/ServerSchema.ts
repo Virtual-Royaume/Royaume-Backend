@@ -63,13 +63,13 @@ export type Member = {
   _id: Scalars["String"];
   activity: DiscordActivity;
   isOnServer: Scalars["Boolean"];
-  profilPicture: Scalars["String"];
+  profilePicture: Scalars["String"];
   username: Scalars["String"];
 };
 
 export type MemberInput = {
   isOnServer?: InputMaybe<Scalars["Boolean"]>;
-  profilPicture?: InputMaybe<Scalars["String"]>;
+  profilePicture?: InputMaybe<Scalars["String"]>;
   username?: InputMaybe<Scalars["String"]>;
 };
 
@@ -99,7 +99,7 @@ export type MutationAddRoleArgs = {
 export type MutationCreateMemberArgs = {
   id: Scalars["ID"];
   isOnServer?: InputMaybe<Scalars["Boolean"]>;
-  profilPicture: Scalars["String"];
+  profilePicture: Scalars["String"];
   username: Scalars["String"];
 };
 
@@ -368,7 +368,7 @@ export type MemberResolvers<
     ContextType
   >;
   isOnServer?: Resolver<ResolversTypes["Boolean"], ParentType, ContextType>;
-  profilPicture?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
+  profilePicture?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
   username?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -393,7 +393,7 @@ export type MutationResolvers<
     Maybe<ResolversTypes["Member"]>,
     ParentType,
     ContextType,
-    RequireFields<MutationCreateMemberArgs, "id" | "profilPicture" | "username">
+    RequireFields<MutationCreateMemberArgs, "id" | "profilePicture" | "username">
   >;
   incMemberDiscordActivityChannel?: Resolver<
     ResolversTypes["Boolean"],
