@@ -1,6 +1,6 @@
 import { Resolvers } from "../interfaces/ServerSchema.js";
-import Mutation from "./Mutation.js";
-import Query from "./Query.js";
+import Mutation from "./mutations/Index.js";
+import Query from "./queries/Index.js";
 import { date } from "./Scalar.js";
 
 const resolvers: Resolvers = {
