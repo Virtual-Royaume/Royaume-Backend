@@ -3,7 +3,7 @@
 type Member {
   _id: String! # Discord ID
   username: String!
-  profilPicture: String!
+  profilePicture: String!
 
   isOnServer: Boolean!
 
@@ -30,6 +30,6 @@ type ChannelMessageCount {
 
 input MemberInput {
   username: String
-  profilPicture: String
+  profilePicture: String
   isOnServer: Boolean
 }

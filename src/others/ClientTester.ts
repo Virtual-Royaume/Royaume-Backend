@@ -1,4 +1,4 @@
-import { request, gql } from "graphql-request"; // https://www.npmjs.com/package/graphql-request
+import { request } from "graphql-request"; // https://www.npmjs.com/package/graphql-request
 
 // ...
 
