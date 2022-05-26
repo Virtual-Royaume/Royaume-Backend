@@ -2,11 +2,11 @@ import { getDateWithoutTime } from "../../utils/Date.js";
 import database from "../Database.js";
 
 export interface ServerActivity {
-  date: Date;
+    date: Date;
 
-  voiceMinute: number;
-  messageCount: number;
-  memberCount: number;
+    voiceMinute: number;
+    messageCount: number;
+    memberCount: number;
 }
 
 const serverActivityCollection = database.collection<ServerActivity>("serveractivity");
