@@ -1,26 +1,24 @@
 import channelCollection from "../database/collections/MainChannel.js";
 import roleCollection from "../database/collections/MainRole.js";
 import memberCollection, {
-  getMemberByDiscordId,
+    getMemberByDiscordId
 } from "../database/collections/Member.js";
 import serverActivityCollection, {
-  getServerActivity,
+    getServerActivity
 } from "../database/collections/ServerActivity.js";
 import { Resolvers } from "../interfaces/ServerSchema.js";
 
 const query: Resolvers["Query"] = {
-  members: async () =>
-    await memberCollection.find({ isOnServer: true }).toArray(),
-  member: async (_, { id }) => await getMemberByDiscordId(id),
+    members: async() => await memberCollection.find({ isOnServer: true }).toArray(),
+    member: async(_, { id }) => await getMemberByDiscordId(id),
 
-  todayServerActivity: async () => await getServerActivity(),
-  serverActivity: async (_, { historyCount }) =>
-    serverActivityCollection
-      .find({}, { sort: { date: "desc" }, limit: historyCount })
-      .toArray(),
+    todayServerActivity: async() => await getServerActivity(),
+    serverActivity: async(_, { historyCount }) => serverActivityCollection
+        .find({}, { sort: { date: "desc" }, limit: historyCount })
+        .toArray(),
 
-  roles: async () => await roleCollection.find().toArray(),
-  channels: async () => await channelCollection.find().toArray(),
+    roles: async() => await roleCollection.find().toArray(),
+    channels: async() => await channelCollection.find().toArray()
 };
 
 export default query;

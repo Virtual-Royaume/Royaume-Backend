@@ -4,9 +4,9 @@ import path from "path";
 
 // Check if connection informations exist :
 if (!existsSync(path.resolve() + "/resources/auth/mongodb.json")) {
-  throw new Error(
-    "You need to make a copy of _mongodb.json without the underscore and fill in the missing elements."
-  );
+    throw new Error(
+        "You need to make a copy of _mongodb.json without the underscore and fill in the missing elements."
+    );
 }
 
 // Get connection information :
@@ -21,13 +21,13 @@ interface ConnectInfo {
 }
 
 const connectInfo: ConnectInfo = JSON.parse(
-  readFileSync(path.resolve() + "/resources/auth/mongodb.json", "utf-8")
+    readFileSync(path.resolve() + "/resources/auth/mongodb.json", "utf-8")
 );
 
 // Connection to the dababase :
 const connectLink = true // local dev mode ?
-  ? `mongodb://${connectInfo.username}:${connectInfo.password}@${connectInfo.host}:${connectInfo.port}/${connectInfo.database}`
-  : `mongodb://${connectInfo.host}:${connectInfo.port}/${connectInfo.database}`;
+    ? `mongodb://${connectInfo.username}:${connectInfo.password}@${connectInfo.host}:${connectInfo.port}/${connectInfo.database}`
+    : `mongodb://${connectInfo.host}:${connectInfo.port}/${connectInfo.database}`;
 
 const client = new MongoClient(connectLink);
 

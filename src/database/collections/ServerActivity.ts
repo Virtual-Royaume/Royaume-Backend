@@ -9,32 +9,32 @@ export interface ServerActivity {
   memberCount: number;
 }
 
-const serverActivityCollection =
-  database.collection<ServerActivity>("serveractivity");
+const serverActivityCollection
+  = database.collection<ServerActivity>("serveractivity");
 export default serverActivityCollection;
 
 // FUNCTIONS //
 
 export async function getServerActivity(): Promise<ServerActivity> {
-  let serverActivity = await serverActivityCollection.findOne({
-    date: getDateWithoutTime(),
-  });
+    let serverActivity = await serverActivityCollection.findOne({
+        date: getDateWithoutTime()
+    });
 
-  if (!serverActivity) {
-    const defaultValue = {
-      date: getDateWithoutTime(),
+    if (!serverActivity) {
+        const defaultValue = {
+            date: getDateWithoutTime(),
 
-      voiceMinute: 0,
-      messageCount: 0,
-      memberCount: 0,
-    };
-    const insert = await serverActivityCollection.insertOne(defaultValue);
+            voiceMinute: 0,
+            messageCount: 0,
+            memberCount: 0
+        };
+        const insert = await serverActivityCollection.insertOne(defaultValue);
 
-    serverActivity = {
-      _id: insert.insertedId,
-      ...defaultValue,
-    };
-  }
+        serverActivity = {
+            _id: insert.insertedId,
+            ...defaultValue
+        };
+    }
 
-  return serverActivity;
+    return serverActivity;
 }

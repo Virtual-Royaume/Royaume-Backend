@@ -31,38 +31,38 @@ export default memberCollection;
 // FUNCTIONS //
 
 export async function createMember(
-  id: string,
-  username: string,
-  profilPicture: string,
-  isOnServer: boolean = true
+    id: string,
+    username: string,
+    profilPicture: string,
+    isOnServer = true
 ): Promise<Member | null> {
-  try {
-    const member = {
-      _id: id,
+    try {
+        const member = {
+            _id: id,
 
-      username: username,
-      profilPicture: profilPicture,
+            username: username,
+            profilPicture: profilPicture,
 
-      isOnServer: isOnServer,
+            isOnServer: isOnServer,
 
-      activity: {
-        voiceMinute: 0,
-        messages: {
-          totalCount: 0,
-          monthCount: 0,
-          perChannel: [],
-        },
-      },
-    };
+            activity: {
+                voiceMinute: 0,
+                messages: {
+                    totalCount: 0,
+                    monthCount: 0,
+                    perChannel: []
+                }
+            }
+        };
 
-    await memberCollection.insertOne(member);
+        await memberCollection.insertOne(member);
 
-    return member;
-  } catch {
-    return null;
-  }
+        return member;
+    } catch {
+        return null;
+    }
 }
 
 export async function getMemberByDiscordId(id: string): Promise<Member | null> {
-  return await memberCollection.findOne({ _id: id });
+    return await memberCollection.findOne({ _id: id });
 }
