@@ -38,7 +38,7 @@ const insertMembers = members.map((element) => {
         _id: element.userId,
 
         username: element.username,
-        profilPicture: element.profilPictureLink,
+        profilePicture: element.profilePictureLink,
 
         isOnServer: Boolean(element.alwaysInTheServer),
 

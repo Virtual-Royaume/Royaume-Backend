@@ -5,8 +5,9 @@ import serverActivityCollection, { getServerActivity } from "../database/collect
 import { Resolvers } from "../interfaces/ServerSchema.js";
 
 const mutation: Resolvers["Mutation"] = {
-    // MEMBER :
-    createMember: async(_, { id, username, profilPicture, isOnServer }) => await createMember(id, username, profilPicture, isOnServer ?? true),
+  // MEMBER :
+  createMember: async (_, { id, username, profilePicture, isOnServer }) =>
+    await createMember(id, username, profilePicture, isOnServer ?? true),
 
     updateMember: async(_, { id, input }) => {
     // Remove null properties of input :
@@ -95,47 +96,61 @@ const mutation: Resolvers["Mutation"] = {
         } catch {
             return false;
         }
-    },
+      );
 
-    // SERVER ACTIVITY :
-    setServerActivityMemberCount: async(_, { count }) => {
-        const serverActivity = await getServerActivity();
+      // Increment server activity message count :
+      const serverActivity = await getServerActivity();
 
-        serverActivity.memberCount = count;
+      serverActivity.messageCount++;
 
-        const result = await serverActivityCollection.updateOne(
-            { date: serverActivity.date },
-            { $set: serverActivity }
-        );
+      await serverActivityCollection.updateOne(
+        { date: serverActivity.date },
+        { $set: serverActivity }
+      );
 
-        return result.modifiedCount ? true : false;
-    },
+      return true;
+    } catch {
+      return false;
+    }
+  },
 
-    // ROLES :
-    addRole: async(_, { roleId, category }) => (
+  // SERVER ACTIVITY :
+  setServerActivityMemberCount: async (_, { count }) => {
+    const serverActivity = await getServerActivity();
+
+    serverActivity.memberCount = count;
+
+    const result = await serverActivityCollection.updateOne(
+      { date: serverActivity.date },
+      { $set: serverActivity }
+    );
+
+    return !!result.modifiedCount;
+  },
+
+  // ROLES :
+  addRole: async (_, { roleId, category }) =>
+    !!(
         await roleCollection.updateOne(
             { roleId },
             { $setOnInsert: { roleId, category } },
             { upsert: true }
         )
-    ).upsertedCount
-        ? true
-        : false,
-    removeRole: async(_, { roleId }) => (await roleCollection.deleteOne({ roleId })).deletedCount ? true : false,
+    ).upsertedCount,
+  removeRole: async (_, { roleId }) =>
+    !!(await roleCollection.deleteOne({ roleId })).deletedCount,
 
-    // CHANNELS :
-    addChannel: async(_, { channelId, category }) => (
+  // CHANNELS :
+  addChannel: async (_, { channelId, category }) =>
+    !!(
         await channelCollection.updateOne(
             { channelId },
             { $setOnInsert: { channelId, category } },
             { upsert: true }
         )
-    ).upsertedCount
-        ? true
-        : false,
-    removeChannel: async(_, { channelId }) => (await channelCollection.deleteOne({ channelId })).deletedCount
-        ? true
-        : false
+    ).upsertedCount,
+  removeChannel: async (_, { channelId }) =>
+    !!(await channelCollection.deleteOne({ channelId })).deletedCount,
 };
 
 export default mutation;

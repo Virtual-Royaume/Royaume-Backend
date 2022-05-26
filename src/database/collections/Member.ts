@@ -18,8 +18,8 @@ export interface Member {
     _id: string; // Discord ID
 
     username: string;
-    profilPicture: string;
-
+    profilePicture: string;
+  
     isOnServer: boolean;
 
     activity: DiscordActivity;
@@ -33,17 +33,17 @@ export default memberCollection;
 export async function createMember(
     id: string,
     username: string,
-    profilPicture: string,
-    isOnServer = true
+    profilePicture: string,
+    isOnServer: boolean = true
 ): Promise<Member | null> {
     try {
         const member = {
             _id: id,
 
-            username: username,
-            profilPicture: profilPicture,
+            username,
+            profilePicture,
 
-            isOnServer: isOnServer,
+            isOnServer,
 
             activity: {
                 voiceMinute: 0,
