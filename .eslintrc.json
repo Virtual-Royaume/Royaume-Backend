@@ -77,6 +77,11 @@
         
         "wrap-regex": "error",
 
-        "camelcase": "error"
+        "camelcase": "error",
+
+        // Possible Problems :
+        "no-floating-decimal": "error",
+        "no-lonely-if": "error",
+        "no-multi-assign": "error"
     }
 }
