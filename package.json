@@ -6,7 +6,7 @@
     "start": "node .",
     "dev": "ts-node ./src/Index.ts",
     "build": "tsc",
-    "eslint": "eslint src/**/*.ts",
+    "eslint": "eslint src/**/*.ts --fix",
     "gql-generate": "graphql-codegen --config codegen.yml"
   },
   "devDependencies": {

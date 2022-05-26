@@ -1,28 +1,28 @@
 import database from "../Database.js";
 
 export interface ChannelMessageCount {
-  channelId: string;
-  messageCount: number;
+    channelId: string;
+    messageCount: number;
 }
 
 export interface DiscordActivity {
-  voiceMinute: number; // minutes
-  messages: {
-    totalCount: number;
-    monthCount: number;
-    perChannel: ChannelMessageCount[];
-  };
+    voiceMinute: number; // minutes
+    messages: {
+        totalCount: number;
+        monthCount: number;
+        perChannel: ChannelMessageCount[];
+    };
 }
 
 export interface Member {
-  _id: string; // Discord ID
+    _id: string; // Discord ID
 
-  username: string;
-  profilPicture: string;
+    username: string;
+    profilPicture: string;
 
-  isOnServer: boolean;
+    isOnServer: boolean;
 
-  activity: DiscordActivity;
+    activity: DiscordActivity;
 }
 
 const memberCollection = database.collection<Member>("member");

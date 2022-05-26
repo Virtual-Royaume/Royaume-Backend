@@ -81,6 +81,7 @@ const insertMembers = members.map((element) => {
 const insertServerActivity = serverActivity;
 
 // Reset MongoDB data ?
+// eslint-disable-next-line no-constant-condition
 if (true) {
     memberCollection.deleteMany({});
     serverActivityCollection.deleteMany({});

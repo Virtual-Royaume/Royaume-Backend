@@ -9,8 +9,7 @@ export interface ServerActivity {
   memberCount: number;
 }
 
-const serverActivityCollection
-  = database.collection<ServerActivity>("serveractivity");
+const serverActivityCollection = database.collection<ServerActivity>("serveractivity");
 export default serverActivityCollection;
 
 // FUNCTIONS //

@@ -13,8 +13,6 @@ export const date: Resolvers["Date"] = new GraphQLScalarType({
         return getDateWithoutTime(new Date(value as string));
     },
     parseLiteral(ast) {
-        return ast.kind === Kind.STRING
-            ? getDateWithoutTime(new Date(ast.value))
-            : null;
+        return ast.kind === Kind.STRING ? getDateWithoutTime(new Date(ast.value)) : null;
     }
 });

@@ -14,9 +14,7 @@ readdirSync(path.resolve() + "/src/tasks").forEach(
 // Create and start the server :
 const schemas = await loadSchema(
     path.resolve() + "/resources/graphql/**/*.gql",
-    {
-        loaders: [new GraphQLFileLoader()]
-    }
+    { loaders: [new GraphQLFileLoader()] }
 );
 
 const server = new ApolloServer({
@@ -25,6 +23,7 @@ const server = new ApolloServer({
 
         if (token !== secret.token) throw new Error("Invalid token in authorization header");
     },
+
     typeDefs: schemas,
     resolvers,
     csrfPrevention: true

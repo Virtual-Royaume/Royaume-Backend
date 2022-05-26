@@ -11,13 +11,13 @@ if (!existsSync(path.resolve() + "/resources/auth/mongodb.json")) {
 
 // Get connection information :
 interface ConnectInfo {
-  host: string;
-  port: number;
+    host: string;
+    port: number;
 
-  username: string;
-  password: string;
+    username: string;
+    password: string;
 
-  database: string;
+    database: string;
 }
 
 const connectInfo: ConnectInfo = JSON.parse(
@@ -25,11 +25,12 @@ const connectInfo: ConnectInfo = JSON.parse(
 );
 
 // Connection to the dababase :
-const connectLink = true // local dev mode ?
-    ? `mongodb://${connectInfo.username}:${connectInfo.password}@${connectInfo.host}:${connectInfo.port}/${connectInfo.database}`
-    : `mongodb://${connectInfo.host}:${connectInfo.port}/${connectInfo.database}`;
+const connectLink = {
+    normal: `mongodb://${connectInfo.username}:${connectInfo.password}@${connectInfo.host}:${connectInfo.port}/${connectInfo.database}`,
+    local: `mongodb://${connectInfo.host}:${connectInfo.port}/${connectInfo.database}`
+};
 
-const client = new MongoClient(connectLink);
+const client = new MongoClient(connectLink.local);
 
 await client.connect();
 

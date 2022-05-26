@@ -1,11 +1,7 @@
 import channelCollection from "../database/collections/MainChannel.js";
 import roleCollection from "../database/collections/MainRole.js";
-import memberCollection, {
-    createMember
-} from "../database/collections/Member.js";
-import serverActivityCollection, {
-    getServerActivity
-} from "../database/collections/ServerActivity.js";
+import memberCollection, { createMember } from "../database/collections/Member.js";
+import serverActivityCollection, { getServerActivity } from "../database/collections/ServerActivity.js";
 import { Resolvers } from "../interfaces/ServerSchema.js";
 
 const mutation: Resolvers["Mutation"] = {
@@ -15,7 +11,7 @@ const mutation: Resolvers["Mutation"] = {
     updateMember: async(_, { id, input }) => {
     // Remove null properties of input :
         const insertInput = Object.fromEntries(
-            Object.entries(input).filter(([_, value]) => value !== null)
+            Object.entries(input).filter(([, value]) => value !== null)
         );
 
         // Try to update member :
