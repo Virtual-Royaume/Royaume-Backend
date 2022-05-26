@@ -1,28 +1,28 @@
 import database from "../Database.js";
 
 export interface ChannelMessageCount {
-  channelId: string;
-  messageCount: number;
+    channelId: string;
+    messageCount: number;
 }
 
 export interface DiscordActivity {
-  voiceMinute: number; // minutes
-  messages: {
-    totalCount: number;
-    monthCount: number;
-    perChannel: ChannelMessageCount[];
-  };
+    voiceMinute: number; // minutes
+    messages: {
+        totalCount: number;
+        monthCount: number;
+        perChannel: ChannelMessageCount[];
+    };
 }
 
 export interface Member {
-  _id: string; // Discord ID
+    _id: string; // Discord ID
 
-  username: string;
-  profilePicture: string;
+    username: string;
+    profilePicture: string;
+  
+    isOnServer: boolean;
 
-  isOnServer: boolean;
-
-  activity: DiscordActivity;
+    activity: DiscordActivity;
 }
 
 const memberCollection = database.collection<Member>("member");
@@ -31,38 +31,38 @@ export default memberCollection;
 // FUNCTIONS //
 
 export async function createMember(
-  id: string,
-  username: string,
-  profilePicture: string,
-  isOnServer: boolean = true
+    id: string,
+    username: string,
+    profilePicture: string,
+    isOnServer: boolean = true
 ): Promise<Member | null> {
-  try {
-    const member = {
-      _id: id,
+    try {
+        const member = {
+            _id: id,
 
-      username,
-      profilePicture,
+            username,
+            profilePicture,
 
-      isOnServer,
+            isOnServer,
 
-      activity: {
-        voiceMinute: 0,
-        messages: {
-          totalCount: 0,
-          monthCount: 0,
-          perChannel: [],
-        },
-      },
-    };
+            activity: {
+                voiceMinute: 0,
+                messages: {
+                    totalCount: 0,
+                    monthCount: 0,
+                    perChannel: []
+                }
+            }
+        };
 
-    await memberCollection.insertOne(member);
+        await memberCollection.insertOne(member);
 
-    return member;
-  } catch {
-    return null;
-  }
+        return member;
+    } catch {
+        return null;
+    }
 }
 
 export async function getMemberByDiscordId(id: string): Promise<Member | null> {
-  return await memberCollection.findOne({ _id: id });
+    return await memberCollection.findOne({ _id: id });
 }

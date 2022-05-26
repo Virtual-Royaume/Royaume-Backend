@@ -4,9 +4,9 @@ import Query from "./Query.js";
 import { date } from "./Scalar.js";
 
 const resolvers: Resolvers = {
-  Date: date,
-  Query,
-  Mutation,
+    Date: date,
+    Query,
+    Mutation
 };
 
 export default resolvers;

@@ -1,7 +1,7 @@
 import {
-  GraphQLResolveInfo,
-  GraphQLScalarType,
-  GraphQLScalarTypeConfig,
+    GraphQLResolveInfo,
+    GraphQLScalarType,
+    GraphQLScalarTypeConfig
 } from "graphql";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;

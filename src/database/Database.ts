@@ -4,32 +4,33 @@ import path from "path";
 
 // Check if connection informations exist :
 if (!existsSync(path.resolve() + "/resources/auth/mongodb.json")) {
-  throw new Error(
-    "You need to make a copy of _mongodb.json without the underscore and fill in the missing elements."
-  );
+    throw new Error(
+        "You need to make a copy of _mongodb.json without the underscore and fill in the missing elements."
+    );
 }
 
 // Get connection information :
 interface ConnectInfo {
-  host: string;
-  port: number;
+    host: string;
+    port: number;
 
-  username: string;
-  password: string;
+    username: string;
+    password: string;
 
-  database: string;
+    database: string;
 }
 
 const connectInfo: ConnectInfo = JSON.parse(
-  readFileSync(path.resolve() + "/resources/auth/mongodb.json", "utf-8")
+    readFileSync(path.resolve() + "/resources/auth/mongodb.json", "utf-8")
 );
 
 // Connection to the dababase :
-const connectLink = true // local dev mode ?
-  ? `mongodb://${connectInfo.username}:${connectInfo.password}@${connectInfo.host}:${connectInfo.port}/${connectInfo.database}`
-  : `mongodb://${connectInfo.host}:${connectInfo.port}/${connectInfo.database}`;
+const connectLink = {
+    normal: `mongodb://${connectInfo.username}:${connectInfo.password}@${connectInfo.host}:${connectInfo.port}/${connectInfo.database}`,
+    local: `mongodb://${connectInfo.host}:${connectInfo.port}/${connectInfo.database}`
+};
 
-const client = new MongoClient(connectLink);
+const client = new MongoClient(connectLink.local);
 
 await client.connect();
 
