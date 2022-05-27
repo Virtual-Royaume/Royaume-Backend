@@ -9,21 +9,21 @@ import serverActivityQuery from "./queries/ServerActivity.js";
 import { date } from "./Scalar.js";
 
 const resolvers: Resolvers = {
-  Date: date,
+    Date: date,
 
-  Query: {
-    ...mainChannelQuery,
-    ...mainRoleQuery,
-    ...memberQuery,
-    ...serverActivityQuery
-  },
+    Query: {
+        ...mainChannelQuery,
+        ...mainRoleQuery,
+        ...memberQuery,
+        ...serverActivityQuery
+    },
 
-  Mutation: {
-    ...mainChannelMutation,
-    ...mainRoleMutation,
-    ...memberMutation,
-    ...serverActivityQuery
-  },
+    Mutation: {
+        ...mainChannelMutation,
+        ...mainRoleMutation,
+        ...memberMutation,
+        ...serverActivityQuery
+    }
 };
 
 export default resolvers;
