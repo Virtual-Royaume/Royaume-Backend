@@ -1,19 +1,18 @@
 import { GraphQLFileLoader } from "@graphql-tools/graphql-file-loader";
-import { loadSchema } from "@graphql-tools/load";
+import { loadSchemaSync } from "@graphql-tools/load";
 import { ApolloServer } from "apollo-server";
 import { readdirSync } from "fs";
-import path from "path";
-import resolvers from "./resolvers/Resolver.js";
-import secret from "../resources/auth/secret.json" assert { type: "json" };
+import resolvers from "./resolvers/Resolver";
+import secret from "../resources/auth/secret.json";
 
 // Load tasks :
-readdirSync(path.resolve() + "/src/tasks").forEach(
-    (file) => import(`./tasks/${file.substring(0, file.length - 3)}.js`)
+readdirSync(`${__dirname}/tasks`).forEach(
+    (file) => import(`./tasks/${file.substring(0, file.length - 3)}`)
 );
 
 // Create and start the server :
-const schemas = await loadSchema(
-    path.resolve() + "/resources/graphql/**/*.gql",
+const schemas = loadSchemaSync(
+    `${__dirname}/../resources/graphql/**/*.gql`,
     {
         loaders: [new GraphQLFileLoader()]
     }
@@ -31,7 +30,6 @@ const server = new ApolloServer({
     csrfPrevention: true
 });
 
-const port = 3006;
-
-await server.listen({ port: port });
-console.log(`Server started, listen at port ${port}...`);
+server.listen({ port: 3006 }).then(serverInfo => {
+    console.log(`Server started, listen at port ${serverInfo.port}...`);
+});

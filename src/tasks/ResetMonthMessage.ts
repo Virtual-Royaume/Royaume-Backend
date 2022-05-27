@@ -1,4 +1,4 @@
-import memberCollection from "../database/collections/Member.js";
+import memberCollection from "../database/collections/Member";
 
 setInterval(() => {
     const date = new Date();

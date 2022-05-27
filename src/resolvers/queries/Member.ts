@@ -1,5 +1,5 @@
-import { Resolvers } from "../../interfaces/ServerSchema.js";
-import memberCollection, { getMemberByDiscordId } from "../../database/collections/Member.js";
+import { Resolvers } from "../../interfaces/ServerSchema";
+import memberCollection, { getMemberByDiscordId } from "../../database/collections/Member";
 
 const memberQuery: Resolvers["Query"] = {
     members: async() => await memberCollection.find({ isOnServer: true }).toArray(),

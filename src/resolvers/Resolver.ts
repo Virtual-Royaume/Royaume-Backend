@@ -1,12 +1,13 @@
-import { Resolvers } from "../interfaces/ServerSchema.js";
-import mainChannelMutation from "./mutations/MainChannel.js";
-import mainRoleMutation from "./mutations/MainRole.js";
-import memberMutation from "./mutations/Member.js";
-import mainChannelQuery from "./queries/MainChannel.js";
-import mainRoleQuery from "./queries/MainRole.js";
-import memberQuery from "./queries/Member.js";
-import serverActivityQuery from "./queries/ServerActivity.js";
-import { date } from "./Scalar.js";
+import { Resolvers } from "../interfaces/ServerSchema";
+import { date } from "./Scalar";
+import mainChannelMutation from "./mutations/MainChannel";
+import mainRoleMutation from "./mutations/MainRole";
+import memberMutation from "./mutations/Member";
+import serverActivityMutation from "./mutations/ServerActivity";
+import mainChannelQuery from "./queries/MainChannel";
+import mainRoleQuery from "./queries/MainRole";
+import memberQuery from "./queries/Member";
+import serverActivityQuery from "./queries/ServerActivity";
 
 const resolvers: Resolvers = {
     Date: date,
@@ -22,7 +23,7 @@ const resolvers: Resolvers = {
         ...mainChannelMutation,
         ...mainRoleMutation,
         ...memberMutation,
-        ...serverActivityQuery
+        ...serverActivityMutation
     }
 };
 

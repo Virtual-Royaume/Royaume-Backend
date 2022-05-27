@@ -1,4 +1,4 @@
-import database from "../Database.js";
+import database from "../Database";
 
 export interface MainRole {
     roleId: string;
