@@ -12,6 +12,7 @@ type Member {
 
 type DiscordActivity {
     voiceMinute: Int!
+    monthVoiceMinute: Int!
     messages: DiscordMessageActivity!
 }
 
