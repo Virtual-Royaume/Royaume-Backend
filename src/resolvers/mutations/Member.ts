@@ -32,7 +32,7 @@ const memberMutation: Resolvers["Mutation"] = {
             // Increment member voice minute :
             await memberCollection.updateOne(
                 { _id: id },
-                { $inc: { "activity.voiceMinute": 1 } }
+                { $inc: { "activity.voiceMinute": 1, "activity.monthVoiceMinute": 1 } }
             );
 
             // Increment server activity voice minute :

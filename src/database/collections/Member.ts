@@ -6,7 +6,8 @@ export interface ChannelMessageCount {
 }
 
 export interface DiscordActivity {
-    voiceMinute: number; // minutes
+    voiceMinute: number;
+    monthVoiceMinute: number;
     messages: {
         totalCount: number;
         monthCount: number;
@@ -47,6 +48,7 @@ export async function createMember(
 
             activity: {
                 voiceMinute: 0,
+                monthVoiceMinute: 0,
                 messages: {
                     totalCount: 0,
                     monthCount: 0,
