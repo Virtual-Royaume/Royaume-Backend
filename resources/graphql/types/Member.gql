@@ -1,35 +1,35 @@
 # Types
 
 type Member {
-  _id: String! # Discord ID
-  username: String!
-  profilPicture: String!
+    _id: String! # Discord ID
+    username: String!
+    profilPicture: String!
 
-  isOnServer: Boolean!
+    isOnServer: Boolean!
 
-  activity: DiscordActivity!
+    activity: DiscordActivity!
 }
 
 type DiscordActivity {
-  voiceMinute: Int!
-  messages: DiscordMessageActivity!
+    voiceMinute: Int!
+    messages: DiscordMessageActivity!
 }
 
 type DiscordMessageActivity {
-  totalCount: Int!
-  monthCount: Int!
-  perChannel: [ChannelMessageCount]!
+    totalCount: Int!
+    monthCount: Int!
+    perChannel: [ChannelMessageCount]!
 }
 
 type ChannelMessageCount {
-  channelId: String!
-  messageCount: Int!
+    channelId: String!
+    messageCount: Int!
 }
 
 # Inputs
 
 input MemberInput {
-  username: String
-  profilPicture: String
-  isOnServer: Boolean
+    username: String
+    profilPicture: String
+    isOnServer: Boolean
 }

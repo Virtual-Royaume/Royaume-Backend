@@ -3,9 +3,9 @@ scalar Date
 # Types
 
 type ServerActivity {
-  date: Date!
+    date: Date!
 
-  voiceMinute: Int!
-  messageCount: Int!
-  memberCount: Int!
+    voiceMinute: Int!
+    messageCount: Int!
+    memberCount: Int!
 }

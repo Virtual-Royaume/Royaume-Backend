@@ -1,4 +1,4 @@
 type MainRole {
-  roleId: ID!
-  category: String!
+    roleId: ID!
+    category: String!
 }

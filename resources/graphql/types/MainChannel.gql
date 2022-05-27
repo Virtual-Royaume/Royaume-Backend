@@ -1,4 +1,4 @@
 type MainChannel {
-  channelId: ID!
-  category: String!
+    channelId: ID!
+    category: String!
 }
