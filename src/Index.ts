@@ -25,6 +25,7 @@ const server = new ApolloServer({
 
         if (token !== secret.token) throw new Error("Invalid token in authorization header");
     },
+
     typeDefs: schemas,
     resolvers,
     csrfPrevention: true
