@@ -55,13 +55,13 @@ export type Member = {
   _id: Scalars["String"];
   activity: DiscordActivity;
   isOnServer: Scalars["Boolean"];
-  profilePicture: Scalars["String"];
+  profilPicture: Scalars["String"];
   username: Scalars["String"];
 };
 
 export type MemberInput = {
   isOnServer?: InputMaybe<Scalars["Boolean"]>;
-  profilePicture?: InputMaybe<Scalars["String"]>;
+  profilPicture?: InputMaybe<Scalars["String"]>;
   username?: InputMaybe<Scalars["String"]>;
 };
 
@@ -91,7 +91,7 @@ export type MutationAddRoleArgs = {
 export type MutationCreateMemberArgs = {
   id: Scalars["ID"];
   isOnServer?: InputMaybe<Scalars["Boolean"]>;
-  profilePicture: Scalars["String"];
+  profilPicture: Scalars["String"];
   username: Scalars["String"];
 };
 

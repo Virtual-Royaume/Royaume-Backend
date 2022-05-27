@@ -1,7 +1,7 @@
 import {
-    GraphQLResolveInfo,
-    GraphQLScalarType,
-    GraphQLScalarTypeConfig
+  GraphQLResolveInfo,
+  GraphQLScalarType,
+  GraphQLScalarTypeConfig,
 } from "graphql";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -63,13 +63,13 @@ export type Member = {
   _id: Scalars["String"];
   activity: DiscordActivity;
   isOnServer: Scalars["Boolean"];
-  profilePicture: Scalars["String"];
+  profilPicture: Scalars["String"];
   username: Scalars["String"];
 };
 
 export type MemberInput = {
   isOnServer?: InputMaybe<Scalars["Boolean"]>;
-  profilePicture?: InputMaybe<Scalars["String"]>;
+  profilPicture?: InputMaybe<Scalars["String"]>;
   username?: InputMaybe<Scalars["String"]>;
 };
 
@@ -99,7 +99,7 @@ export type MutationAddRoleArgs = {
 export type MutationCreateMemberArgs = {
   id: Scalars["ID"];
   isOnServer?: InputMaybe<Scalars["Boolean"]>;
-  profilePicture: Scalars["String"];
+  profilPicture: Scalars["String"];
   username: Scalars["String"];
 };
 
@@ -368,7 +368,7 @@ export type MemberResolvers<
     ContextType
   >;
   isOnServer?: Resolver<ResolversTypes["Boolean"], ParentType, ContextType>;
-  profilePicture?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
+  profilPicture?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
   username?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -393,7 +393,7 @@ export type MutationResolvers<
     Maybe<ResolversTypes["Member"]>,
     ParentType,
     ContextType,
-    RequireFields<MutationCreateMemberArgs, "id" | "profilePicture" | "username">
+    RequireFields<MutationCreateMemberArgs, "id" | "profilPicture" | "username">
   >;
   incMemberDiscordActivityChannel?: Resolver<
     ResolversTypes["Boolean"],
