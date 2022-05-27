@@ -15,7 +15,7 @@ const serverActivityMutation: Resolvers["Mutation"] = {
 		);
 
 		return !!result.modifiedCount;
-	},
+	}
 };
 
 export default serverActivityMutation;

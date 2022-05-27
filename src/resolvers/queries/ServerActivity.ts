@@ -6,10 +6,11 @@ import serverActivityCollection, {
 const serverActivityQuery: Resolvers["Query"] = {
 	todayServerActivity: async () => await getServerActivity(),
 
-	serverActivity: async (_, { historyCount }) =>
-		serverActivityCollection
+	serverActivity: async (_, { historyCount }) => {
+		return serverActivityCollection
 			.find({}, { sort: { date: "desc" }, limit: historyCount })
-			.toArray(),
+			.toArray();
+	},
 };
 
 export default serverActivityQuery;

@@ -7,8 +7,9 @@ import serverActivityCollection, {
 } from "../../database/collections/ServerActivity.js";
 
 const memberMutation: Resolvers["Mutation"] = {
-	createMember: async (_, { id, username, profilPicture, isOnServer }) =>
-		await createMember(id, username, profilPicture, isOnServer ?? true),
+	createMember: async (_, { id, username, profilPicture, isOnServer }) => {
+		return await createMember(id, username, profilPicture, isOnServer ?? true)
+	},
 
 	updateMember: async (_, { id, input }) => {
 		// Remove null properties of input :
@@ -97,7 +98,7 @@ const memberMutation: Resolvers["Mutation"] = {
 		} catch {
 			return false;
 		}
-	},
+	}
 };
 
 export default memberMutation;
