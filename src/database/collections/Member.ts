@@ -21,6 +21,8 @@ export interface Member {
     username: string;
     profilPicture: string;
 
+    birthday: Date | null;
+
     isOnServer: boolean;
 
     activity: DiscordActivity;
@@ -43,6 +45,8 @@ export async function createMember(
 
             username: username,
             profilPicture: profilPicture,
+
+            birthday: null,
 
             isOnServer: isOnServer,
 

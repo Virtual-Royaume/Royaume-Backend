@@ -1,7 +1,10 @@
+scalar Date
+
 # import * from "./types/Member.gql"
 # import * from "./types/ServerActivity.gql"
 # import * from "./types/MainChannel.gql"
 # import * from "./types/MainRole.gql"
+# import * from "./types/PresenceMessage.gql"
 
 # QUERY - for querying data (SELECT)
 
@@ -14,6 +17,8 @@ type Query {
 
     roles: [MainRole]
     channels: [MainChannel]
+
+    presenceMessages: [PresenceMessage]!
 }
 
 # MUTATION - for creating new and updating/deleting existing data (INSERT, UPDATE, DELETE)
@@ -38,4 +43,7 @@ type Mutation {
 
     addChannel(channelId: ID!, category: String!): Boolean!
     removeChannel(channelId: ID!): Boolean!
+
+    addPresenceMessage(type: PresenceType!, text: String!): Boolean!
+    removePresenceMessage(id: ID!): Boolean!
 }

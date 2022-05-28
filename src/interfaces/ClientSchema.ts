@@ -49,12 +49,14 @@ export type Member = {
   __typename?: 'Member';
   _id: Scalars['String'];
   activity: DiscordActivity;
+  birthday?: Maybe<Scalars['Date']>;
   isOnServer: Scalars['Boolean'];
   profilPicture: Scalars['String'];
   username: Scalars['String'];
 };
 
 export type MemberInput = {
+  birthday?: InputMaybe<Scalars['Date']>;
   isOnServer?: InputMaybe<Scalars['Boolean']>;
   profilPicture?: InputMaybe<Scalars['String']>;
   username?: InputMaybe<Scalars['String']>;
@@ -63,11 +65,13 @@ export type MemberInput = {
 export type Mutation = {
   __typename?: 'Mutation';
   addChannel: Scalars['Boolean'];
+  addPresenceMessage: Scalars['Boolean'];
   addRole: Scalars['Boolean'];
   createMember?: Maybe<Member>;
   incMemberDiscordActivityChannel: Scalars['Boolean'];
   incMemberDiscordVoiceMinute: Scalars['Boolean'];
   removeChannel: Scalars['Boolean'];
+  removePresenceMessage: Scalars['Boolean'];
   removeRole: Scalars['Boolean'];
   setServerActivityMemberCount: Scalars['Boolean'];
   updateMember: Scalars['Boolean'];
@@ -77,6 +81,12 @@ export type Mutation = {
 export type MutationAddChannelArgs = {
   category: Scalars['String'];
   channelId: Scalars['ID'];
+};
+
+
+export type MutationAddPresenceMessageArgs = {
+  text: Scalars['String'];
+  type: PresenceType;
 };
 
 
@@ -110,6 +120,11 @@ export type MutationRemoveChannelArgs = {
 };
 
 
+export type MutationRemovePresenceMessageArgs = {
+  id: Scalars['ID'];
+};
+
+
 export type MutationRemoveRoleArgs = {
   roleId: Scalars['ID'];
 };
@@ -125,11 +140,26 @@ export type MutationUpdateMemberArgs = {
   input: MemberInput;
 };
 
+export type PresenceMessage = {
+  __typename?: 'PresenceMessage';
+  _id: Scalars['ID'];
+  text: Scalars['String'];
+  type: PresenceType;
+};
+
+export enum PresenceType {
+  Competing = 'COMPETING',
+  Listening = 'LISTENING',
+  Playing = 'PLAYING',
+  Watching = 'WATCHING'
+}
+
 export type Query = {
   __typename?: 'Query';
   channels?: Maybe<Array<Maybe<MainChannel>>>;
   member?: Maybe<Member>;
   members: Array<Maybe<Member>>;
+  presenceMessages: Array<Maybe<PresenceMessage>>;
   roles?: Maybe<Array<Maybe<MainRole>>>;
   serverActivity: Array<Maybe<ServerActivity>>;
   todayServerActivity: ServerActivity;

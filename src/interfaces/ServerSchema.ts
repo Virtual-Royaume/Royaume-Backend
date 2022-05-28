@@ -51,12 +51,14 @@ export type Member = {
   __typename?: 'Member';
   _id: Scalars['String'];
   activity: DiscordActivity;
+  birthday?: Maybe<Scalars['Date']>;
   isOnServer: Scalars['Boolean'];
   profilPicture: Scalars['String'];
   username: Scalars['String'];
 };
 
 export type MemberInput = {
+  birthday?: InputMaybe<Scalars['Date']>;
   isOnServer?: InputMaybe<Scalars['Boolean']>;
   profilPicture?: InputMaybe<Scalars['String']>;
   username?: InputMaybe<Scalars['String']>;
@@ -65,11 +67,13 @@ export type MemberInput = {
 export type Mutation = {
   __typename?: 'Mutation';
   addChannel: Scalars['Boolean'];
+  addPresenceMessage: Scalars['Boolean'];
   addRole: Scalars['Boolean'];
   createMember?: Maybe<Member>;
   incMemberDiscordActivityChannel: Scalars['Boolean'];
   incMemberDiscordVoiceMinute: Scalars['Boolean'];
   removeChannel: Scalars['Boolean'];
+  removePresenceMessage: Scalars['Boolean'];
   removeRole: Scalars['Boolean'];
   setServerActivityMemberCount: Scalars['Boolean'];
   updateMember: Scalars['Boolean'];
@@ -79,6 +83,12 @@ export type Mutation = {
 export type MutationAddChannelArgs = {
   category: Scalars['String'];
   channelId: Scalars['ID'];
+};
+
+
+export type MutationAddPresenceMessageArgs = {
+  text: Scalars['String'];
+  type: PresenceType;
 };
 
 
@@ -112,6 +122,11 @@ export type MutationRemoveChannelArgs = {
 };
 
 
+export type MutationRemovePresenceMessageArgs = {
+  id: Scalars['ID'];
+};
+
+
 export type MutationRemoveRoleArgs = {
   roleId: Scalars['ID'];
 };
@@ -127,11 +142,26 @@ export type MutationUpdateMemberArgs = {
   input: MemberInput;
 };
 
+export type PresenceMessage = {
+  __typename?: 'PresenceMessage';
+  _id: Scalars['ID'];
+  text: Scalars['String'];
+  type: PresenceType;
+};
+
+export enum PresenceType {
+  Competing = 'COMPETING',
+  Listening = 'LISTENING',
+  Playing = 'PLAYING',
+  Watching = 'WATCHING'
+}
+
 export type Query = {
   __typename?: 'Query';
   channels?: Maybe<Array<Maybe<MainChannel>>>;
   member?: Maybe<Member>;
   members: Array<Maybe<Member>>;
+  presenceMessages: Array<Maybe<PresenceMessage>>;
   roles?: Maybe<Array<Maybe<MainRole>>>;
   serverActivity: Array<Maybe<ServerActivity>>;
   todayServerActivity: ServerActivity;
@@ -236,6 +266,8 @@ export type ResolversTypes = {
   Member: ResolverTypeWrapper<Member>;
   MemberInput: MemberInput;
   Mutation: ResolverTypeWrapper<{}>;
+  PresenceMessage: ResolverTypeWrapper<PresenceMessage>;
+  PresenceType: PresenceType;
   Query: ResolverTypeWrapper<{}>;
   ServerActivity: ResolverTypeWrapper<ServerActivity>;
   String: ResolverTypeWrapper<Scalars['String']>;
@@ -255,6 +287,7 @@ export type ResolversParentTypes = {
   Member: Member;
   MemberInput: MemberInput;
   Mutation: {};
+  PresenceMessage: PresenceMessage;
   Query: {};
   ServerActivity: ServerActivity;
   String: Scalars['String'];
@@ -299,6 +332,7 @@ export type MainRoleResolvers<ContextType = any, ParentType extends ResolversPar
 export type MemberResolvers<ContextType = any, ParentType extends ResolversParentTypes['Member'] = ResolversParentTypes['Member']> = {
   _id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   activity?: Resolver<ResolversTypes['DiscordActivity'], ParentType, ContextType>;
+  birthday?: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType>;
   isOnServer?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   profilPicture?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   username?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -307,20 +341,30 @@ export type MemberResolvers<ContextType = any, ParentType extends ResolversParen
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   addChannel?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationAddChannelArgs, 'category' | 'channelId'>>;
+  addPresenceMessage?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationAddPresenceMessageArgs, 'text' | 'type'>>;
   addRole?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationAddRoleArgs, 'category' | 'roleId'>>;
   createMember?: Resolver<Maybe<ResolversTypes['Member']>, ParentType, ContextType, RequireFields<MutationCreateMemberArgs, 'id' | 'profilPicture' | 'username'>>;
   incMemberDiscordActivityChannel?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationIncMemberDiscordActivityChannelArgs, 'channelId' | 'id'>>;
   incMemberDiscordVoiceMinute?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationIncMemberDiscordVoiceMinuteArgs, 'id'>>;
   removeChannel?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationRemoveChannelArgs, 'channelId'>>;
+  removePresenceMessage?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationRemovePresenceMessageArgs, 'id'>>;
   removeRole?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationRemoveRoleArgs, 'roleId'>>;
   setServerActivityMemberCount?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationSetServerActivityMemberCountArgs, 'count'>>;
   updateMember?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationUpdateMemberArgs, 'id' | 'input'>>;
+};
+
+export type PresenceMessageResolvers<ContextType = any, ParentType extends ResolversParentTypes['PresenceMessage'] = ResolversParentTypes['PresenceMessage']> = {
+  _id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  text?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  type?: Resolver<ResolversTypes['PresenceType'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   channels?: Resolver<Maybe<Array<Maybe<ResolversTypes['MainChannel']>>>, ParentType, ContextType>;
   member?: Resolver<Maybe<ResolversTypes['Member']>, ParentType, ContextType, RequireFields<QueryMemberArgs, 'id'>>;
   members?: Resolver<Array<Maybe<ResolversTypes['Member']>>, ParentType, ContextType>;
+  presenceMessages?: Resolver<Array<Maybe<ResolversTypes['PresenceMessage']>>, ParentType, ContextType>;
   roles?: Resolver<Maybe<Array<Maybe<ResolversTypes['MainRole']>>>, ParentType, ContextType>;
   serverActivity?: Resolver<Array<Maybe<ResolversTypes['ServerActivity']>>, ParentType, ContextType, RequireFields<QueryServerActivityArgs, 'historyCount'>>;
   todayServerActivity?: Resolver<ResolversTypes['ServerActivity'], ParentType, ContextType>;
@@ -343,6 +387,7 @@ export type Resolvers<ContextType = any> = {
   MainRole?: MainRoleResolvers<ContextType>;
   Member?: MemberResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
+  PresenceMessage?: PresenceMessageResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   ServerActivity?: ServerActivityResolvers<ContextType>;
 };

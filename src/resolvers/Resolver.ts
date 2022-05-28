@@ -8,6 +8,8 @@ import mainChannelQuery from "./queries/MainChannel";
 import mainRoleQuery from "./queries/MainRole";
 import memberQuery from "./queries/Member";
 import serverActivityQuery from "./queries/ServerActivity";
+import presenceMessageQuery from "./queries/PresenceMessage";
+import presenceMessageMutation from "./mutations/PresenceMessage";
 
 const resolvers: Resolvers = {
     Date: date,
@@ -16,14 +18,16 @@ const resolvers: Resolvers = {
         ...mainChannelQuery,
         ...mainRoleQuery,
         ...memberQuery,
-        ...serverActivityQuery
+        ...serverActivityQuery,
+        ...presenceMessageQuery
     },
 
     Mutation: {
         ...mainChannelMutation,
         ...mainRoleMutation,
         ...memberMutation,
-        ...serverActivityMutation
+        ...serverActivityMutation,
+        ...presenceMessageMutation
     }
 };
 
