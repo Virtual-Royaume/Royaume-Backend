@@ -10,7 +10,7 @@ scalar Date
 
 type Query {
     member(id: ID!): Member # Discord ID
-    members: [Member]!
+    members: [Member]! # Only members with "isOnServer = true"
 
     todayServerActivity: ServerActivity!
     serverActivity(historyCount: Int!): [ServerActivity]!
