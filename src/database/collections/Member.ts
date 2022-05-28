@@ -19,7 +19,7 @@ export interface Member {
     _id: string; // Discord ID
 
     username: string;
-    profilPicture: string;
+    profilePicture: string;
 
     birthday: Date | null;
 
@@ -36,7 +36,7 @@ export default memberCollection;
 export async function createMember(
     id: string,
     username: string,
-    profilPicture: string,
+    profilePicture: string,
     isOnServer = true
 ): Promise<Member | null> {
     try {
@@ -44,7 +44,7 @@ export async function createMember(
             _id: id,
 
             username: username,
-            profilPicture: profilPicture,
+            profilePicture: profilePicture,
 
             birthday: null,
 

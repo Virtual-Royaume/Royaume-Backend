@@ -27,7 +27,7 @@ type Mutation {
     createMember(
         id: ID!
         username: String!
-        profilPicture: String!
+        profilePicture: String!
         isOnServer: Boolean
     ): Member
 

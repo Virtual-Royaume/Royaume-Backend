@@ -7,8 +7,8 @@ import serverActivityCollection, {
 } from "../../database/collections/ServerActivity";
 
 const memberMutation: Resolvers["Mutation"] = {
-    createMember: async(_, { id, username, profilPicture, isOnServer }) => {
-        return await createMember(id, username, profilPicture, isOnServer ?? true);
+    createMember: async(_, { id, username, profilePicture, isOnServer }) => {
+        return await createMember(id, username, profilePicture, isOnServer ?? true);
     },
 
     updateMember: async(_, { id, input }) => {

@@ -53,14 +53,14 @@ export type Member = {
   activity: DiscordActivity;
   birthday?: Maybe<Scalars['Date']>;
   isOnServer: Scalars['Boolean'];
-  profilPicture: Scalars['String'];
+  profilePicture: Scalars['String'];
   username: Scalars['String'];
 };
 
 export type MemberInput = {
   birthday?: InputMaybe<Scalars['Date']>;
   isOnServer?: InputMaybe<Scalars['Boolean']>;
-  profilPicture?: InputMaybe<Scalars['String']>;
+  profilePicture?: InputMaybe<Scalars['String']>;
   username?: InputMaybe<Scalars['String']>;
 };
 
@@ -101,7 +101,7 @@ export type MutationAddRoleArgs = {
 export type MutationCreateMemberArgs = {
   id: Scalars['ID'];
   isOnServer?: InputMaybe<Scalars['Boolean']>;
-  profilPicture: Scalars['String'];
+  profilePicture: Scalars['String'];
   username: Scalars['String'];
 };
 
@@ -334,7 +334,7 @@ export type MemberResolvers<ContextType = any, ParentType extends ResolversParen
   activity?: Resolver<ResolversTypes['DiscordActivity'], ParentType, ContextType>;
   birthday?: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType>;
   isOnServer?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
-  profilPicture?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  profilePicture?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   username?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -343,7 +343,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   addChannel?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationAddChannelArgs, 'category' | 'channelId'>>;
   addPresenceMessage?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationAddPresenceMessageArgs, 'text' | 'type'>>;
   addRole?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationAddRoleArgs, 'category' | 'roleId'>>;
-  createMember?: Resolver<Maybe<ResolversTypes['Member']>, ParentType, ContextType, RequireFields<MutationCreateMemberArgs, 'id' | 'profilPicture' | 'username'>>;
+  createMember?: Resolver<Maybe<ResolversTypes['Member']>, ParentType, ContextType, RequireFields<MutationCreateMemberArgs, 'id' | 'profilePicture' | 'username'>>;
   incMemberDiscordActivityChannel?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationIncMemberDiscordActivityChannelArgs, 'channelId' | 'id'>>;
   incMemberDiscordVoiceMinute?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationIncMemberDiscordVoiceMinuteArgs, 'id'>>;
   removeChannel?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationRemoveChannelArgs, 'channelId'>>;

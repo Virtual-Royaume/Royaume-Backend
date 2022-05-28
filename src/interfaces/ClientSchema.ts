@@ -51,14 +51,14 @@ export type Member = {
   activity: DiscordActivity;
   birthday?: Maybe<Scalars['Date']>;
   isOnServer: Scalars['Boolean'];
-  profilPicture: Scalars['String'];
+  profilePicture: Scalars['String'];
   username: Scalars['String'];
 };
 
 export type MemberInput = {
   birthday?: InputMaybe<Scalars['Date']>;
   isOnServer?: InputMaybe<Scalars['Boolean']>;
-  profilPicture?: InputMaybe<Scalars['String']>;
+  profilePicture?: InputMaybe<Scalars['String']>;
   username?: InputMaybe<Scalars['String']>;
 };
 
@@ -99,7 +99,7 @@ export type MutationAddRoleArgs = {
 export type MutationCreateMemberArgs = {
   id: Scalars['ID'];
   isOnServer?: InputMaybe<Scalars['Boolean']>;
-  profilPicture: Scalars['String'];
+  profilePicture: Scalars['String'];
   username: Scalars['String'];
 };
 
