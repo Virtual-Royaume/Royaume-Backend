@@ -1,7 +1,5 @@
 import { Resolvers } from "../../interfaces/ServerSchema";
-import serverActivityCollection, {
-    getServerActivity
-} from "../../database/collections/ServerActivity";
+import serverActivityCollection, { getServerActivity } from "../../database/collections/ServerActivity";
 
 const serverActivityQuery: Resolvers["Query"] = {
     todayServerActivity: async() => await getServerActivity(),

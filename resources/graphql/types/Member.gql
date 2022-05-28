@@ -5,6 +5,8 @@ type Member {
     username: String!
     profilPicture: String!
 
+    birthday: Date
+
     isOnServer: Boolean!
 
     activity: DiscordActivity!
@@ -32,5 +34,8 @@ type ChannelMessageCount {
 input MemberInput {
     username: String
     profilPicture: String
+
+    birthday: Date
+
     isOnServer: Boolean
 }

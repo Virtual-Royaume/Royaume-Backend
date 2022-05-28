@@ -1,0 +1,13 @@
+enum PresenceType {
+   WATCHING
+   LISTENING
+   PLAYING
+   COMPETING
+}
+
+type PresenceMessage {
+    _id: ID!
+
+    type: PresenceType!
+    text: String!
+}
