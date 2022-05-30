@@ -19,9 +19,9 @@ const memberMutation: Resolvers["Mutation"] = {
 
         // Try to update member :
         try {
-            await memberCollection.updateOne({ _id: id }, { $set: insertInput });
+            const response = await memberCollection.updateOne({ _id: id }, { $set: insertInput });
 
-            return true;
+            return !!response.modifiedCount;
         } catch {
             return false;
         }
