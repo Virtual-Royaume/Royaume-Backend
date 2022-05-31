@@ -1,6 +1,6 @@
 # Royaume API
 
-Royaume API created with GraphQL and MongoDB
+Royaume API created with GraphQL and MongoDB.
 
 ## Documentation 
 API endpoint : [api.royaume.world](https://api.royaume.world)
