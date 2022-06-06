@@ -1,5 +1,5 @@
 {
-  "version": "3.1.0",
+  "version": "3.1.5",
   "main": "./build/src/Index.js",
   "scripts": {
     "start": "node .",
