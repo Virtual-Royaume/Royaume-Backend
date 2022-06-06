@@ -68,8 +68,8 @@ export type Mutation = {
   addPresenceMessage: Scalars['Boolean'];
   addRole: Scalars['Boolean'];
   createMember?: Maybe<Member>;
-  incMemberDiscordActivityChannel: Scalars['Boolean'];
-  incMemberDiscordVoiceMinute: Scalars['Boolean'];
+  incMemberDiscordActivityChannel: Scalars['Int'];
+  incMemberDiscordVoiceMinute: Scalars['Int'];
   removeChannel: Scalars['Boolean'];
   removePresenceMessage: Scalars['Boolean'];
   removeRole: Scalars['Boolean'];

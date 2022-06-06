@@ -70,8 +70,8 @@ export type Mutation = {
   addPresenceMessage: Scalars['Boolean'];
   addRole: Scalars['Boolean'];
   createMember?: Maybe<Member>;
-  incMemberDiscordActivityChannel: Scalars['Boolean'];
-  incMemberDiscordVoiceMinute: Scalars['Boolean'];
+  incMemberDiscordActivityChannel: Scalars['Int'];
+  incMemberDiscordVoiceMinute: Scalars['Int'];
   removeChannel: Scalars['Boolean'];
   removePresenceMessage: Scalars['Boolean'];
   removeRole: Scalars['Boolean'];
@@ -344,8 +344,8 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   addPresenceMessage?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationAddPresenceMessageArgs, 'text' | 'type'>>;
   addRole?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationAddRoleArgs, 'category' | 'roleId'>>;
   createMember?: Resolver<Maybe<ResolversTypes['Member']>, ParentType, ContextType, RequireFields<MutationCreateMemberArgs, 'id' | 'profilePicture' | 'username'>>;
-  incMemberDiscordActivityChannel?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationIncMemberDiscordActivityChannelArgs, 'channelId' | 'id'>>;
-  incMemberDiscordVoiceMinute?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationIncMemberDiscordVoiceMinuteArgs, 'id'>>;
+  incMemberDiscordActivityChannel?: Resolver<ResolversTypes['Int'], ParentType, ContextType, RequireFields<MutationIncMemberDiscordActivityChannelArgs, 'channelId' | 'id'>>;
+  incMemberDiscordVoiceMinute?: Resolver<ResolversTypes['Int'], ParentType, ContextType, RequireFields<MutationIncMemberDiscordVoiceMinuteArgs, 'id'>>;
   removeChannel?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationRemoveChannelArgs, 'channelId'>>;
   removePresenceMessage?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationRemovePresenceMessageArgs, 'id'>>;
   removeRole?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationRemoveRoleArgs, 'roleId'>>;
