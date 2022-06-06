@@ -30,10 +30,10 @@ const memberMutation: Resolvers["Mutation"] = {
     incMemberDiscordVoiceMinute: async(_, { id }) => {
         try {
             // Increment member voice minute :
-            await memberCollection.updateOne(
+            const totalVoiceMinute = (await memberCollection.findOneAndUpdate(
                 { _id: id },
                 { $inc: { "activity.voiceMinute": 1, "activity.monthVoiceMinute": 1 } }
-            );
+            )).value?.activity.voiceMinute;
 
             // Increment server activity voice minute :
             const serverActivity = await getServerActivity();
@@ -45,9 +45,9 @@ const memberMutation: Resolvers["Mutation"] = {
                 { $set: serverActivity }
             );
 
-            return true;
+            return totalVoiceMinute ?? 0;
         } catch {
-            return false;
+            return 0;
         }
     },
 
@@ -74,7 +74,7 @@ const memberMutation: Resolvers["Mutation"] = {
             }
 
             // Update total and month message count :
-            await memberCollection.updateOne(
+            const totalMessageCount = (await memberCollection.findOneAndUpdate(
                 { _id: id },
                 {
                     $inc: {
@@ -82,7 +82,7 @@ const memberMutation: Resolvers["Mutation"] = {
                         "activity.messages.monthCount": 1
                     }
                 }
-            );
+            )).value?.activity.messages.totalCount;
 
             // Increment server activity message count :
             const serverActivity = await getServerActivity();
@@ -94,9 +94,9 @@ const memberMutation: Resolvers["Mutation"] = {
                 { $set: serverActivity }
             );
 
-            return true;
+            return totalMessageCount ?? 0;
         } catch {
-            return false;
+            return 0;
         }
     }
 };

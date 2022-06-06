@@ -33,8 +33,8 @@ type Mutation {
 
     updateMember(id: ID!, input: MemberInput!): Boolean!
 
-    incMemberDiscordVoiceMinute(id: ID!): Boolean!
-    incMemberDiscordActivityChannel(id: ID!, channelId: ID!): Boolean!
+    incMemberDiscordVoiceMinute(id: ID!): Int! # Return the total voice minutes of the member (0 if request failed)
+    incMemberDiscordActivityChannel(id: ID!, channelId: ID!): Int! # Return the total member message count of the member (0 if request failed)
 
     setServerActivityMemberCount(count: Int!): Boolean!
 
