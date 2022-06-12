@@ -4,7 +4,7 @@
   "scripts": {
     "start": "node .",
     "dev": "ts-node ./src/Index.ts",
-    "build": "tsc && copyfiles ./resources/**/*.* ./build/",
+    "build": "tsc && copyfiles ./resources/**/**/*.* ./build/",
     "client": "ts-node ./src/others/ClientTester.ts",
     "eslint": "eslint src/**/*.ts --fix",
     "gql-generate": "graphql-codegen --config codegen.yml"
