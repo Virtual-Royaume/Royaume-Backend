@@ -13,6 +13,7 @@ type Member {
 }
 
 type DiscordActivity {
+    tier: Int!
     voiceMinute: Int!
     monthVoiceMinute: Int!
     messages: DiscordMessageActivity!

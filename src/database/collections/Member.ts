@@ -1,4 +1,5 @@
 import database from "../Database";
+import tier from "../../../resources/config/tier.json";
 
 export interface ChannelMessageCount {
     channelId: string;
@@ -6,6 +7,7 @@ export interface ChannelMessageCount {
 }
 
 export interface DiscordActivity {
+    tier: number;
     voiceMinute: number;
     monthVoiceMinute: number;
     messages: {
@@ -51,6 +53,7 @@ export async function createMember(
             isOnServer: isOnServer,
 
             activity: {
+                tier: tier.min,
                 voiceMinute: 0,
                 monthVoiceMinute: 0,
                 messages: {

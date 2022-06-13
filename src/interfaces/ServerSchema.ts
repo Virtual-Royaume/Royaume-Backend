@@ -25,6 +25,7 @@ export type DiscordActivity = {
   __typename?: 'DiscordActivity';
   messages: DiscordMessageActivity;
   monthVoiceMinute: Scalars['Int'];
+  tier: Scalars['Int'];
   voiceMinute: Scalars['Int'];
 };
 
@@ -306,6 +307,7 @@ export interface DateScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes
 export type DiscordActivityResolvers<ContextType = any, ParentType extends ResolversParentTypes['DiscordActivity'] = ResolversParentTypes['DiscordActivity']> = {
   messages?: Resolver<ResolversTypes['DiscordMessageActivity'], ParentType, ContextType>;
   monthVoiceMinute?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  tier?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   voiceMinute?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
