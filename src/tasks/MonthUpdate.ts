@@ -27,4 +27,4 @@ setInterval(async() => {
         // Reset member activity :
         memberCollection.updateMany({}, { $set: { "activity.messages.monthCount": 0, "activity.monthVoiceMinute": 0 } });
     }
-}, 5000); // 60_000
+}, 60_000);
