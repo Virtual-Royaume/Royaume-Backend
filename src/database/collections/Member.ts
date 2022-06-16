@@ -1,5 +1,7 @@
 import database from "../Database";
 import tier from "../../../resources/config/tier.json";
+import { Member as MemberGql, TierUpdate } from "../../interfaces/ServerSchema";
+import { WithId } from "mongodb";
 
 export interface ChannelMessageCount {
     channelId: string;
@@ -74,4 +76,29 @@ export async function createMember(
 
 export async function getMemberByDiscordId(id: string): Promise<Member | null> {
     return await memberCollection.findOne({ _id: id });
+}
+
+export async function getMembersWithPoints(): Promise<MemberGql[]> {
+    const members = (await memberCollection.find({ isOnServer: true }).toArray()).sort((a, b) => {
+        const aActivity = a.activity.messages.monthCount + a.activity.monthVoiceMinute;
+        const bActivity = b.activity.messages.monthCount + b.activity.monthVoiceMinute;
+
+        return aActivity < bActivity ? 1 : -1;
+    });
+
+    const up = members.slice(0, Math.floor(members.length * tier.upDownPercent / 100));
+    const down = members.slice(members.length - Math.floor(members.length * tier.upDownPercent / 100), members.length);
+
+    const membersWithPoints = (members as MemberGql[]).map(member => {
+        member.activity.points = {
+            count: member.activity.messages.monthCount + member.activity.monthVoiceMinute,
+            progress: TierUpdate.Neutral
+        };
+
+        if (up.find(uppingMember => uppingMember._id === member._id)) member.activity.points.progress = TierUpdate.Up;
+        if (down.find(downingMember => downingMember._id === member._id)) member.activity.points.progress = TierUpdate.Down;
+
+        return member;
+    });
+    return membersWithPoints
 }

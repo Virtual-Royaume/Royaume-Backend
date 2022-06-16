@@ -15,6 +15,12 @@ export type Scalars = {
   Date: any;
 };
 
+export type ActivityPoints = {
+  __typename?: 'ActivityPoints';
+  count: Scalars['Int'];
+  progress: TierUpdate;
+};
+
 export type ChannelMessageCount = {
   __typename?: 'ChannelMessageCount';
   channelId: Scalars['String'];
@@ -25,6 +31,7 @@ export type DiscordActivity = {
   __typename?: 'DiscordActivity';
   messages: DiscordMessageActivity;
   monthVoiceMinute: Scalars['Int'];
+  points: ActivityPoints;
   tier: Scalars['Int'];
   voiceMinute: Scalars['Int'];
 };
@@ -186,6 +193,12 @@ export type ServerActivity = {
   voiceMinute: Scalars['Int'];
 };
 
+export enum TierUpdate {
+  Down = 'DOWN',
+  Neutral = 'NEUTRAL',
+  Up = 'UP'
+}
+
 
 
 export type ResolverTypeWrapper<T> = Promise<T> | T;
@@ -255,6 +268,7 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
+  ActivityPoints: ResolverTypeWrapper<ActivityPoints>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   ChannelMessageCount: ResolverTypeWrapper<ChannelMessageCount>;
   Date: ResolverTypeWrapper<Scalars['Date']>;
@@ -272,10 +286,12 @@ export type ResolversTypes = {
   Query: ResolverTypeWrapper<{}>;
   ServerActivity: ResolverTypeWrapper<ServerActivity>;
   String: ResolverTypeWrapper<Scalars['String']>;
+  TierUpdate: TierUpdate;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
+  ActivityPoints: ActivityPoints;
   Boolean: Scalars['Boolean'];
   ChannelMessageCount: ChannelMessageCount;
   Date: Scalars['Date'];
@@ -294,6 +310,12 @@ export type ResolversParentTypes = {
   String: Scalars['String'];
 };
 
+export type ActivityPointsResolvers<ContextType = any, ParentType extends ResolversParentTypes['ActivityPoints'] = ResolversParentTypes['ActivityPoints']> = {
+  count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  progress?: Resolver<ResolversTypes['TierUpdate'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type ChannelMessageCountResolvers<ContextType = any, ParentType extends ResolversParentTypes['ChannelMessageCount'] = ResolversParentTypes['ChannelMessageCount']> = {
   channelId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   messageCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
@@ -307,6 +329,7 @@ export interface DateScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes
 export type DiscordActivityResolvers<ContextType = any, ParentType extends ResolversParentTypes['DiscordActivity'] = ResolversParentTypes['DiscordActivity']> = {
   messages?: Resolver<ResolversTypes['DiscordMessageActivity'], ParentType, ContextType>;
   monthVoiceMinute?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  points?: Resolver<ResolversTypes['ActivityPoints'], ParentType, ContextType>;
   tier?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   voiceMinute?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -381,6 +404,7 @@ export type ServerActivityResolvers<ContextType = any, ParentType extends Resolv
 };
 
 export type Resolvers<ContextType = any> = {
+  ActivityPoints?: ActivityPointsResolvers<ContextType>;
   ChannelMessageCount?: ChannelMessageCountResolvers<ContextType>;
   Date?: GraphQLScalarType;
   DiscordActivity?: DiscordActivityResolvers<ContextType>;
