@@ -1,3 +1,10 @@
+enum TierUpdate{
+    UP
+    NEUTRAL
+    DOWN
+}
+
+
 # Types
 
 type Member {
@@ -17,6 +24,12 @@ type DiscordActivity {
     voiceMinute: Int!
     monthVoiceMinute: Int!
     messages: DiscordMessageActivity!
+    points: ActivityPoints!
+}
+
+type ActivityPoints{
+    count: Int!
+    progress: TierUpdate!
 }
 
 type DiscordMessageActivity {

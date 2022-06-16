@@ -1,10 +1,18 @@
 import { Resolvers } from "../../interfaces/ServerSchema";
-import memberCollection, { getMemberByDiscordId } from "../../database/collections/Member";
+import memberCollection, { getMemberByDiscordId, getMembersWithPoints } from "../../database/collections/Member";
+import { getFields } from "../../utils/GraphQL";
 
 const memberQuery: Resolvers["Query"] = {
-    members: async() => await memberCollection.find({ isOnServer: true }).toArray(),
+    // @ts-ignore
+    members: async (_, __, ___, info) => {
+        if (getFields(info)["activity.points"]) {
+            return await getMembersWithPoints();
+        }
 
-    member: async(_, { id }) => await getMemberByDiscordId(id)
+        return await memberCollection.find({ isOnServer: true }).toArray();
+    },
+
+    member: async (_, { id }) => await getMemberByDiscordId(id)
 };
 
 export default memberQuery;
