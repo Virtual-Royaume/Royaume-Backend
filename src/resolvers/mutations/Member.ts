@@ -1,4 +1,4 @@
-import { Resolvers } from "../../interfaces/ServerSchema";
+import { Member, Resolvers } from "../../interfaces/ServerSchema";
 import memberCollection, {
     createMember
 } from "../../database/collections/Member";
@@ -7,11 +7,11 @@ import serverActivityCollection, {
 } from "../../database/collections/ServerActivity";
 
 const memberMutation: Resolvers["Mutation"] = {
-    createMember: async(_, { id, username, profilePicture, isOnServer }) => {
-        return await createMember(id, username, profilePicture, isOnServer ?? true);
+    createMember: async (_, { id, username, profilePicture, isOnServer }) => {
+        return await createMember(id, username, profilePicture, isOnServer ?? true) as Member; // 🤮
     },
 
-    updateMember: async(_, { id, input }) => {
+    updateMember: async (_, { id, input }) => {
         // Remove null properties of input :
         const insertInput = Object.fromEntries(
             Object.entries(input).filter(([, value]) => value !== null)
@@ -27,7 +27,7 @@ const memberMutation: Resolvers["Mutation"] = {
         }
     },
 
-    incMemberDiscordVoiceMinute: async(_, { id }) => {
+    incMemberDiscordVoiceMinute: async (_, { id }) => {
         try {
             // Increment member voice minute :
             const totalVoiceMinute = (await memberCollection.findOneAndUpdate(
@@ -51,7 +51,7 @@ const memberMutation: Resolvers["Mutation"] = {
         }
     },
 
-    incMemberDiscordActivityChannel: async(_, { id, channelId }) => {
+    incMemberDiscordActivityChannel: async (_, { id, channelId }) => {
         try {
             // Try to update a existing element :
             const result = await memberCollection.findOneAndUpdate(
