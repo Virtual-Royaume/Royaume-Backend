@@ -89,7 +89,8 @@ export async function getMembersWithPoints(): Promise<MemberGql[]> {
     const up = members.slice(0, Math.floor(members.length * tier.upDownPercent / 100));
     const down = members.slice(members.length - Math.floor(members.length * tier.upDownPercent / 100), members.length);
 
-    const membersWithPoints = (members as MemberGql[]).map(member => {
+    // If other possibility, modify the `as MemberGql[]`
+    return (members as MemberGql[]).map(member => {
         member.activity.points = {
             count: member.activity.messages.monthCount + member.activity.monthVoiceMinute,
             progress: TierUpdate.Neutral
@@ -100,5 +101,4 @@ export async function getMembersWithPoints(): Promise<MemberGql[]> {
 
         return member;
     });
-    return membersWithPoints
 }
