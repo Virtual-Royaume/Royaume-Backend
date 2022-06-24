@@ -1,9 +1,8 @@
-enum TierUpdate{
+enum TierUpdate {
     UP
     NEUTRAL
     DOWN
 }
-
 
 # Types
 
@@ -27,7 +26,7 @@ type DiscordActivity {
     points: ActivityPoints!
 }
 
-type ActivityPoints{
+type ActivityPoints {
     count: Int!
     progress: TierUpdate!
 }
