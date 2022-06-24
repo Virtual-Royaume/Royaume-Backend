@@ -1,7 +1,6 @@
 import database from "../Database";
 import tier from "../../../resources/config/tier.json";
 import { Member as MemberGql, TierUpdate } from "../../interfaces/ServerSchema";
-import { WithId } from "mongodb";
 
 export interface ChannelMessageCount {
     channelId: string;
