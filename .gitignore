@@ -8,5 +8,8 @@ graphql.schema.json
 # MongoDB access :
 mongodb.json
 
+# Secret token : 
+secret.json
+
 # Project build :
 build
