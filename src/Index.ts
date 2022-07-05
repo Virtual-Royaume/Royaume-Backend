@@ -1,9 +1,15 @@
 import { GraphQLFileLoader } from "@graphql-tools/graphql-file-loader";
 import { loadSchemaSync } from "@graphql-tools/load";
 import { ApolloServer } from "apollo-server";
-import { readdirSync } from "fs";
+import { existsSync, readdirSync, readFileSync } from "fs";
 import resolvers from "./resolvers/Resolver";
-import secret from "../resources/auth/secret.json";
+
+// Get token :
+const tokenFile = `${__dirname}/../resources/auth/token.txt`;
+
+if (!existsSync(tokenFile)) throw new Error("No token found, generate the token with \"npm run gen-token\" command");
+
+const secretToken = readFileSync(tokenFile, { encoding: "utf8" });
 
 // Load tasks :
 readdirSync(`${__dirname}/tasks`).forEach(
@@ -22,7 +28,7 @@ const server = new ApolloServer({
     context: ({ req }) => {
         const token = req.headers.authorization || "";
 
-        if (token !== secret.token) throw new Error("Invalid token in authorization header");
+        if (token !== secretToken) throw new Error("Invalid token in authorization header");
     },
 
     typeDefs: schemas,

@@ -9,7 +9,7 @@ graphql.schema.json
 mongodb.json
 
 # Secret token : 
-secret.json
+token.txt
 
 # Project build :
 build

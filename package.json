@@ -7,7 +7,8 @@
     "build": "tsc && copyfiles ./resources/**/**/*.* ./build/",
     "client": "ts-node ./src/others/ClientTester.ts",
     "eslint": "eslint src/**/*.ts --fix",
-    "gql-generate": "graphql-codegen --config codegen.yml"
+    "gen-gql": "graphql-codegen --config codegen.yml",
+    "gen-token": "ts-node ./src/others/TokenGenerator.ts"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "2.6.2",
