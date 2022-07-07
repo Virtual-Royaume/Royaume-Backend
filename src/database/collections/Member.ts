@@ -1,6 +1,6 @@
 import database from "../Database";
 import tier from "../../../resources/config/tier.json";
-import { Member as MemberGql, TierUpdate } from "../../interfaces/ServerSchema";
+import { ActivityPoints, TierUpdate } from "../../interfaces/ServerSchema";
 
 export interface ChannelMessageCount {
     channelId: string;
@@ -24,7 +24,7 @@ export interface Member {
     username: string;
     profilePicture: string;
 
-    birthday: Date | null;
+    birthday?: Date;
 
     isOnServer: boolean;
 
@@ -49,7 +49,7 @@ export async function createMember(
             username: username,
             profilePicture: profilePicture,
 
-            birthday: null,
+            birthday: undefined,
 
             isOnServer: isOnServer,
 
@@ -77,10 +77,14 @@ export async function getMemberByDiscordId(id: string): Promise<Member | null> {
     return await memberCollection.findOne({ _id: id });
 }
 
-export async function getMembersWithPoints(): Promise<MemberGql[]> {
+export async function getMembersWithPoints(): Promise<{ _id: string, points: ActivityPoints }[]> {
+    function getActivityPoints(messageCount: number, voiceMinute: number) : number {
+        return messageCount * 5 + voiceMinute;
+    }
+
     const members = (await memberCollection.find({ isOnServer: true }).toArray()).sort((a, b) => {
-        const aActivity = a.activity.messages.monthCount + a.activity.monthVoiceMinute;
-        const bActivity = b.activity.messages.monthCount + b.activity.monthVoiceMinute;
+        const aActivity = getActivityPoints(a.activity.messages.monthCount, a.activity.monthVoiceMinute);
+        const bActivity = getActivityPoints(b.activity.messages.monthCount, b.activity.monthVoiceMinute);
 
         return aActivity < bActivity ? 1 : -1;
     });
@@ -88,16 +92,18 @@ export async function getMembersWithPoints(): Promise<MemberGql[]> {
     const up = members.slice(0, Math.floor(members.length * tier.upDownPercent / 100));
     const down = members.slice(members.length - Math.floor(members.length * tier.upDownPercent / 100), members.length);
 
-    // If other possibility, modify the `as MemberGql[]`
-    return (members as MemberGql[]).map(member => {
-        member.activity.points = {
-            count: member.activity.messages.monthCount + member.activity.monthVoiceMinute,
-            progress: TierUpdate.Neutral
+    return members.map(member => {
+        const memberWithPoints = {
+            _id: member._id,
+            points: {
+                count: getActivityPoints(member.activity.messages.monthCount, member.activity.monthVoiceMinute),
+                progress: TierUpdate.Neutral
+            }
         };
 
-        if (up.find(uppingMember => uppingMember._id === member._id)) member.activity.points.progress = TierUpdate.Up;
-        if (down.find(downingMember => downingMember._id === member._id)) member.activity.points.progress = TierUpdate.Down;
+        if (up.find(uppingMember => uppingMember._id === member._id)) memberWithPoints.points.progress = TierUpdate.Up;
+        if (down.find(downingMember => downingMember._id === member._id)) memberWithPoints.points.progress = TierUpdate.Down;
 
-        return member;
+        return memberWithPoints;
     });
 }

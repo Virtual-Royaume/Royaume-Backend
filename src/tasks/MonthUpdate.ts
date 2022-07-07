@@ -7,10 +7,15 @@ setInterval(async() => {
 
     if (date.getDate() === 1 && date.getHours() === 0 && date.getMinutes() === 0) {
         // Update member tiers :
-        const members = await getMembersWithPoints();
+        const members = await memberCollection.find({ isOnServer: true }).toArray();
+        const membersWithPoints = await getMembersWithPoints();
 
         for (const member of members) {
-            if (member.activity.points.progress === TierUpdate.Up) {
+            const memberPoints = membersWithPoints.find(m => m._id === member._id);
+
+            if (!memberPoints) continue;
+
+            if (memberPoints.points.progress === TierUpdate.Up) {
                 if (member.activity.tier !== tier.max) {
                     await memberCollection.updateOne({ _id: member._id }, { $inc: { "activity.tier": -1 } });
                 }
@@ -18,7 +23,7 @@ setInterval(async() => {
                 continue;
             }
 
-            if (member.activity.points.progress === TierUpdate.Down) {
+            if (memberPoints.points.progress === TierUpdate.Down) {
                 if (member.activity.tier !== tier.min) {
                     await memberCollection.updateOne({ _id: member._id }, { $inc: { "activity.tier": 1 } });
                 }
