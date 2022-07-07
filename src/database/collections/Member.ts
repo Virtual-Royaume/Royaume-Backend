@@ -79,7 +79,7 @@ export async function getMemberByDiscordId(id: string): Promise<Member | null> {
 
 export async function getMembersWithPoints(): Promise<{ _id: string, points: ActivityPoints }[]> {
     function getActivityPoints(messageCount: number, voiceMinute: number) : number {
-        return messageCount * 5 + voiceMinute;
+        return messageCount * 6 + voiceMinute;
     }
 
     const members = (await memberCollection.find({ isOnServer: true }).toArray()).sort((a, b) => {
