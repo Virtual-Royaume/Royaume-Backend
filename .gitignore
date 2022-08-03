@@ -1,3 +1,6 @@
+# Environment variables :
+.env
+
 # Node packages :
 node_modules
 package-lock.json
@@ -5,11 +8,11 @@ package-lock.json
 # GraphQL code gen :
 graphql.schema.json
 
-# MongoDB access :
-mongodb.json
-
 # Secret token : 
 token.txt
 
 # Project build :
 build
+
+# MongoDB data :
+mongodb
