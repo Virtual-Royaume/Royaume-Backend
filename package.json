@@ -3,12 +3,12 @@
   "main": "./build/src/Index.js",
   "scripts": {
     "start": "node .",
-    "dev": "ts-node ./src/Index.ts",
-    "build": "tsc && copyfiles ./resources/**/**/*.* ./build/",
-    "client": "ts-node ./src/others/ClientTester.ts",
-    "eslint": "eslint src/**/*.ts --fix",
-    "gen-gql": "graphql-codegen --config codegen.yml",
-    "gen-token": "ts-node ./src/others/TokenGenerator.ts"
+    "dev": "npx nodemon -L --exec npx ts-node ./src/Index.ts",
+    "build": "npx tsc && npx copyfiles ./resources/**/**/*.* ./build/",
+    "client": "npx ts-node ./src/others/ClientTester.ts",
+    "eslint": "npx eslint src/**/*.ts --fix",
+    "gen-gql": "npx graphql-codegen --config codegen.yml",
+    "gen-token": "npx ts-node ./src/others/TokenGenerator.ts"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "2.8.1",
