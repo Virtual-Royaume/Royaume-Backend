@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { GraphQLFileLoader } from "@graphql-tools/graphql-file-loader";
 import { loadSchemaSync } from "@graphql-tools/load";
 import { ApolloServer } from "apollo-server";
