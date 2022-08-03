@@ -5,7 +5,7 @@ import { existsSync, readdirSync, readFileSync } from "fs";
 import resolvers from "./resolvers/Resolver";
 
 // Get token :
-const tokenFile = `${__dirname}/../resources/auth/token.txt`;
+const tokenFile = `${__dirname}/../resources/token.txt`;
 
 if (!existsSync(tokenFile)) throw new Error("No token found, generate the token with \"npm run gen-token\" command");
 
