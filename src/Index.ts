@@ -37,6 +37,6 @@ const server = new ApolloServer({
     csrfPrevention: true
 });
 
-server.listen({ port: 3006 }).then(serverInfo => {
+server.listen({ port: process.env.PORT_API ?? 3000 }).then(serverInfo => {
     console.log(`Server started, listen at port ${serverInfo.port}...`);
 });
