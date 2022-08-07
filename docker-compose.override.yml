@@ -1,0 +1,3 @@
+services:
+  royaume-api:
+    command: npm run dev
