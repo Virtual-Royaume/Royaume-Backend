@@ -10,6 +10,7 @@ Here are the commands you can do:
 - ``docker compose restart`` : restart the services
 - ``docker compose stop`` : stop the services
 - ``docker compose logs -f royaume-api`` : displays the logs 
+- ``docker compose -f docker-compose.yml up --build -d`` : create, build and start the services for production
 
 ## Documentation 
 API endpoint : [api.royaume.world](https://api.royaume.world)
