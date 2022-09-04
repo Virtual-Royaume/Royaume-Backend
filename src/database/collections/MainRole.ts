@@ -1,4 +1,4 @@
-import database from "../Database";
+import database from "$core/database/Database";
 
 export interface MainRole {
     roleId: string;

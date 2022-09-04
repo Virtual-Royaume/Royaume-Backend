@@ -1,6 +1,6 @@
 import { Dayjs } from "dayjs";
-import { getDateWithoutTime } from "../../utils/Date";
-import database from "../Database";
+import { getDateWithoutTime } from "$core/utils/Date";
+import database from "$core/database/Database";
 
 export interface ServerActivity {
     date: Dayjs;

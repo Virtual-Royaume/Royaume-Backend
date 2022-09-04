@@ -1,6 +1,6 @@
 import { ObjectId } from "mongodb";
-import { PresenceType } from "../../interfaces/ServerSchema";
-import database from "../Database";
+import { PresenceType } from "$core/interfaces/ServerSchema";
+import database from "$core/database/Database";
 
 export interface PresenceMessage {
     _id?: string | ObjectId;

@@ -3,7 +3,7 @@ import { GraphQLFileLoader } from "@graphql-tools/graphql-file-loader";
 import { loadSchemaSync } from "@graphql-tools/load";
 import { ApolloServer } from "apollo-server";
 import { existsSync, readdirSync, readFileSync } from "fs";
-import resolvers from "./resolvers/Resolver";
+import resolvers from "$core/resolvers/Resolver";
 
 // Get token :
 const tokenFile = `${__dirname}/../resources/token.txt`;

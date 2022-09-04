@@ -1,5 +1,5 @@
-import { Resolvers } from "../../interfaces/ServerSchema";
-import channelCollection from "../../database/collections/MainChannel";
+import { Resolvers } from "$core/interfaces/ServerSchema";
+import channelCollection from "$core/database/collections/MainChannel";
 
 const mainChannelMutation: Resolvers["Mutation"] = {
     addChannel: async(_, { channelId, category }) => !!(
