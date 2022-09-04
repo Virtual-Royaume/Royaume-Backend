@@ -1,7 +1,7 @@
-import memberCollection, { getMembersWithPoints } from "../database/collections/Member";
-import tier from "../../resources/config/tier.json";
-import { TierUpdate } from "../interfaces/ServerSchema";
-import DayJS from "../utils/DayJS";
+import memberCollection, { getMembersWithPoints } from "$core/database/collections/Member";
+import tier from "$resources/config/tier.json";
+import { TierUpdate } from "$core/interfaces/ServerSchema";
+import DayJS from "$core/utils/DayJS";
 
 setInterval(async() => {
     const date = DayJS().tz();

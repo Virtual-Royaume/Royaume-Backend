@@ -1,5 +1,5 @@
-import { Resolvers } from "../../interfaces/ServerSchema";
-import roleCollection from "../../database/collections/MainRole";
+import { Resolvers } from "$core/interfaces/ServerSchema";
+import roleCollection from "$core/database/collections/MainRole";
 
 const mainRoleMutation: Resolvers["Mutation"] = {
     addRole: async(_, { roleId, category }) => !!(

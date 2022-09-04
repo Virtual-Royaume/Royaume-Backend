@@ -1,6 +1,6 @@
-import database from "../Database";
-import tier from "../../../resources/config/tier.json";
-import { ActivityPoints, TierUpdate } from "../../interfaces/ServerSchema";
+import database from "$core/database/Database";
+import tier from "$resources/config/tier.json";
+import { ActivityPoints, TierUpdate } from "$core/interfaces/ServerSchema";
 
 export interface ChannelMessageCount {
     channelId: string;

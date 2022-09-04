@@ -1,6 +1,6 @@
-import { Member, Resolvers } from "../../interfaces/ServerSchema";
-import memberCollection, { getMemberByDiscordId, getMembersWithPoints } from "../../database/collections/Member";
-import { getFields } from "../../utils/GraphQL";
+import { Member, Resolvers } from "$core/interfaces/ServerSchema";
+import memberCollection, { getMemberByDiscordId, getMembersWithPoints } from "$core/database/collections/Member";
+import { getFields } from "$core/utils/GraphQL";
 
 /**
  * TODO V4
