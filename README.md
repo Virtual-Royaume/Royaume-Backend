@@ -5,12 +5,13 @@ The Royaume API, it is a GraphQL API written in TypeScript using the MongoDB dat
 You must have Docker and Docker Compose installed on your machine to properly start this project.
 
 Here are the commands you can do:
-- ``docker compose up --build -d`` : create, build and start the services (run this command the first time you work with this project)
-- ``docker compose start`` : start the services
-- ``docker compose restart`` : restart the services
-- ``docker compose stop`` : stop the services
-- ``docker compose logs -f royaume-api`` : displays the logs 
-- ``docker compose -f docker-compose.yml up --build -d`` : create, build and start the services for production
+- ``npm run build-prod`` or ``npm run build-dev`` : for build project with docker for production or development environment
+- ``npm run logs`` : see the live logs
+- ``npm run start`` or ``npm run restart`` or ``npm run stop`` : start, restart or stop docker containers 
+- ``npm run lint`` : Format/lint the code
+- ``npm run test-client`` : test with the client file (``/src/others/ClientTester.ts``)
+- ``gen-gql`` : generate GraphQL interfaces files
+- ``gen-token`` : generate a new API token
 
 ## Documentation 
 API endpoint : [api.royaume.world](https://api.royaume.world)

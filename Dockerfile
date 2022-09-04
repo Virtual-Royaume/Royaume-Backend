@@ -6,4 +6,4 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 
-CMD npm run build && npm run start
+CMD npx tsc && npx copyfiles ./resources/**/**/*.* ./build/ && node -r ts-node/register/transpile-only -r tsconfig-paths/register .
