@@ -7,7 +7,6 @@ import resolvers from "$core/resolvers/Resolver";
 
 // Get token :
 const tokenFile = `${__dirname}/../resources/token.txt`;
-// https://www.npmjs.com/package/copyfiles
 
 if (!existsSync(tokenFile)) throw new Error("No token found, generate the token with \"npm run gen-token\" command");
 
