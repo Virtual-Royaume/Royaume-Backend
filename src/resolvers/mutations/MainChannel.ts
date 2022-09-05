@@ -1,7 +1,7 @@
 import { Resolvers } from "$core/interfaces/ServerSchema";
 import { channelCollection } from "$core/database/collections/MainChannel";
 
-const mainChannelMutation: Resolvers["Mutation"] = {
+export const mainChannelMutation: Resolvers["Mutation"] = {
     addChannel: async(_, { channelId, category }) => !!(
         await channelCollection.updateOne(
             { channelId },
@@ -12,5 +12,3 @@ const mainChannelMutation: Resolvers["Mutation"] = {
 
     removeChannel: async(_, { channelId }) => !!(await channelCollection.deleteOne({ channelId })).deletedCount
 };
-
-export default mainChannelMutation;

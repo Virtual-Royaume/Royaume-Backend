@@ -1,7 +1,7 @@
 import { Resolvers } from "$core/interfaces/ServerSchema";
 import { serverActivityCollection, getServerActivity } from "$core/database/collections/ServerActivity";
 
-const serverActivityQuery: Resolvers["Query"] = {
+export const serverActivityQuery: Resolvers["Query"] = {
     todayServerActivity: async() => await getServerActivity(),
 
     serverActivity: async(_, { historyCount }) => {
@@ -10,5 +10,3 @@ const serverActivityQuery: Resolvers["Query"] = {
             .toArray();
     }
 };
-
-export default serverActivityQuery;
