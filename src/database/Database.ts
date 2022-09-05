@@ -6,4 +6,4 @@ const client = new MongoClient(process.env.MONGO_URL);
 
 client.connect();
 
-export default client.db("royaume");
+export const database = client.db("royaume");

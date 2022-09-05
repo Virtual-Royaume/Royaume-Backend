@@ -1,4 +1,4 @@
-import memberCollection, { getMembersWithPoints } from "$core/database/collections/Member";
+import { memberCollection }, { getMembersWithPoints } from "$core/database/collections/Member";
 import tier from "$resources/config/tier.json";
 import { TierUpdate } from "$core/interfaces/ServerSchema";
 import DayJS from "$core/utils/DayJS";

@@ -1,5 +1,5 @@
 import { Resolvers } from "$core/interfaces/ServerSchema";
-import serverActivityCollection, {
+import { serverActivityCollection }, {
     getServerActivity
 } from "$core/database/collections/ServerActivity";
 

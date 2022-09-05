@@ -1,6 +1,6 @@
 import { ObjectId } from "mongodb";
 import { PresenceType } from "$core/interfaces/ServerSchema";
-import database from "$core/database/Database";
+import { database } from "$core/database/Database";
 
 export interface PresenceMessage {
     _id?: string | ObjectId;
@@ -9,5 +9,4 @@ export interface PresenceMessage {
     text: string;
 }
 
-const presenceMessageCollection = database.collection<PresenceMessage>("presencemessage");
-export default presenceMessageCollection;
+export const presenceMessageCollection = database.collection<PresenceMessage>("presencemessage");

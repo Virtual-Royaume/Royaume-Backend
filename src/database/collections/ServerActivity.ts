@@ -1,28 +1,26 @@
-import { Dayjs } from "dayjs";
 import { getDateWithoutTime } from "$core/utils/Date";
-import database from "$core/database/Database";
+import { database } from "$core/database/Database";
 
 export interface ServerActivity {
-    date: Dayjs;
+    date: string;
 
     voiceMinute: number;
     messageCount: number;
     memberCount: number;
 }
 
-const serverActivityCollection = database.collection<ServerActivity>("serveractivity");
-export default serverActivityCollection;
+export const serverActivityCollection = database.collection<ServerActivity>("serveractivity");
 
 // FUNCTIONS //
 
 export async function getServerActivity(): Promise<ServerActivity> {
     let serverActivity = await serverActivityCollection.findOne({
-        date: getDateWithoutTime()
+        date: getDateWithoutTime().format()
     });
 
     if (!serverActivity) {
         const defaultValue = {
-            date: getDateWithoutTime(),
+            date: getDateWithoutTime().format(),
 
             voiceMinute: 0,
             messageCount: 0,
