@@ -1,10 +1,6 @@
 import { Member, Resolvers } from "$core/interfaces/ServerSchema";
-import { memberCollection }, {
-    createMember
-} from "$core/database/collections/Member";
-import { serverActivityCollection }, {
-    getServerActivity
-} from "$core/database/collections/ServerActivity";
+import { memberCollection, createMember } from "$core/database/collections/Member";
+import { serverActivityCollection, getServerActivity } from "$core/database/collections/ServerActivity";
 
 const memberMutation: Resolvers["Mutation"] = {
     createMember: async(_, { id, username, profilePicture, isOnServer }) => {
