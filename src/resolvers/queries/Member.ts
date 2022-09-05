@@ -10,7 +10,7 @@ import { getFields } from "$core/utils/GraphQL";
  * This will be corrected in a future major version of the project as the point system will be based on the DB for optimization reasons.
 */
 
-const memberQuery: Resolvers["Query"] = {
+export const memberQuery: Resolvers["Query"] = {
     members: async(_, __, ___, info) => {
         const fields = getFields(info);
 
@@ -51,5 +51,3 @@ const memberQuery: Resolvers["Query"] = {
         return member;
     }
 };
-
-export default memberQuery;

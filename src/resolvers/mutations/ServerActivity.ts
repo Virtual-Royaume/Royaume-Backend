@@ -1,7 +1,7 @@
 import { Resolvers } from "$core/interfaces/ServerSchema";
 import { serverActivityCollection, getServerActivity } from "$core/database/collections/ServerActivity";
 
-const serverActivityMutation: Resolvers["Mutation"] = {
+export const serverActivityMutation: Resolvers["Mutation"] = {
     setServerActivityMemberCount: async(_, { count }) => {
         const serverActivity = await getServerActivity();
 
@@ -15,5 +15,3 @@ const serverActivityMutation: Resolvers["Mutation"] = {
         return !!result.modifiedCount;
     }
 };
-
-export default serverActivityMutation;

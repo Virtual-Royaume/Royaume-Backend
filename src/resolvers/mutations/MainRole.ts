@@ -1,7 +1,7 @@
 import { Resolvers } from "$core/interfaces/ServerSchema";
 import { roleCollection } from "$core/database/collections/MainRole";
 
-const mainRoleMutation: Resolvers["Mutation"] = {
+export const mainRoleMutation: Resolvers["Mutation"] = {
     addRole: async(_, { roleId, category }) => !!(
         await roleCollection.updateOne(
             { roleId },
@@ -12,5 +12,3 @@ const mainRoleMutation: Resolvers["Mutation"] = {
 
     removeRole: async(_, { roleId }) => !!(await roleCollection.deleteOne({ roleId })).deletedCount
 };
-
-export default mainRoleMutation;

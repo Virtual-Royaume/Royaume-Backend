@@ -2,7 +2,7 @@ import { Resolvers } from "$core/interfaces/ServerSchema";
 import { presenceMessageCollection } from "$core/database/collections/PresenceMessage";
 import { ObjectId } from "mongodb";
 
-const presenceMessageMutation: Resolvers["Mutation"] = {
+export const presenceMessageMutation: Resolvers["Mutation"] = {
     addPresenceMessage: async(_, { type, text }) => !!(
         await presenceMessageCollection.insertOne({ type, text })
     ).insertedId,
@@ -12,5 +12,3 @@ const presenceMessageMutation: Resolvers["Mutation"] = {
         return !!(await presenceMessageCollection.deleteOne({ _id: new ObjectId(id) })).deletedCount;
     }
 };
-
-export default presenceMessageMutation;
