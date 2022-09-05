@@ -11,6 +11,8 @@ export interface ServerActivity {
 
 export const serverActivityCollection = database.collection<ServerActivity>("serveractivity");
 
+serverActivityCollection.createIndex({ date: 1 }, { unique: true });
+
 // FUNCTIONS //
 
 export async function getServerActivity(): Promise<ServerActivity> {
