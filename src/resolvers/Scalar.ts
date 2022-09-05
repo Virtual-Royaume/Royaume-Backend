@@ -8,7 +8,7 @@ export const date: Resolvers["Date"] = new GraphQLScalarType({
     description: "Date without time",
 
     serialize(value) {
-        return getDateWithoutTime(DayJS(value as Date)).millisecond();
+        return getDateWithoutTime(DayJS(value as Date)).valueOf();
     },
     parseValue(value) {
         return getDateWithoutTime(DayJS(value as string));
