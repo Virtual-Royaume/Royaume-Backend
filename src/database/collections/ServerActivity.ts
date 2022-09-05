@@ -2,7 +2,7 @@ import { getDateWithoutTime } from "$core/utils/Date";
 import { database } from "$core/database/Database";
 
 export interface ServerActivity {
-    date: string;
+    date: Date;
 
     voiceMinute: number;
     messageCount: number;
@@ -15,12 +15,12 @@ export const serverActivityCollection = database.collection<ServerActivity>("ser
 
 export async function getServerActivity(): Promise<ServerActivity> {
     let serverActivity = await serverActivityCollection.findOne({
-        date: getDateWithoutTime().format()
+        date: getDateWithoutTime().toDate()
     });
 
     if (!serverActivity) {
         const defaultValue = {
-            date: getDateWithoutTime().format(),
+            date: getDateWithoutTime().toDate(),
 
             voiceMinute: 0,
             messageCount: 0,
