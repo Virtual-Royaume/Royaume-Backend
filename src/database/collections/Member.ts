@@ -1,4 +1,4 @@
-import database from "$core/database/Database";
+import { database } from "$core/database/Database";
 import tier from "$resources/config/tier.json";
 import { ActivityPoints, TierUpdate } from "$core/interfaces/ServerSchema";
 
@@ -31,8 +31,7 @@ export interface Member {
     activity: DiscordActivity;
 }
 
-const memberCollection = database.collection<Member>("member");
-export default memberCollection;
+export const memberCollection = database.collection<Member>("member");
 
 // FUNCTIONS //
 

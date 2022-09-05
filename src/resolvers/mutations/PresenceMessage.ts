@@ -1,5 +1,5 @@
 import { Resolvers } from "$core/interfaces/ServerSchema";
-import presenceMessageCollection from "$core/database/collections/PresenceMessage";
+import { presenceMessageCollection } from "$core/database/collections/PresenceMessage";
 import { ObjectId } from "mongodb";
 
 const presenceMessageMutation: Resolvers["Mutation"] = {

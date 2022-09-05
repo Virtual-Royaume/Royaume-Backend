@@ -1,8 +1,8 @@
 import { Member, Resolvers } from "$core/interfaces/ServerSchema";
-import memberCollection, {
+import { memberCollection }, {
     createMember
 } from "$core/database/collections/Member";
-import serverActivityCollection, {
+import { serverActivityCollection }, {
     getServerActivity
 } from "$core/database/collections/ServerActivity";
 
