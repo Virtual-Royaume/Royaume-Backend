@@ -2,6 +2,21 @@
 The Royaume API, it is a GraphQL API written in TypeScript using the MongoDB database. It is used by the various services of the Royaume (bot Discord, website and more).
 
 ## How to start 
+### Environment variables
+You must set this environment variables in your ``.env`` file :
+```
+# Port of the Rest API :
+PORT_API=3009
+
+# MongoDB init username and password :
+MONGO_INIT_USERNAME=royaume
+MONGO_INIT_PASSWORD=aPasswordForDB
+
+# MongoDB connection URL :
+MONGO_URL=mongodb://royaume:aPasswordForDB@royaume-mongo:27017
+```
+
+### Docker
 You must have Docker and Docker Compose installed on your machine to properly start this project.
 
 Here are the commands you can do:
