@@ -1,5 +1,5 @@
 import { Member, Resolvers } from "$core/interfaces/ServerSchema";
-import { memberCollection }, { getMemberByDiscordId, getMembersWithPoints } from "$core/database/collections/Member";
+import { memberCollection, getMemberByDiscordId, getMembersWithPoints } from "$core/database/collections/Member";
 import { getFields } from "$core/utils/GraphQL";
 
 /**
