@@ -1,5 +1,5 @@
 {
-  "version": "3.2.0",
+  "version": "3.3.0",
   "main": "./build/src/Index.js",
   "scripts": {
     "build-prod": "docker compose -f docker-compose.yml up --build -d",
