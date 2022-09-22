@@ -29,7 +29,7 @@ Here are the commands you can do:
 - ``gen-token`` : generate a new API token
 
 ## Documentation 
-API endpoint : [api.royaume.world](https://api.royaume.world)
+API : [api.royaume.world](https://api.royaume.world)
 
 All requests to the API must have the header "authorization" with the private token, ask the project mainteners for get it.
 
