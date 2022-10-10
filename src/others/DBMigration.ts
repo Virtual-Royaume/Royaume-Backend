@@ -6,6 +6,7 @@ import { presenceMessageCollection } from "../database/collections/PresenceMessa
 import { serverActivityCollection } from "../database/collections/ServerActivity";
 import { readFileSync } from "fs";
 import { ObjectId } from "mongodb";
+import { DayJS } from "$core/utils/DayJS";
 
 // DB save path :
 const dbSavePath = `${__dirname}/../../dbsave/`;
@@ -23,7 +24,7 @@ async function main(): Promise<void> {
   await roleCollection.insertMany(mainRole.map(element => { element._id = new ObjectId(element._id.$oid); return element; }));
   await memberCollection.insertMany(member.map(element => { 
     if (element.birthday) {
-      element.birthday = element.birthday.$date;
+      element.birthday = new Date(`${DayJS(element.birthday.$date).format("YYYY/MM/DD")}Z`);
     } else {
       element.birthday = null;
     }
@@ -33,7 +34,7 @@ async function main(): Promise<void> {
   await presenceMessageCollection.insertMany(presenceMessage.map(element => { element._id = new ObjectId(element._id.$oid); return element; }));
   await serverActivityCollection.insertMany(serverActivity.map(element => { 
     element._id = new ObjectId(element._id.$oid); 
-    element.date = element.date.$date;
+    element.date = new Date(`${DayJS(element.date.$date).format("YYYY/MM/DD")}Z`);
 
     return element;
   }));
