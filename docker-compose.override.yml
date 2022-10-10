@@ -1,3 +1,0 @@
-services:
-  royaume-api:
-    command: npx nodemon -L --exec npx ts-node -r tsconfig-paths/register ./src/Index.ts dev

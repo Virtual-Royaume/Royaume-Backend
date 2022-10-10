@@ -2,12 +2,8 @@
   "version": "3.3.0",
   "main": "./build/src/Index.js",
   "scripts": {
-    "build-prod": "docker compose -f docker-compose.yml up --build -d",
-    "build-dev": "docker compose up --build -d",
-    "start": "docker compose start",
-    "restart": "docker compose restart",
-    "stop": "docker compose stop",
-    "logs": "docker compose logs -f royaume-api",
+    "dev": "npx nodemon --exec node -r @swc-node/register -r tsconfig-paths/register ./src/Index.ts dev",
+    "start": "npx tsc && npx copyfiles ./resources/**/**/*.* ./build/ && node -r ts-node/register/transpile-only -r tsconfig-paths/register .",
     "lint": "npx eslint src/**/*.ts --fix",
     "test-client": "npx ts-node ./src/others/ClientTester.ts",
     "gen-gql": "npx graphql-codegen --config codegen.yml"
@@ -16,6 +12,8 @@
     "@graphql-codegen/cli": "2.11.3",
     "@graphql-codegen/typescript-operations": "^2.5.2",
     "@graphql-codegen/typescript-resolvers": "^2.7.2",
+    "@swc-node/register": "^1.5.4",
+    "@swc/core": "^1.3.6",
     "@types/node": "^18.6.4",
     "@typescript-eslint/eslint-plugin": "^5.32.0",
     "@typescript-eslint/parser": "^5.32.0",
