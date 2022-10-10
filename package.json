@@ -3,8 +3,7 @@
   "main": "./build/src/Index.js",
   "scripts": {
     "dev": "npx nodemon --exec node -r @swc-node/register -r tsconfig-paths/register ./src/Index.ts dev",
-    "start": "npx nodemon --exec node -r @swc-node/register -r tsconfig-paths/register ./src/Index.ts dev",
-    "startt": "npx tsc && npx copyfiles ./resources/**/**/*.* ./build/ && node -r ts-node/register/transpile-only -r tsconfig-paths/register .",
+    "start": "node -r @swc-node/register -r tsconfig-paths/register ./src/Index.ts",
     "lint": "npx eslint src/**/*.ts --fix",
     "test-client": "npx ts-node ./src/others/ClientTester.ts",
     "gen-gql": "npx graphql-codegen --config codegen.yml"
@@ -18,7 +17,6 @@
     "@types/node": "^18.6.4",
     "@typescript-eslint/eslint-plugin": "^5.32.0",
     "@typescript-eslint/parser": "^5.32.0",
-    "copyfiles": "^2.4.1",
     "eslint": "^8.21.0",
     "nodemon": "^2.0.19",
     "ts-node": "^10.9.1",
