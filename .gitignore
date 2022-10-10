@@ -8,11 +8,5 @@ package-lock.json
 # GraphQL code gen :
 graphql.schema.json
 
-# Secret token : 
-token.txt
-
 # Project build :
 build
-
-# MongoDB data :
-mongodb
