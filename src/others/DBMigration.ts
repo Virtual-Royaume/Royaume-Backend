@@ -23,7 +23,12 @@ async function main(): Promise<void> {
   await roleCollection.insertMany(mainRole.map(element => { element._id = new ObjectId(element._id.$oid); return element; }));
   await memberCollection.insertMany(member);
   await presenceMessageCollection.insertMany(presenceMessage.map(element => { element._id = new ObjectId(element._id.$oid); return element; }));
-  await serverActivityCollection.insertMany(serverActivity.map(element => { element._id = new ObjectId(element._id.$oid); return element; }));
+  await serverActivityCollection.insertMany(serverActivity.map(element => { 
+    element._id = new ObjectId(element._id.$oid); 
+    element.date = element.date.$date;
+
+    return element;
+  }));
 }
 
 main().then(() => process.exit());
