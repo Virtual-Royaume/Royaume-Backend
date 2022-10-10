@@ -4,6 +4,7 @@ import { loadSchemaSync } from "@graphql-tools/load";
 import { ApolloServer } from "apollo-server";
 import { readdirSync } from "fs";
 import { resolvers } from "$core/resolvers/Resolver";
+import { ApolloServerPluginLandingPageLocalDefault } from "apollo-server-core";
 
 // Load tasks :
 readdirSync(`${__dirname}/tasks`).forEach(
@@ -29,6 +30,7 @@ const server = new ApolloServer({
     resolvers,
     cache: "bounded",
     csrfPrevention: true,
+    plugins: [ApolloServerPluginLandingPageLocalDefault]
 });
 
 server.listen({ url: "0.0.0.0", port: process.env.PORT ?? 3000 }).then(serverInfo => {
