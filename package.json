@@ -2,7 +2,7 @@
   "version": "3.3.0",
   "main": "./build/src/Index.js",
   "scripts": {
-    "dev": "npx nodemon --exec node -r @swc-node/register -r tsconfig-paths/register ./src/Index.ts dev",
+    "dev": "npx nodemon -r @swc-node/register -r tsconfig-paths/register ./src/Index.ts dev",
     "start": "node -r @swc-node/register -r tsconfig-paths/register ./src/Index.ts",
     "lint": "npx eslint src/**/*.ts --fix",
     "test-client": "npx ts-node ./src/others/ClientTester.ts",
