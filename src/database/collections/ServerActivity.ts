@@ -17,12 +17,12 @@ serverActivityCollection.createIndex({ date: 1 }, { unique: true });
 
 export async function getServerActivity(): Promise<ServerActivity> {
     let serverActivity = await serverActivityCollection.findOne({
-        date: getDateWithoutTime().toDate()
+        date: new Date(`${getDateWithoutTime().format("YYYY/MM/DD")}Z`)
     });
 
     if (!serverActivity) {
         const defaultValue = {
-            date: getDateWithoutTime().toDate(),
+            date: new Date(`${getDateWithoutTime().format("YYYY/MM/DD")}Z`),
 
             voiceMinute: 0,
             messageCount: 0,
