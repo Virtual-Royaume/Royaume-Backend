@@ -21,7 +21,15 @@ const serverActivity = JSON.parse(readFileSync(`${dbSavePath}/serveractivity.jso
 async function main(): Promise<void> {
   await channelCollection.insertMany(mainChannel.map(element => { element._id = new ObjectId(element._id.$oid); return element; }));
   await roleCollection.insertMany(mainRole.map(element => { element._id = new ObjectId(element._id.$oid); return element; }));
-  await memberCollection.insertMany(member);
+  await memberCollection.insertMany(member.map(element => { 
+    if (element.birthday) {
+      element.birthday = element.birthday.$date;
+    } else {
+      element.birthday = null;
+    }
+
+    return element;
+  }));
   await presenceMessageCollection.insertMany(presenceMessage.map(element => { element._id = new ObjectId(element._id.$oid); return element; }));
   await serverActivityCollection.insertMany(serverActivity.map(element => { 
     element._id = new ObjectId(element._id.$oid); 
