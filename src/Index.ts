@@ -27,7 +27,8 @@ const server = new ApolloServer({
 
     typeDefs: schemas,
     resolvers,
-    csrfPrevention: true
+    cache: "bounded",
+    csrfPrevention: true,
 });
 
 server.listen({ url: "0.0.0.0", port: process.env.PORT ?? 3000 }).then(serverInfo => {
