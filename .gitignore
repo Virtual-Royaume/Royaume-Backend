@@ -10,3 +10,6 @@ graphql.schema.json
 
 # Project build :
 build
+
+# DB save :
+dbsave
