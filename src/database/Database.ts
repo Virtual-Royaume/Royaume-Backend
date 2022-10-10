@@ -1,9 +1,8 @@
 import { MongoClient } from "mongodb";
 
-if (!process.env.MONGO_URL2) throw new Error("The environment variable MONGO_URL is missing");
+if (!process.env.MONGO_LINK) throw new Error("The environment variable MONGO_LINK is missing");
 
-console.log(process.env.MONGO_URL2);
-const client = new MongoClient(process.env.MONGO_URL2);
+const client = new MongoClient(process.env.MONGO_LINK);
 
 client.connect();
 
