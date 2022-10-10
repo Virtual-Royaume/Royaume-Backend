@@ -2,15 +2,8 @@ import "dotenv/config";
 import { GraphQLFileLoader } from "@graphql-tools/graphql-file-loader";
 import { loadSchemaSync } from "@graphql-tools/load";
 import { ApolloServer } from "apollo-server";
-import { existsSync, readdirSync, readFileSync } from "fs";
+import { readdirSync } from "fs";
 import { resolvers } from "$core/resolvers/Resolver";
-
-// Get token :
-const tokenFile = `${__dirname}/../resources/token.txt`;
-
-if (!existsSync(tokenFile)) throw new Error("No token found, generate the token with \"npm run gen-token\" command");
-
-const secretToken = readFileSync(tokenFile, { encoding: "utf8" });
 
 // Load tasks :
 readdirSync(`${__dirname}/tasks`).forEach(
@@ -29,7 +22,7 @@ const server = new ApolloServer({
     context: ({ req }) => {
         const token = req.headers.authorization || "";
 
-        if (token !== secretToken) throw new Error("Invalid token in authorization header");
+        if (token !== process.env.API_TOKEN) throw new Error("Invalid token in authorization header");
     },
 
     typeDefs: schemas,
