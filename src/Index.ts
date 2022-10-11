@@ -30,6 +30,7 @@ const server = new ApolloServer({
     resolvers,
     cache: "bounded",
     csrfPrevention: true,
+    introspection: true,
     plugins: [ApolloServerPluginLandingPageLocalDefault]
 });
 
