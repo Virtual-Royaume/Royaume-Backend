@@ -13,6 +13,8 @@ export const memberMutation: Resolvers["Mutation"] = {
             Object.entries(input).filter(([, value]) => value !== null)
         );
 
+        if (insertInput.birthday) insertInput.birthday = new Date(`${insertInput.birthday.format("YYYY/MM/DD")}Z`);
+
         // Try to update member :
         try {
             const response = await memberCollection.updateOne({ _id: id }, { $set: insertInput });
