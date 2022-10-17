@@ -10,15 +10,15 @@ scalar Date
 
 type Query {
     member(id: ID!): Member # Discord ID
-    members: [Member]! # Only members with "isOnServer = true"
+    members: [Member!]! # Only members with "isOnServer = true"
 
     todayServerActivity: ServerActivity!
-    serverActivity(historyCount: Int!): [ServerActivity]!
+    serverActivity(historyCount: Int!): [ServerActivity!]!
 
-    roles: [MainRole]!
-    channels: [MainChannel]!
+    roles: [MainRole!]!
+    channels: [MainChannel!]!
 
-    presenceMessages: [PresenceMessage]!
+    presenceMessages: [PresenceMessage!]!
 }
 
 # MUTATION - for creating new and updating/deleting existing data (INSERT, UPDATE, DELETE)

@@ -37,7 +37,7 @@ export type DiscordActivity = {
 export type DiscordMessageActivity = {
   __typename?: 'DiscordMessageActivity';
   monthCount: Scalars['Int'];
-  perChannel: Array<Maybe<ChannelMessageCount>>;
+  perChannel: Array<ChannelMessageCount>;
   totalCount: Scalars['Int'];
 };
 
@@ -164,12 +164,12 @@ export enum PresenceType {
 
 export type Query = {
   __typename?: 'Query';
-  channels: Array<Maybe<MainChannel>>;
+  channels: Array<MainChannel>;
   member?: Maybe<Member>;
-  members: Array<Maybe<Member>>;
-  presenceMessages: Array<Maybe<PresenceMessage>>;
-  roles: Array<Maybe<MainRole>>;
-  serverActivity: Array<Maybe<ServerActivity>>;
+  members: Array<Member>;
+  presenceMessages: Array<PresenceMessage>;
+  roles: Array<MainRole>;
+  serverActivity: Array<ServerActivity>;
   todayServerActivity: ServerActivity;
 };
 

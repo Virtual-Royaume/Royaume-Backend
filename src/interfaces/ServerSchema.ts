@@ -39,7 +39,7 @@ export type DiscordActivity = {
 export type DiscordMessageActivity = {
   __typename?: 'DiscordMessageActivity';
   monthCount: Scalars['Int'];
-  perChannel: Array<Maybe<ChannelMessageCount>>;
+  perChannel: Array<ChannelMessageCount>;
   totalCount: Scalars['Int'];
 };
 
@@ -166,12 +166,12 @@ export enum PresenceType {
 
 export type Query = {
   __typename?: 'Query';
-  channels: Array<Maybe<MainChannel>>;
+  channels: Array<MainChannel>;
   member?: Maybe<Member>;
-  members: Array<Maybe<Member>>;
-  presenceMessages: Array<Maybe<PresenceMessage>>;
-  roles: Array<Maybe<MainRole>>;
-  serverActivity: Array<Maybe<ServerActivity>>;
+  members: Array<Member>;
+  presenceMessages: Array<PresenceMessage>;
+  roles: Array<MainRole>;
+  serverActivity: Array<ServerActivity>;
   todayServerActivity: ServerActivity;
 };
 
@@ -337,7 +337,7 @@ export type DiscordActivityResolvers<ContextType = any, ParentType extends Resol
 
 export type DiscordMessageActivityResolvers<ContextType = any, ParentType extends ResolversParentTypes['DiscordMessageActivity'] = ResolversParentTypes['DiscordMessageActivity']> = {
   monthCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  perChannel?: Resolver<Array<Maybe<ResolversTypes['ChannelMessageCount']>>, ParentType, ContextType>;
+  perChannel?: Resolver<Array<ResolversTypes['ChannelMessageCount']>, ParentType, ContextType>;
   totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -386,12 +386,12 @@ export type PresenceMessageResolvers<ContextType = any, ParentType extends Resol
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  channels?: Resolver<Array<Maybe<ResolversTypes['MainChannel']>>, ParentType, ContextType>;
+  channels?: Resolver<Array<ResolversTypes['MainChannel']>, ParentType, ContextType>;
   member?: Resolver<Maybe<ResolversTypes['Member']>, ParentType, ContextType, RequireFields<QueryMemberArgs, 'id'>>;
-  members?: Resolver<Array<Maybe<ResolversTypes['Member']>>, ParentType, ContextType>;
-  presenceMessages?: Resolver<Array<Maybe<ResolversTypes['PresenceMessage']>>, ParentType, ContextType>;
-  roles?: Resolver<Array<Maybe<ResolversTypes['MainRole']>>, ParentType, ContextType>;
-  serverActivity?: Resolver<Array<Maybe<ResolversTypes['ServerActivity']>>, ParentType, ContextType, RequireFields<QueryServerActivityArgs, 'historyCount'>>;
+  members?: Resolver<Array<ResolversTypes['Member']>, ParentType, ContextType>;
+  presenceMessages?: Resolver<Array<ResolversTypes['PresenceMessage']>, ParentType, ContextType>;
+  roles?: Resolver<Array<ResolversTypes['MainRole']>, ParentType, ContextType>;
+  serverActivity?: Resolver<Array<ResolversTypes['ServerActivity']>, ParentType, ContextType, RequireFields<QueryServerActivityArgs, 'historyCount'>>;
   todayServerActivity?: Resolver<ResolversTypes['ServerActivity'], ParentType, ContextType>;
 };
 

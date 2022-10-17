@@ -34,7 +34,7 @@ type ActivityPoints {
 type DiscordMessageActivity {
     totalCount: Int!
     monthCount: Int!
-    perChannel: [ChannelMessageCount]!
+    perChannel: [ChannelMessageCount!]!
 }
 
 type ChannelMessageCount {
