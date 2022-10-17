@@ -15,8 +15,8 @@ type Query {
     todayServerActivity: ServerActivity!
     serverActivity(historyCount: Int!): [ServerActivity]!
 
-    roles: [MainRole]
-    channels: [MainChannel]
+    roles: [MainRole]!
+    channels: [MainChannel]!
 
     presenceMessages: [PresenceMessage]!
 }

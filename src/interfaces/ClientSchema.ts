@@ -164,11 +164,11 @@ export enum PresenceType {
 
 export type Query = {
   __typename?: 'Query';
-  channels?: Maybe<Array<Maybe<MainChannel>>>;
+  channels: Array<Maybe<MainChannel>>;
   member?: Maybe<Member>;
   members: Array<Maybe<Member>>;
   presenceMessages: Array<Maybe<PresenceMessage>>;
-  roles?: Maybe<Array<Maybe<MainRole>>>;
+  roles: Array<Maybe<MainRole>>;
   serverActivity: Array<Maybe<ServerActivity>>;
   todayServerActivity: ServerActivity;
 };

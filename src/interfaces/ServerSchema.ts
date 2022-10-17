@@ -166,11 +166,11 @@ export enum PresenceType {
 
 export type Query = {
   __typename?: 'Query';
-  channels?: Maybe<Array<Maybe<MainChannel>>>;
+  channels: Array<Maybe<MainChannel>>;
   member?: Maybe<Member>;
   members: Array<Maybe<Member>>;
   presenceMessages: Array<Maybe<PresenceMessage>>;
-  roles?: Maybe<Array<Maybe<MainRole>>>;
+  roles: Array<Maybe<MainRole>>;
   serverActivity: Array<Maybe<ServerActivity>>;
   todayServerActivity: ServerActivity;
 };
@@ -386,11 +386,11 @@ export type PresenceMessageResolvers<ContextType = any, ParentType extends Resol
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  channels?: Resolver<Maybe<Array<Maybe<ResolversTypes['MainChannel']>>>, ParentType, ContextType>;
+  channels?: Resolver<Array<Maybe<ResolversTypes['MainChannel']>>, ParentType, ContextType>;
   member?: Resolver<Maybe<ResolversTypes['Member']>, ParentType, ContextType, RequireFields<QueryMemberArgs, 'id'>>;
   members?: Resolver<Array<Maybe<ResolversTypes['Member']>>, ParentType, ContextType>;
   presenceMessages?: Resolver<Array<Maybe<ResolversTypes['PresenceMessage']>>, ParentType, ContextType>;
-  roles?: Resolver<Maybe<Array<Maybe<ResolversTypes['MainRole']>>>, ParentType, ContextType>;
+  roles?: Resolver<Array<Maybe<ResolversTypes['MainRole']>>, ParentType, ContextType>;
   serverActivity?: Resolver<Array<Maybe<ResolversTypes['ServerActivity']>>, ParentType, ContextType, RequireFields<QueryServerActivityArgs, 'historyCount'>>;
   todayServerActivity?: Resolver<ResolversTypes['ServerActivity'], ParentType, ContextType>;
 };
