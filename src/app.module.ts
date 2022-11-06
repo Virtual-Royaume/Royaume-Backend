@@ -4,7 +4,7 @@ import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { GraphQLModule } from "@nestjs/graphql";
-import { TypegooseModule } from "nestjs-typegoose";
+import { TypegooseModule } from "@m8a/nestjs-typegoose";
 
 @Module({
   imports: [
@@ -13,8 +13,6 @@ import { TypegooseModule } from "nestjs-typegoose";
 
     // Connect to MongoDB :
     TypegooseModule.forRoot(getStringEnv("MONGO_LINK"), {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore : typing problem
       dbName: "royaume"
     }),
 

@@ -6,6 +6,7 @@
     "lint": "npx eslint src/**/*.ts --fix"
   },
   "dependencies": {
+    "@m8a/nestjs-typegoose": "^8.1.0",
     "@nestjs/apollo": "^10.1.4",
     "@nestjs/common": "^9.1.6",
     "@nestjs/config": "^2.2.0",
@@ -17,7 +18,6 @@
     "dayjs": "^1.11.6",
     "graphql": "^16.6.0",
     "mongoose": "^6.7.1",
-    "nestjs-typegoose": "^7.1.38",
     "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {

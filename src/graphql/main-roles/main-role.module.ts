@@ -1,6 +1,6 @@
 import { MainRole } from "$database/main-role/main-role";
 import { Module } from "@nestjs/common";
-import { TypegooseModule } from "nestjs-typegoose";
+import { TypegooseModule } from "@m8a/nestjs-typegoose";
 import { MainRoleRevolver } from "./main-role.resolver";
 import { MainRoleService } from "./main-role.service";
 
