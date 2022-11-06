@@ -1,9 +1,0 @@
-# Types
-
-type ServerActivity {
-    date: Date!
-
-    voiceMinute: Int!
-    messageCount: Int!
-    memberCount: Int!
-}
