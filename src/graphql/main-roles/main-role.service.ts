@@ -1,4 +1,4 @@
-import { MainRole } from "$database/main-role/main-role";
+import { MainRole } from "$database/main-role";
 import { Injectable } from "@nestjs/common";
 import { ReturnModelType } from "@typegoose/typegoose";
 import { InjectModel } from "@m8a/nestjs-typegoose";
