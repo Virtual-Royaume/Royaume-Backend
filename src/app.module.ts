@@ -1,12 +1,14 @@
+import { GraphQLMainModule } from "$graphql/graphql.module";
+import { getStringEnv } from "$utils/env-variable";
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { GraphQLModule } from "@nestjs/graphql";
-import { join } from "path";
+import { TypegooseModule } from "nestjs-typegoose";
 
 @Module({
   imports: [
-    // Environment variables :
+    // Load environment variables :
     ConfigModule.forRoot(),
 
     // Connect to MongoDB :
@@ -19,9 +21,11 @@ import { join } from "path";
     // GraphQL setup :
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      autoSchemaFile: join(process.cwd(), "src/schema.gql"),
-      sortSchema: true
-    })
+      autoSchemaFile: true
+    }),
+
+    // GraphQL main module :
+    GraphQLMainModule
   ]
 })
 export class AppModule {}
