@@ -7,8 +7,9 @@ async function main() {
   const app = await NestFactory.create(AppModule);
 
   console.log(isDevEnvironment, isProdEnvironment);
+  console.log(process.argv);
 
-  await app.listen(getNumberEnv(process.env.PORT));
+  await app.listen(getNumberEnv("PORT"));
 }
 
 main();
