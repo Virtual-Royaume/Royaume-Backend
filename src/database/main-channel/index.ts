@@ -1,4 +1,1 @@
-import { getModelForClass } from "@typegoose/typegoose";
-import { MainChannel } from "./main-channel";
-
-export const mainChannelModel = getModelForClass(MainChannel);
+export { MainChannel } from "./main-channel";
