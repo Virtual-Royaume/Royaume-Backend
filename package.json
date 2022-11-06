@@ -23,7 +23,6 @@
   "devDependencies": {
     "@nestjs/cli": "^9.1.5",
     "@nestjs/schematics": "^9.0.3",
-    "@types/mongoose": "^5.11.97",
     "@types/node": "^18.11.9",
     "@typescript-eslint/eslint-plugin": "^5.42.0",
     "@typescript-eslint/parser": "^5.42.0",
