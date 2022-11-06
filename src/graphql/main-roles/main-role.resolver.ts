@@ -2,7 +2,7 @@ import { Query, Resolver } from "@nestjs/graphql";
 import { MainRole } from "./main-role.model";
 import { MainRoleService } from "./main-role.service";
 
-@Resolver()
+@Resolver(of => MainRole)
 export class MainRoleRevolver {
 
   constructor(
