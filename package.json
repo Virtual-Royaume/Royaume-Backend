@@ -1,9 +1,8 @@
 {
   "version": "3.4.0",
   "scripts": {
-    "build": "nest build",
-    "start": "node build/main",
-    "dev": "nest start dev --watch",
+    "start": "nest build && node build/main",
+    "dev": "nest start --watch",
     "lint": "npx eslint src/**/*.ts --fix"
   },
   "dependencies": {
