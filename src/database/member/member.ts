@@ -1,6 +1,7 @@
-import { Prop } from "@typegoose/typegoose";
+import { ModelOptions, Prop } from "@typegoose/typegoose";
 import { DiscordActivity } from "./discord-activity";
 
+@ModelOptions({ schemaOptions: { collection: "member" } })
 export class Member {
 
   @Prop({ required: true })

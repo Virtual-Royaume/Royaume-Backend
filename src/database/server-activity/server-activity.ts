@@ -1,5 +1,6 @@
-import { Prop } from "@typegoose/typegoose";
+import { ModelOptions, Prop } from "@typegoose/typegoose";
 
+@ModelOptions({ schemaOptions: { collection: "serveractivity" } })
 export class ServerActivity {
 
   // TODO : set default value

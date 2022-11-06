@@ -1,6 +1,7 @@
-import { Prop } from "@typegoose/typegoose";
+import { ModelOptions, Prop } from "@typegoose/typegoose";
 import { PresenceType } from "./presence-message.enum";
 
+@ModelOptions({ schemaOptions: { collection: "presencemessage" } })
 export class PresenceMessage {
 
   @Prop({ required: true, enum: PresenceType })
