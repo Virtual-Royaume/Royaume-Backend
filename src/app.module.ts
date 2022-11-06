@@ -9,6 +9,13 @@ import { join } from "path";
     // Environment variables :
     ConfigModule.forRoot(),
 
+    // Connect to MongoDB :
+    TypegooseModule.forRoot(getStringEnv("MONGO_LINK"), {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore : typing problem
+      dbName: "royaume"
+    }),
+
     // GraphQL setup :
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
