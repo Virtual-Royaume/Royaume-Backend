@@ -1,10 +1,10 @@
+import { dayJS } from "$utils/day-js";
 import { ModelOptions, Prop } from "@typegoose/typegoose";
 
 @ModelOptions({ schemaOptions: { collection: "serveractivity" } })
 export class ServerActivity {
 
-  // TODO : set default value
-  @Prop({ index: true, unique: true, required: true })
+  @Prop({ index: true, unique: true, default: dayJS().utc().toDate() })
   public date!: Date;
 
   @Prop({ required: true })
