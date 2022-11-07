@@ -1,7 +1,7 @@
-import { MainRole } from "$database/main-role";
 import { Injectable } from "@nestjs/common";
 import { ReturnModelType } from "@typegoose/typegoose";
 import { InjectModel } from "@m8a/nestjs-typegoose";
+import { MainRole } from "./main-role.entity";
 
 @Injectable()
 export class MainRoleService {
