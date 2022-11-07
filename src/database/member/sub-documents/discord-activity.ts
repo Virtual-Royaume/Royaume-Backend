@@ -1,17 +1,18 @@
+import { tierConfig } from "$config/tier";
 import { Prop } from "@typegoose/typegoose";
 import { DiscordActivityMessage } from "./discord-activity-message";
 
 export class DiscordActivity {
 
-  @Prop({ required: true })
+  @Prop({ default: tierConfig.min })
   public tier!: number;
 
-  @Prop({ required: true })
+  @Prop({ default: 0 })
   public voiceMinute!: number;
 
-  @Prop({ required: true })
+  @Prop({ default: 0 })
   public monthVoiceMinute!: number;
 
-  @Prop({ required: true, _id: false })
+  @Prop({ _id: false })
   public messages!: DiscordActivityMessage;
 }

@@ -3,13 +3,12 @@ import { ChannelMessageCount } from "./channel-message-count";
 
 export class DiscordActivityMessage {
 
-  @Prop({ required: true })
+  @Prop({ default: 0 })
   public totalCount!: number;
 
-  @Prop({ required: true })
+  @Prop({ default: 0 })
   public monthCount!: number;
 
-  // TODO : type param is really required ?
-  @Prop({ required: true, _id: false, type: () => [ChannelMessageCount] })
+  @Prop({ _id: false, default: [] })
   public perChannel!: ChannelMessageCount[];
 }
