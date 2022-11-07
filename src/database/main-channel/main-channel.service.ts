@@ -1,7 +1,7 @@
-import { MainChannel } from "$database/main-channel";
 import { InjectModel } from "@m8a/nestjs-typegoose";
 import { Injectable } from "@nestjs/common";
 import { ReturnModelType } from "@typegoose/typegoose";
+import { MainChannel } from "./main-channel.entity";
 
 @Injectable()
 export class MainChannelService {

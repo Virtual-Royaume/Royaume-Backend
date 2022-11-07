@@ -1,11 +1,9 @@
-import { MainChannel } from "$database/main-channel";
-import { TypegooseModule } from "@m8a/nestjs-typegoose";
+import { MainChannelModule as MainChannelServiceModule } from "$database/main-channel";
 import { Module } from "@nestjs/common";
 import { MainChannelRevolver } from "./main-channel.resolver";
-import { MainChannelService } from "./main-channel.service";
 
 @Module({
-  providers: [MainChannelRevolver, MainChannelService],
-  imports: [TypegooseModule.forFeature([MainChannel])]
+  imports: [MainChannelServiceModule],
+  providers: [MainChannelRevolver]
 })
 export class MainChannelModule {}
