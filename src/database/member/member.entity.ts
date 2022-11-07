@@ -1,5 +1,5 @@
 import { ModelOptions, Prop } from "@typegoose/typegoose";
-import { DiscordActivity } from "./discord-activity";
+import { DiscordActivity } from "./sub-documents/discord-activity";
 
 @ModelOptions({ schemaOptions: { collection: "member" } })
 export class Member {
@@ -13,9 +13,9 @@ export class Member {
   @Prop()
   public birthday?: Date;
 
-  @Prop({ required: true })
+  @Prop({ default: true })
   public isOnServer!: boolean;
 
-  @Prop({ required: true, _id: false })
+  @Prop({ _id: false })
   public activity!: DiscordActivity;
 }

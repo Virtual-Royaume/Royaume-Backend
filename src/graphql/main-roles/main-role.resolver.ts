@@ -1,6 +1,6 @@
+import { MainRoleService } from "$database/main-role";
 import { Query, Resolver } from "@nestjs/graphql";
 import { MainRole } from "./main-role.model";
-import { MainRoleService } from "../../database/main-role/main-role.service";
 
 @Resolver(() => MainRole)
 export class MainRoleRevolver {

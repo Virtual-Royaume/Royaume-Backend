@@ -3,6 +3,7 @@ import { Module } from "@nestjs/common";
 import { MainRoleRevolver } from "./main-role.resolver";
 
 @Module({
-  providers: [MainRoleRevolver, MainRoleServiceModule]
+  imports: [MainRoleServiceModule],
+  providers: [MainRoleRevolver]
 })
 export class MainRoleModule {}
