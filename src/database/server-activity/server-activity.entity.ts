@@ -7,12 +7,12 @@ export class ServerActivity {
   @Prop({ index: true, unique: true, default: dayJS().utc().toDate() })
   public date!: Date;
 
-  @Prop({ required: true })
+  @Prop({ default: 0 })
   public voiceMinute!: number;
 
-  @Prop({ required: true })
+  @Prop({ default: 0 })
   public messageCount!: number;
 
-  @Prop({ required: true })
+  @Prop({ default: 0 })
   public memberCount!: number;
 }
