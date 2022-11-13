@@ -1,5 +1,5 @@
 export const tierConfig = {
   max: 5,
   min: 1,
-  upDownPercent: 30
+  upDownPercent: 35
 };
