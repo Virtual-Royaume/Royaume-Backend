@@ -21,11 +21,10 @@
     "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
+    "@bluzzi/eslint-config": "^0.6.0",
     "@nestjs/cli": "^9.1.5",
     "@nestjs/schematics": "^9.0.3",
     "@types/node": "^18.11.9",
-    "@typescript-eslint/eslint-plugin": "^5.42.0",
-    "@typescript-eslint/parser": "^5.42.0",
     "eslint": "^8.26.0",
     "source-map-support": "^0.5.21",
     "ts-loader": "^9.4.1",
