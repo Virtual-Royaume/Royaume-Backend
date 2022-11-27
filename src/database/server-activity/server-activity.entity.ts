@@ -1,4 +1,4 @@
-import { dayJS } from "$utils/day-js";
+import { dayJS } from "$utility/day-js";
 import { ModelOptions, Prop } from "@typegoose/typegoose";
 
 @ModelOptions({ schemaOptions: { collection: "serveractivity" } })

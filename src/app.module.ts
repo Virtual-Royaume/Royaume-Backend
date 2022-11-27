@@ -1,10 +1,10 @@
-import { getStringEnv } from "$utils/env-variable";
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { GraphQLModule } from "@nestjs/graphql";
 import { TypegooseModule } from "@m8a/nestjs-typegoose";
 import { APIModule } from "$api/api.module";
+import { environmentVariable } from "$config/environment-variable";
 
 @Module({
   imports: [
@@ -12,7 +12,7 @@ import { APIModule } from "$api/api.module";
     ConfigModule.forRoot(),
 
     // Connect to MongoDB :
-    TypegooseModule.forRoot(getStringEnv("MONGO_LINK"), {
+    TypegooseModule.forRoot(environmentVariable().mongoUrl, {
       dbName: "royaume"
     }),
 
