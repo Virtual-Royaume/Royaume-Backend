@@ -1,10 +1,10 @@
-import { GraphQLMainModule } from "$graphql/graphql.module";
 import { getStringEnv } from "$utils/env-variable";
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { GraphQLModule } from "@nestjs/graphql";
 import { TypegooseModule } from "@m8a/nestjs-typegoose";
+import { APIModule } from "$api/api.module";
 
 @Module({
   imports: [
@@ -22,8 +22,8 @@ import { TypegooseModule } from "@m8a/nestjs-typegoose";
       autoSchemaFile: true
     }),
 
-    // GraphQL main module :
-    GraphQLMainModule
+    // API module :
+    APIModule
   ]
 })
 export class AppModule {}
