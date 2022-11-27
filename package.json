@@ -32,5 +32,17 @@
     "tsconfig-paths": "^4.1.0",
     "typescript": "^4.9.3"
   },
+  "eslintConfig": {
+    "extends": "@bluzzi",
+    "env": {
+      "node": true
+    },
+    "rules": {
+      "@typescript-eslint/interface-name-prefix": "off",
+      "@typescript-eslint/explicit-function-return-type": "off",
+      "@typescript-eslint/explicit-module-boundary-types": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+      "no-unused-vars": "off"
+    }
   }
 }
