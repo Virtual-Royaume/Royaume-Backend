@@ -3,7 +3,8 @@
   "scripts": {
     "start": "nest build && node build/main",
     "dev": "nest start --watch",
-    "lint": "npx eslint src/**/*.ts --fix"
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix"
   },
   "dependencies": {
     "@m8a/nestjs-typegoose": "^8.1.0",
