@@ -18,7 +18,7 @@
     "apollo-server-express": "^3.11.1",
     "dayjs": "^1.11.7",
     "graphql": "^16.6.0",
-    "mongoose": "^6.7.3",
+    "mongoose": "^6.8.0",
     "reflect-metadata": "^0.1.13",
     "zod": "^3.19.1"
   },
