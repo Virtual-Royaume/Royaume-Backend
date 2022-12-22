@@ -20,7 +20,7 @@
     "graphql": "^16.6.0",
     "mongoose": "^6.8.0",
     "reflect-metadata": "^0.1.13",
-    "zod": "^3.19.1"
+    "zod": "^3.20.2"
   },
   "devDependencies": {
     "@bluzzi/eslint-config": "^0.8.0",
