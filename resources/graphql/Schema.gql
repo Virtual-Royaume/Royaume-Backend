@@ -1,0 +1,49 @@
+scalar Date
+
+# import * from "./types/Member.gql"
+# import * from "./types/ServerActivity.gql"
+# import * from "./types/MainChannel.gql"
+# import * from "./types/MainRole.gql"
+# import * from "./types/PresenceMessage.gql"
+
+# QUERY - for querying data (SELECT)
+
+type Query {
+    member(id: ID!): Member # Discord ID
+    members: [Member!]! # Only members with "isOnServer = true"
+
+    todayServerActivity: ServerActivity!
+    serverActivity(historyCount: Int!): [ServerActivity!]!
+
+    roles: [MainRole!]!
+    channels: [MainChannel!]!
+
+    presenceMessages: [PresenceMessage!]!
+}
+
+# MUTATION - for creating new and updating/deleting existing data (INSERT, UPDATE, DELETE)
+
+type Mutation {
+    createMember(
+        id: ID!
+        username: String!
+        profilePicture: String!
+        isOnServer: Boolean
+    ): Member
+
+    updateMember(id: ID!, input: MemberInput!): Boolean!
+
+    incMemberDiscordVoiceMinute(id: ID!): Int! # Return the total voice minutes of the member (0 if request failed)
+    incMemberDiscordActivityChannel(id: ID!, channelId: ID!): Int! # Return the total member message count of the member (0 if request failed)
+
+    setServerActivityMemberCount(count: Int!): Boolean!
+
+    addRole(roleId: ID!, category: String!): Boolean!
+    removeRole(roleId: ID!): Boolean!
+
+    addChannel(channelId: ID!, category: String!): Boolean!
+    removeChannel(channelId: ID!): Boolean!
+
+    addPresenceMessage(type: PresenceType!, text: String!): Boolean!
+    removePresenceMessage(id: ID!): Boolean!
+}

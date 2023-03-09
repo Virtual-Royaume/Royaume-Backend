@@ -1,0 +1,6 @@
+# Auto generated files :
+src/interfaces/ClientSchema.ts
+src/interfaces/ServerSchema.ts
+
+# Migration file :
+src/others/*.ts

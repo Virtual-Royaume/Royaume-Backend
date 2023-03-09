@@ -1,0 +1,50 @@
+{
+  "version": "3.4.0",
+  "scripts": {
+    "start": "nest build && node build/main",
+    "dev": "nest start --watch",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix"
+  },
+  "dependencies": {
+    "@m8a/nestjs-typegoose": "^10.0.0",
+    "@nestjs/apollo": "^10.1.7",
+    "@nestjs/common": "^9.2.1",
+    "@nestjs/config": "^2.2.0",
+    "@nestjs/core": "^9.2.1",
+    "@nestjs/graphql": "^10.1.7",
+    "@nestjs/platform-express": "^9.2.1",
+    "@typegoose/typegoose": "^10.0.0",
+    "apollo-server-express": "^3.11.1",
+    "dayjs": "^1.11.7",
+    "graphql": "^16.6.0",
+    "mongoose": "^6.8.4",
+    "reflect-metadata": "^0.1.13",
+    "zod": "^3.20.2"
+  },
+  "devDependencies": {
+    "@bluzzi/eslint-config": "^0.8.3",
+    "@nestjs/cli": "^9.1.8",
+    "@nestjs/schematics": "^9.0.4",
+    "@types/node": "^18.11.18",
+    "eslint": "^8.32.0",
+    "source-map-support": "^0.5.21",
+    "ts-loader": "^9.4.2",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.1.2",
+    "typescript": "^4.9.4"
+  },
+  "eslintConfig": {
+    "extends": "@bluzzi",
+    "env": {
+      "node": true
+    },
+    "rules": {
+      "@typescript-eslint/interface-name-prefix": "off",
+      "@typescript-eslint/explicit-function-return-type": "off",
+      "@typescript-eslint/explicit-module-boundary-types": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+      "no-unused-vars": "off"
+    }
+  }
+}
