@@ -5,5 +5,11 @@
 node_modules
 package-lock.json
 
+# GraphQL code gen :
+graphql.schema.json
+
 # Project build :
 build
+
+# DB save :
+dbsave

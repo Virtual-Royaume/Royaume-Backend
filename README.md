@@ -20,6 +20,7 @@ MONGO_LINK="get the link in your Discord"
 - ``npm run start`` : start the server in production mode
 - ``npm run lint`` : Format/lint the code
 - ``npm run test-client`` : test with the client file (``/src/others/ClientTester.ts``)
+- ``npm run gen-gql`` : generate GraphQL interfaces files
 
 ## Documentation 
 API : [api.royaume.world](https://dev-api.royaume.world)
