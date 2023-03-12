@@ -4,6 +4,7 @@
 # Node packages :
 node_modules
 package-lock.json
+pnpm-lock.yaml
 
 # GraphQL code gen :
 graphql.schema.json
