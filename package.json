@@ -10,6 +10,7 @@
     "gen-gql": "npx graphql-codegen --config codegen.yml"
   },
   "devDependencies": {
+    "@bluzzi/eslint-config": "^0.8.8",
     "@graphql-codegen/cli": "2.11.3",
     "@graphql-codegen/typescript-operations": "^2.5.2",
     "@graphql-codegen/typescript-resolvers": "^2.7.2",
