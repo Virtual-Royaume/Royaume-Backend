@@ -15,5 +15,6 @@
       "$core/*": ["./src/*"],
       "$resources/*": ["./resources/*"]
     }
-  }
+  },
+  "exclude": ["next-backend/**/*.ts"]
 }
