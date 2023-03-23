@@ -12,21 +12,21 @@ import { presenceMessageQuery } from "$core/resolvers/queries/PresenceMessage";
 import { presenceMessageMutation } from "$core/resolvers/mutations/PresenceMessage";
 
 export const resolvers: Resolvers = {
-    Date: date,
+  Date: date,
 
-    Query: {
-        ...mainChannelQuery,
-        ...mainRoleQuery,
-        ...memberQuery,
-        ...serverActivityQuery,
-        ...presenceMessageQuery
-    },
+  Query: {
+    ...mainChannelQuery,
+    ...mainRoleQuery,
+    ...memberQuery,
+    ...serverActivityQuery,
+    ...presenceMessageQuery
+  },
 
-    Mutation: {
-        ...mainChannelMutation,
-        ...mainRoleMutation,
-        ...memberMutation,
-        ...serverActivityMutation,
-        ...presenceMessageMutation
-    }
+  Mutation: {
+    ...mainChannelMutation,
+    ...mainRoleMutation,
+    ...memberMutation,
+    ...serverActivityMutation,
+    ...presenceMessageMutation
+  }
 };

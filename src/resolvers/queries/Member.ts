@@ -11,43 +11,43 @@ import { getFields } from "$core/utils/GraphQL";
 */
 
 export const memberQuery: Resolvers["Query"] = {
-    members: async(_, __, ___, info) => {
-        const fields = getFields(info);
+  members: async(_, __, ___, info) => {
+    const fields = getFields(info);
 
-        if (fields["activity.points.count"] || fields["activity.points.progress"]) {
-            const members = await memberCollection.find({ isOnServer: true }).toArray();
-            const membersWithPoints = await getMembersWithPoints();
+    if (fields["activity.points.count"] || fields["activity.points.progress"]) {
+      const members = await memberCollection.find({ isOnServer: true }).toArray();
+      const membersWithPoints = await getMembersWithPoints();
 
-            for (const member of members) {
-                const points = membersWithPoints.find(m => m._id === member._id)?.points;
+      for (const member of members) {
+        const points = membersWithPoints.find(m => m._id === member._id)?.points;
 
-                if (!points) continue;
+        if (!points) continue;
 
-                (member as Member).activity.points = points;
-            }
+        (member as Member).activity.points = points;
+      }
 
-            return members as Member[];
-        }
+      return members as Member[];
+    }
 
-        return await memberCollection.find({ isOnServer: true }).toArray() as Member[];
-    },
+    return await memberCollection.find({ isOnServer: true }).toArray() as Member[];
+  },
 
-    member: async(_, { id }, ___, info) => {
-        const member = await getMemberByDiscordId(id) as Member;
-        const fields = getFields(info);
+  member: async(_, { id }, ___, info) => {
+    const member = await getMemberByDiscordId(id) as Member;
+    const fields = getFields(info);
 
-        if (fields["activity.points.count"] || fields["activity.points.progress"]) {
-            const points = (await getMembersWithPoints()).find(m => m._id === id)?.points;
+    if (fields["activity.points.count"] || fields["activity.points.progress"]) {
+      const points = (await getMembersWithPoints()).find(m => m._id === id)?.points;
 
-            if (points) {
-                member.activity.points = points;
-
-                return member;
-            }
-
-            return member;
-        }
+      if (points) {
+        member.activity.points = points;
 
         return member;
+      }
+
+      return member;
     }
+
+    return member;
+  }
 };
