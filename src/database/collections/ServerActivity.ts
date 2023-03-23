@@ -16,8 +16,6 @@ serverActivityCollection.createIndex({ date: 1 }, { unique: true });
 // FUNCTIONS //
 
 export async function getServerActivity(): Promise<ServerActivity> {
-    console.log(new Date(`${getDateWithoutTime().format("YYYY/MM/DD")}Z`));
-
     let serverActivity = await serverActivityCollection.findOne({
         date: new Date(`${getDateWithoutTime().format("YYYY/MM/DD")}Z`)
     });

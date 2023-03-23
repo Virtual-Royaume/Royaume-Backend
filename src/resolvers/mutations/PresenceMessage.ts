@@ -8,7 +8,6 @@ export const presenceMessageMutation: Resolvers["Mutation"] = {
     ).insertedId,
 
     removePresenceMessage: async(_, { id }) => {
-        console.log(id);
         return !!(await presenceMessageCollection.deleteOne({ _id: new ObjectId(id) })).deletedCount;
     }
 };
