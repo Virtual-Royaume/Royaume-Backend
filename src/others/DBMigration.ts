@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import "dotenv/config";
 import { channelCollection } from "../database/collections/MainChannel";
 import { roleCollection } from "../database/collections/MainRole";
