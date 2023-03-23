@@ -23,7 +23,7 @@ const server = new ApolloServer({
     context: ({ req }) => {
         const token = req.headers.authorization || "";
 
-        if (token !== process.env.API_TOKEN_ACCESS) throw new Error("Invalid token in authorization header");
+        if (token !== process.env.API_TOKEN) throw new Error("Invalid token in authorization header");
     },
 
     typeDefs: schemas,

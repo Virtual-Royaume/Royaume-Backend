@@ -9,10 +9,10 @@ You must set this environment variables in your ``.env`` file :
 PORT=3000
 
 # API access token (for clients) :
-API_TOKEN_ACCESS="8cdf0dc6-7fb6-456f-bbe1-a2279b371a66"
+API_TOKEN="8cdf0dc6-7fb6-456f-bbe1-a2279b371a66"
 
 # MongoDB connection URL :
-MONGO_LINK="get the link in your Discord"
+MONGO_URL="get the link in your Discord"
 ```
 
 ### Commands
