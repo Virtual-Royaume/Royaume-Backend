@@ -1,4 +1,4 @@
-import { discordActivityTier } from "$config/discord-activity-tier";
+import { discordActivityTier } from "#/config/discord-activity-tier";
 import { ModelOptions, Prop, Ref } from "@typegoose/typegoose";
 import { MemberChannelActivity } from "./member-channel-activity.entity";
 import { MemberInformation } from "./member-information.entity";

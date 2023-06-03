@@ -1,4 +1,4 @@
-import { MainRoleModule as MainRoleServiceModule } from "$database/main-role";
+import { MainRoleModule as MainRoleServiceModule } from "#/database/main-role";
 import { Module } from "@nestjs/common";
 import { MainRoleRevolver } from "./main-role.resolver";
 

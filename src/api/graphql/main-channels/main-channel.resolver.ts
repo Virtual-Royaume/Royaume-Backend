@@ -1,4 +1,4 @@
-import { MainChannelService } from "$database/main-channel";
+import { MainChannelService } from "#/database/main-channel";
 import { Query, Resolver } from "@nestjs/graphql";
 import { MainChannel } from "./main-channel.model";
 

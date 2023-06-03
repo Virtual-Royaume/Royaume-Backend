@@ -1,4 +1,4 @@
-import { MainRoleService } from "$database/main-role";
+import { MainRoleService } from "#/database/main-role";
 import { Query, Resolver } from "@nestjs/graphql";
 import { MainRole } from "./main-role.model";
 

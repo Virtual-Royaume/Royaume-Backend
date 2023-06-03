@@ -3,8 +3,8 @@ import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { GraphQLModule } from "@nestjs/graphql";
 import { TypegooseModule } from "@m8a/nestjs-typegoose";
-import { APIModule } from "$api/api.module";
-import { environmentVariable } from "$config/environment-variable";
+import { APIModule } from "#/api/api.module";
+import { environmentVariable } from "#/config/environment-variable";
 
 @Module({
   imports: [
