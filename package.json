@@ -1,8 +1,9 @@
 {
   "version": "3.4.0",
   "scripts": {
-    "start": "nest build && node build/main",
     "dev": "nest start --watch",
+    "build": "nest build",
+    "start": "node dist/main.js",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix"
   },
