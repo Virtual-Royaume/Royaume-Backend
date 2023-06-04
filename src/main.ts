@@ -1,4 +1,5 @@
 import { NestFactory } from "@nestjs/core";
+import { ValidationPipe } from "@nestjs/common";
 import { AppModule } from "#/app.module";
 import { Logger } from "#/utils/console/logger";
 import { env } from "#/configs/env";
@@ -11,6 +12,9 @@ async function main(): Promise<void> {
   // Prisma shutdown hook:
   const prismaService = app.get(DatabaseService);
   prismaService.enableShutdownHooks(app);
+
+  // Use validator pipe:
+  app.useGlobalPipes(new ValidationPipe());
 
   // Listen:
   await app.listen(env.PORT);
