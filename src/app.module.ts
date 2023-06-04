@@ -6,13 +6,13 @@ import { APIModule } from "#/api/api.module";
 
 @Module({
   imports: [
-    // GraphQL setup :
+    // GraphQL setup:
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: true
     }),
 
-    // API module :
+    // API module:
     APIModule
   ]
 })
