@@ -3,7 +3,7 @@ import { DatabaseService } from "../database.service";
 import type { DiscordChannel, Prisma } from "@prisma/client";
 
 @Injectable()
-export class DiscordChannelService {
+export class DiscordChannelDBService {
 
   constructor(private db: DatabaseService) {}
 
