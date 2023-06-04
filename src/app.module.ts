@@ -2,8 +2,8 @@ import type { ApolloDriverConfig } from "@nestjs/apollo";
 import { ApolloDriver } from "@nestjs/apollo";
 import { Module } from "@nestjs/common";
 import { GraphQLModule } from "@nestjs/graphql";
-import { APIModule } from "#/api/api.module";
 import { ApolloServerPluginLandingPageLocalDefault } from "@apollo/server/plugin/landingPage/default";
+import { GraphQLAPIModule } from "#/graphql/graphql.module";
 
 @Module({
   imports: [
@@ -15,8 +15,8 @@ import { ApolloServerPluginLandingPageLocalDefault } from "@apollo/server/plugin
       plugins: [ApolloServerPluginLandingPageLocalDefault()]
     }),
 
-    // API module:
-    APIModule
+    // GraphQL API module:
+    GraphQLAPIModule
   ]
 })
 export class AppModule {}
