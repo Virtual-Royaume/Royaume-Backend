@@ -3,7 +3,11 @@
     "target": "ES2022",
     "module": "commonjs",
 
+    "outDir": "./dist",
+    
     "strict": true,
+
+    "incremental": true,
     
     "resolveJsonModule": true,
     "esModuleInterop": true,
