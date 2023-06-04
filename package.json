@@ -8,16 +8,11 @@
     "lint:fix": "eslint ./src --fix"
   },
   "dependencies": {
-    "@nestjs/apollo": "^11.0.6",
     "@nestjs/common": "^9.4.2",
     "@nestjs/core": "^9.4.2",
     "@nestjs/graphql": "^11.0.6",
-    "@nestjs/platform-express": "^9.4.2",
-    "@typegoose/typegoose": "^11.2.0",
-    "apollo-server-express": "^3.12.0",
     "dayjs": "^1.11.8",
     "graphql": "^16.6.0",
-    "mongoose": "^7.2.2",
     "reflect-metadata": "^0.1.13",
     "zod": "^3.21.4"
   },
@@ -36,14 +31,14 @@
   "eslintConfig": {
     "extends": "@bluzzi",
     "env": {
-      "node": true
+      "node": true,
+      "jest": true
     },
     "rules": {
       "@typescript-eslint/interface-name-prefix": "off",
       "@typescript-eslint/explicit-function-return-type": "off",
       "@typescript-eslint/explicit-module-boundary-types": "off",
-      "@typescript-eslint/no-explicit-any": "off",
-      "no-unused-vars": "off"
+      "@typescript-eslint/no-explicit-any": "off"
     }
   }
 }
