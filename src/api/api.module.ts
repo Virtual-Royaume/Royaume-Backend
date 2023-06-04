@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
-import { MainRoleModule } from "./main-roles/main-role.module";
+import { DiscordRoleModule } from "./discord-role/discord-role.module";
 
 @Module({
-  imports: [MainRoleModule]
+  imports: [DiscordRoleModule]
 })
 export class APIModule {}
