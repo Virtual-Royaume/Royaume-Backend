@@ -5,7 +5,13 @@
     "build": "nest build",
     "start": "node dist/main",
     "lint": "eslint ./src",
-    "lint:fix": "eslint ./src --fix"
+    "lint:fix": "eslint ./src --fix",
+    "db:migrate-dev": "prisma migrate dev",
+    "db:migrate-prod": "prisma migrate deploy",
+    "db:reset": "prisma migrate reset",
+    "db:seed": "prisma db seed",
+    "db:client": "prisma generate",
+    "db:studio": "prisma studio"
   },
   "dependencies": {
     "@apollo/server": "^4.7.1",
@@ -13,6 +19,7 @@
     "@nestjs/common": "^9.4.2",
     "@nestjs/core": "^9.4.2",
     "@nestjs/graphql": "^11.0.6",
+    "@prisma/client": "^4.15.0",
     "dayjs": "^1.11.8",
     "graphql": "^16.6.0",
     "reflect-metadata": "^0.1.13",
@@ -24,6 +31,7 @@
     "@nestjs/schematics": "^9.2.0",
     "@types/node": "^20.2.5",
     "eslint": "^8.42.0",
+    "prisma": "^4.15.0",
     "source-map-support": "^0.5.21",
     "ts-loader": "^9.4.3",
     "ts-node": "^10.9.1",
