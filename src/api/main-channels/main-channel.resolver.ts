@@ -13,4 +13,5 @@ export class MainChannelRevolver {
   async channels(): Promise<MainChannel[]> {
     return await this.mainChannelService.findAll();
   }
+
 }

@@ -1,8 +1,8 @@
 import { Module } from "@nestjs/common";
-import { GraphQLMainModule } from "./graphql/graphql.module";
-import { RestModule } from "./rest/rest.module";
+import { MainRoleModule } from "./main-roles/main-role.module";
+import { MainChannelModule } from "./main-channels/main-channel.module";
 
 @Module({
-  imports: [GraphQLMainModule, RestModule]
+  imports: [MainRoleModule, MainChannelModule]
 })
 export class APIModule {}
