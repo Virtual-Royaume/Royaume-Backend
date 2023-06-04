@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "nest start --watch",
     "build": "nest build",
-    "start": "node dist/main.js",
+    "start": "node dist/main",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix"
   },
