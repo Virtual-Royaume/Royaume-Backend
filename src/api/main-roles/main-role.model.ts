@@ -8,4 +8,5 @@ export class MainRole {
 
   @Field()
   public category!: string;
+
 }

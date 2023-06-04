@@ -1,5 +1,5 @@
 import { dayJS } from "#/utility/day-js";
-import { LoggerService } from "@nestjs/common";
+import type { LoggerService } from "@nestjs/common";
 import { ConsoleEffect, ConsoleForground } from "./console-style";
 
 export class Logger implements LoggerService {
@@ -36,4 +36,5 @@ export class Logger implements LoggerService {
   public verbose(message: string): void {
     console.log(this.formatLog(ConsoleForground.Magenta, "verbose", message));
   }
+
 }

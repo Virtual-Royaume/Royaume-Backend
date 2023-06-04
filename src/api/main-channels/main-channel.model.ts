@@ -8,4 +8,5 @@ export class MainChannel {
 
   @Field()
   public category!: string;
+
 }
