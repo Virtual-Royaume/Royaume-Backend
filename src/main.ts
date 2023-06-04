@@ -1,7 +1,7 @@
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "#/app.module";
-import { Logger } from "#/utility/console/logger";
-import { env } from "#/config/env";
+import { Logger } from "#/utils/console/logger";
+import { env } from "#/configs/env";
 
 async function main(): Promise<void> {
   const app = await NestFactory.create(AppModule, { logger: new Logger() });

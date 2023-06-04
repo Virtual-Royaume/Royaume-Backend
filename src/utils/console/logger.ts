@@ -1,4 +1,4 @@
-import { dayJS } from "#/utility/day-js";
+import { dayJS } from "#/utils/day-js";
 import type { LoggerService } from "@nestjs/common";
 import { ConsoleEffect, ConsoleForground } from "./console-style";
 
