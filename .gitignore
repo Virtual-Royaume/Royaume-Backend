@@ -12,7 +12,3 @@ dist
 
 # Old backend:
 old-backend
-
-**.js
-**.js.map
-**.d.ts
