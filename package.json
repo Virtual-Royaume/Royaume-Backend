@@ -11,7 +11,9 @@
     "db:reset": "prisma migrate reset",
     "db:seed": "prisma db seed",
     "db:client": "prisma generate",
-    "db:studio": "prisma studio"
+    "db:studio": "prisma studio",
+    "test": "vitest",
+    "test:ui": "vitest --ui"
   },
   "dependencies": {
     "@apollo/server": "^4.7.1",
@@ -35,14 +37,17 @@
     "@faker-js/faker": "^8.0.2",
     "@nestjs/cli": "^9.5.0",
     "@nestjs/schematics": "^9.2.0",
+    "@nestjs/testing": "^9.4.2",
     "@types/node": "^20.2.5",
+    "@vitest/ui": "^0.31.4",
     "eslint": "^8.42.0",
     "prisma": "^4.15.0",
     "source-map-support": "^0.5.21",
     "ts-loader": "^9.4.3",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.1.3"
+    "typescript": "^5.1.3",
+    "vitest": "^0.31.4"
   },
   "prisma": {
     "seed": "ts-node ./prisma/seedings/seeding.ts"
@@ -50,8 +55,7 @@
   "eslintConfig": {
     "extends": "@bluzzi",
     "env": {
-      "node": true,
-      "jest": true
+      "node": true
     },
     "rules": {
       "@typescript-eslint/interface-name-prefix": "off",
