@@ -2,13 +2,13 @@ import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
 import { DiscordChannel } from "./[model]/discord-channel.model";
 import { CreateDiscordChannel } from "./[args]/create-discord-channel.args";
 import { GraphQLError } from "graphql";
-import { DiscordChannelDBService } from "#/database/discord-channel";
+import { DiscordChannelService } from "#/database/discord-channel";
 
 @Resolver(() => DiscordChannel)
 export class DiscordChannelResolver {
 
   constructor(
-    private readonly discordChannelService: DiscordChannelDBService
+    private readonly discordChannelService: DiscordChannelService
   ) {}
 
   @Query(() => [DiscordChannel])

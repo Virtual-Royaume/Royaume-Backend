@@ -5,7 +5,7 @@ import { DatabaseService } from "../database.service";
 import { error, ok, resultify } from "rustic-error";
 
 @Injectable()
-export class DiscordChannelDBService {
+export class DiscordChannelService {
 
   constructor(private db: DatabaseService) {}
 

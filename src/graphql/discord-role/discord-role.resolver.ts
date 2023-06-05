@@ -1,14 +1,14 @@
-import { DiscordRoleDBService } from "#/database/discord-role";
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
 import { DiscordRole } from "./[model]/discord-role.model";
 import { CreateDiscordRole } from "./[args]/create-discord-role.args";
 import { GraphQLError } from "graphql";
+import { DiscordRoleService } from "#/database/discord-role";
 
 @Resolver(() => DiscordRole)
 export class DiscordRoleResolver {
 
   constructor(
-    private readonly discordRoleService: DiscordRoleDBService
+    private readonly discordRoleService: DiscordRoleService
   ) {}
 
   @Query(() => [DiscordRole])

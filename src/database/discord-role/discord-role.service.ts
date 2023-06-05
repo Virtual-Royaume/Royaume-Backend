@@ -7,7 +7,7 @@ import { error } from "rustic-error";
 import { resultify } from "rustic-error";
 
 @Injectable()
-export class DiscordRoleDBService {
+export class DiscordRoleService {
 
   constructor(private db: DatabaseService) {}
 

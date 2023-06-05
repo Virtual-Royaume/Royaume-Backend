@@ -4,6 +4,7 @@ import { Module } from "@nestjs/common";
 import { GraphQLModule } from "@nestjs/graphql";
 import { ApolloServerPluginLandingPageLocalDefault } from "@apollo/server/plugin/landingPage/default";
 import { GraphQLAPIModule } from "#/graphql/graphql.module";
+import { DatabaseModule } from "./database";
 
 @Module({
   imports: [
@@ -14,6 +15,9 @@ import { GraphQLAPIModule } from "#/graphql/graphql.module";
       playground: false,
       plugins: [ApolloServerPluginLandingPageLocalDefault()]
     }),
+
+    // Database services:
+    DatabaseModule,
 
     // GraphQL API module:
     GraphQLAPIModule
