@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: TSup build 
+    name: NestJS build 
     runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-node@v3

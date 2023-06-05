@@ -4,7 +4,7 @@ import { describe, expect, test } from "vitest";
 
 describe("discord-role resolver", () => {
   test("roles", async() => {
-    const response = await fetch("http://localhost:3000/graphql", {
+    const response = await fetch("http://127.0.0.1:3000/graphql", {
       method: "POST",
       headers: {
         "content-type": "application/json"
