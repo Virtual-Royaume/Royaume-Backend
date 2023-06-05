@@ -10,7 +10,7 @@ const services = [
 ];
 
 @Module({
-  imports: services,
+  providers: services,
   exports: services
 })
 export class DatabaseModule {}
