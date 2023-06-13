@@ -16,17 +16,17 @@
     "test:ui": "vitest --ui"
   },
   "dependencies": {
-    "@apollo/server": "^4.7.1",
+    "@apollo/server": "^4.7.3",
     "@nestjs/apollo": "^11.0.6",
-    "@nestjs/common": "^9.4.2",
-    "@nestjs/core": "^9.4.2",
+    "@nestjs/common": "^9.4.3",
+    "@nestjs/core": "^9.4.3",
     "@nestjs/graphql": "^11.0.6",
-    "@nestjs/platform-express": "^9.4.2",
+    "@nestjs/platform-express": "^9.4.3",
     "@prisma/client": "^4.15.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
     "dayjs": "^1.11.8",
-    "dotenv": "^16.1.3",
+    "dotenv": "^16.1.4",
     "graphql": "^16.6.0",
     "reflect-metadata": "^0.1.13",
     "rustic-error": "^0.2.1",
@@ -37,9 +37,9 @@
     "@faker-js/faker": "^8.0.2",
     "@nestjs/cli": "^9.5.0",
     "@nestjs/schematics": "^9.2.0",
-    "@nestjs/testing": "^9.4.2",
-    "@types/node": "^20.2.5",
-    "@vitest/ui": "^0.31.4",
+    "@nestjs/testing": "^9.4.3",
+    "@types/node": "^20.3.1",
+    "@vitest/ui": "^0.32.0",
     "eslint": "^8.42.0",
     "prisma": "^4.15.0",
     "source-map-support": "^0.5.21",
@@ -47,7 +47,7 @@
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.1.3",
-    "vitest": "^0.31.4"
+    "vitest": "^0.32.0"
   },
   "prisma": {
     "seed": "ts-node ./prisma/seedings/seeding.ts"
