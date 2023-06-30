@@ -13,7 +13,9 @@
     "db:client": "prisma generate",
     "db:studio": "prisma studio",
     "test": "vitest",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "gql:gen": "graphql-codegen --config gql-gen.config.ts",
+    "gql:gen-watch": "graphql-codegen --watch --config gql-gen.config.ts"
   },
   "dependencies": {
     "@apollo/server": "^4.7.3",
@@ -35,6 +37,9 @@
   "devDependencies": {
     "@bluzzi/eslint-config": "^1.1.0",
     "@faker-js/faker": "^8.0.2",
+    "@graphql-codegen/cli": "^4.0.1",
+    "@graphql-codegen/client-preset": "^4.0.1",
+    "@graphql-typed-document-node/core": "^3.2.0",
     "@nestjs/cli": "^9.5.0",
     "@nestjs/schematics": "^9.2.0",
     "@nestjs/testing": "^9.4.3",
@@ -62,6 +67,9 @@
       "@typescript-eslint/explicit-function-return-type": "off",
       "@typescript-eslint/explicit-module-boundary-types": "off",
       "@typescript-eslint/no-explicit-any": "off"
-    }
+    },
+    "ignorePatterns": [
+      "src/utils/request/graphql/code-gen"
+    ]
   }
 }
