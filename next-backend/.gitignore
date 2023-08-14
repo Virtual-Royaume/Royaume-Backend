@@ -1,9 +1,14 @@
-# Environment variables :
+# Environment variables:
 .env
 
-# Node packages :
+# Node:
 node_modules
 package-lock.json
+yarn.lock
+pnpm-lock.yaml
 
-# Project build :
-build
+# Build:
+dist
+
+# Old backend:
+old-backend

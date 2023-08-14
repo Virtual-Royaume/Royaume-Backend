@@ -1,12 +1,23 @@
-import { environmentVariable } from "$config/environment-variable";
-import { Logger } from "$utility/console/logger";
 import { NestFactory } from "@nestjs/core";
-import { AppModule } from "./app.module";
+import { ValidationPipe } from "@nestjs/common";
+import { AppModule } from "#/app.module";
+import { Logger } from "#/utils/console/logger";
+import { env } from "#/configs/env";
+import { DatabaseService } from "#/database";
 
 async function main(): Promise<void> {
+  // Create app:
   const app = await NestFactory.create(AppModule, { logger: new Logger() });
 
-  await app.listen(environmentVariable().port);
+  // Prisma shutdown hook:
+  const prismaService = app.get(DatabaseService);
+  prismaService.enableShutdownHooks(app);
+
+  // Use validator pipe:
+  app.useGlobalPipes(new ValidationPipe());
+
+  // Listen:
+  await app.listen(env.PORT);
 }
 
-main();
+void main();

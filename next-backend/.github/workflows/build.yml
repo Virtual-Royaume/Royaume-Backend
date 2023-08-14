@@ -1,0 +1,19 @@
+name: Build
+
+on:
+  push:
+    branches: ["main", "env/prod", "env/dev"]
+  pull_request:
+    types: ["opened", "synchronize"]
+
+jobs:
+  build:
+    name: NestJS build 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm install
+      - name: Run NestJS build
+        run: npm run build
