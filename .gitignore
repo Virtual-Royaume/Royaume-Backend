@@ -1,14 +1,16 @@
-# Environment variables:
+# Environment variables :
 .env
 
-# Node:
+# Node packages :
 node_modules
 package-lock.json
-yarn.lock
 pnpm-lock.yaml
 
-# Build:
-dist
+# GraphQL code gen :
+graphql.schema.json
 
-# Old backend:
-old-backend
+# Project build :
+build
+
+# DB save :
+dbsave

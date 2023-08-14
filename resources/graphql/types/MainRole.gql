@@ -1,0 +1,4 @@
+type MainRole {
+    roleId: ID!
+    category: String!
+}
