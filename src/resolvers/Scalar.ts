@@ -15,7 +15,7 @@ export const date: Resolvers["Date"] = new GraphQLScalarType({
   },
   parseLiteral(ast) {
     return ast.kind === Kind.STRING
-      ? getDateWithoutTime(DayJS(ast.value))
+      ? getDateWithoutTime(DayJS(Number(ast.value)))
       : null;
   }
 });
