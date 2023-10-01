@@ -11,11 +11,10 @@ export const date: Resolvers["Date"] = new GraphQLScalarType({
     return getDateWithoutTime(DayJS(value as Date)).valueOf();
   },
   parseValue(value) {
-    return getDateWithoutTime(DayJS(value as string));
+    return getDateWithoutTime(DayJS(Number(value)));
   },
   parseLiteral(ast) {
-    return ast.kind === Kind.STRING
-      ? getDateWithoutTime(DayJS(Number(ast.value)))
-      : null;
+    if (ast.kind === Kind.STRING || ast.kind === Kind.INT || ast.kind === Kind.FLOAT) return getDateWithoutTime(DayJS(Number(ast.value)));
+    return null;
   }
 });
